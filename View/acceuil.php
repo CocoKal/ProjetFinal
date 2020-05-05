@@ -20,55 +20,7 @@
 
 <div class="super_container">
 
-	<!-- Header -->
-
-	<header class="header">
-		<div class="header_content d-flex flex-row align-items-center justify-content-start">
-			<div class="logo"><a href="#">The River</a></div>
-			<div class="ml-auto d-flex flex-row align-items-center justify-content-start">
-				<nav class="main_nav">
-					<ul class="d-flex flex-row align-items-start justify-content-start">
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="about.html">About us</a></li>
-						<li><a href="#">Rooms</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</nav>
-				<div class="book_button"><a href="booking.html">Book Online</a></div>
-				<div class="header_phone d-flex flex-row align-items-center justify-content-center">
-					<img src="Content/images/phone.png" alt="">
-					<span>0183-12345678</span>
-				</div>
-
-				<!-- Hamburger Menu -->
-				<div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Menu -->
-
-	<div class="menu trans_400 d-flex flex-column align-items-end justify-content-start">
-		<div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-		<div class="menu_content">
-			<nav class="menu_nav text-right">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About us</a></li>
-					<li><a href="#">Rooms</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="menu_extra">
-			<div class="menu_book text-right"><a href="#">Book online</a></div>
-			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">
-				<img src="Content/images/phone-2.png" alt="">
-				<span>0183-12345678</span>
-			</div>
-		</div>
-	</div>
+<?php require("modules/header.php"); ?>
 
 	<!-- Home -->
 
@@ -160,25 +112,25 @@
 
 				<!-- Slide -->
 				<div class="gallery_item">
-					<div class="background_image" style="background-image:url(images/gallery_1.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/gallery_1.jpg)"></div>
 					<a class="colorbox" href="images/gallery_1.jpg"></a>
 				</div>
 
 				<!-- Slide -->
 				<div class="gallery_item">
-					<div class="background_image" style="background-image:url(images/gallery_2.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/gallery_2.jpg)"></div>
 					<a class="colorbox" href="images/gallery_2.jpg"></a>
 				</div>
 
 				<!-- Slide -->
 				<div class="gallery_item">
-					<div class="background_image" style="background-image:url(images/gallery_3.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/gallery_3.jpg)"></div>
 					<a class="colorbox" href="images/gallery_3.jpg"></a>
 				</div>
 
 				<!-- Slide -->
 				<div class="gallery_item">
-					<div class="background_image" style="background-image:url(images/gallery_4.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/gallery_4.jpg)"></div>
 					<a class="colorbox" href="images/gallery_4.jpg"></a>
 				</div>
 
@@ -284,7 +236,7 @@
 
 							<!-- Slide -->
 							<div class="booking_item">
-								<div class="background_image" style="background-image:url(images/booking_1.jpg)"></div>
+								<div class="background_image" style="background-image:url(Content/images/booking_1.jpg)"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
 								<div class="booking_link"><a href="booking.html">Family Room</a></div>
@@ -292,7 +244,7 @@
 
 							<!-- Slide -->
 							<div class="booking_item">
-								<div class="background_image" style="background-image:url(images/booking_2.jpg)"></div>
+								<div class="background_image" style="background-image:url(Content/images/booking_2.jpg)"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
 								<div class="booking_link"><a href="booking.html">Deluxe Room</a></div>
@@ -300,7 +252,7 @@
 
 							<!-- Slide -->
 							<div class="booking_item">
-								<div class="background_image" style="background-image:url(images/booking_3.jpg)"></div>
+								<div class="background_image" style="background-image:url(Content/images/booking_3.jpg)"></div>
 								<div class="booking_overlay trans_200"></div>
 								<div class="booking_price">$120/Night</div>
 								<div class="booking_link"><a href="booking.html">Single Room</a></div>
@@ -323,7 +275,7 @@
 
 				<!-- Slide -->
 				<div class="blog_slide">
-					<div class="background_image" style="background-image:url(images/index_blog_1.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/index_blog_1.jpg)"></div>
 					<div class="blog_content">
 						<div class="blog_date"><a href="#">Oct 20, 2018</a></div>
 						<div class="blog_title"><a href="#">How to book your stay</a></div>
@@ -332,7 +284,7 @@
 
 				<!-- Slide -->
 				<div class="blog_slide">
-					<div class="background_image" style="background-image:url(images/index_blog_2.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/index_blog_2.jpg)"></div>
 					<div class="blog_content">
 						<div class="blog_date"><a href="#">Oct 20, 2018</a></div>
 						<div class="blog_title"><a href="#">10 restaurants in town</a></div>
@@ -341,7 +293,7 @@
 
 				<!-- Slide -->
 				<div class="blog_slide">
-					<div class="background_image" style="background-image:url(images/index_blog_3.jpg)"></div>
+					<div class="background_image" style="background-image:url(Content/images/index_blog_3.jpg)"></div>
 					<div class="blog_content">
 						<div class="blog_date"><a href="#">Oct 20, 2018</a></div>
 						<div class="blog_title"><a href="#">A perfect wedding</a></div>
