@@ -12,7 +12,7 @@
         </ul>
       </nav>
       <div>
-        <a href="http://localhost/Tests/ProjetFinal/index.php?view=signin">
+        <a href="http://localhost/Tests/ProjetFinal/index.php?view=login">
           <button class="header_phone booking_button trans_200">Se connecter</button>
         </a>
       </div>
