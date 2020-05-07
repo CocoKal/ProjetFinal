@@ -2,20 +2,19 @@
 
 <header class="header">
   <div class="header_content d-flex flex-row align-items-center justify-content-start">
-    <div class="logo"><a href="http://localhost/Tests/ProjetFinal/index.php">The River</a></div>
+    <div class="logo"><a href="http://localhost/Tests/ProjetFinal/index.php">Sophie Tells</a></div>
     <div class="ml-auto d-flex flex-row align-items-center justify-content-start">
       <nav class="main_nav">
         <ul class="d-flex flex-row align-items-start justify-content-start">
-          <li class="active"><a href="http://localhost/Tests/ProjetFinal/index.php">Home</a></li>
-          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">About us</a></li>
-          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=rooms">Rooms</a></li>
-          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contact</a></li>
+          <li class="active"><a href="http://localhost/Tests/ProjetFinal/index.php">Acceuil</a></li>
+          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">À propos</a></li>
+          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contacts</a></li>
         </ul>
       </nav>
-      <div class="book_button"><a href="http://localhost/Tests/ProjetFinal/index.php?view=booking">Book Online</a></div>
-      <div class="header_phone d-flex flex-row align-items-center justify-content-center">
-        <img src="Content/images/phone.png" alt="">
-        <span>0183-12345678</span>
+      <div>
+        <a href="http://localhost/Tests/ProjetFinal/index.php?view=signin">
+          <button class="header_phone booking_button trans_200">Se connecter</button>
+        </a>
       </div>
 
       <!-- Hamburger Menu -->
