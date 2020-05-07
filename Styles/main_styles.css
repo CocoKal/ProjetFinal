@@ -1,4 +1,4 @@
-#181a1b@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -331,7 +331,7 @@ section
 }
 .logo
 {
-	width: 130px;
+	width: 160px;
 	height: 41px;
 	border: solid 2px #ffffff;
 	text-align: center;
@@ -392,7 +392,7 @@ section
 }
 .header_phone
 {
-	width: 190px;
+	width: 130px;
 	height: 54px;
 	background: #ffa37b;
 	margin-left: 14px;
@@ -555,6 +555,11 @@ section
 {
 	width: 100%;
 	height: 100vh;
+	background: #0f0e24;
+}
+.home .background_image
+{
+	opacity: 0.28;
 }
 .home_slider_container
 {
@@ -646,15 +651,15 @@ section
 {
 	padding-right: 10px;
 }
-.booking_input_container > div:first-child,
-.booking_input_container > div:nth-child(2)
+.booking_input_container > div:first-child
 {
-	width: 32.60869565217391%;
+	width: 40%;
 }
+.booking_input_container > div:nth-child(2),
 .booking_input_container > div:nth-child(3),
 .booking_input_container > div:nth-child(4)
 {
-	width: 17.39130434782609%;
+	width: 20%;
 }
 .booking_input_a
 {
@@ -1082,7 +1087,7 @@ input[type=number]::-webkit-outer-spin-button
 }
 .footer_logo > div:first-of-type
 {
-	width: 235px;
+	width: 300px;
 	height: 74px;
 	border: solid 3px  #adadad;
 	font-size: 43.32px;

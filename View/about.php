@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>About us</title>
+<title>Sophie Tells</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The River template project">
@@ -48,7 +48,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="about_title"><h2>The River / 10 years of excellence</h2></div>
+					<div class="about_title"><h2>Sophie Tells / 10 ans d'excellence</h2></div>
 				</div>
 			</div>
 			<div class="row about_row">
@@ -57,7 +57,7 @@
 				<div class="col-lg-6">
 					<div class="about_content">
 						<div class="about_text">
-							<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit.</p>
+							<p>Prendre soin de soi n'a jamais été un tel plaisir. Profitez du luxe somptueux de votre chambre ou de votre suite et régalez-vous avec le petit-déjeuner Sofitel De-Light, aussi équilibré qu'appétissant. Grâce au départ...</p>
 						</div>
 						<div class="about_sig"><img src="Content/images/sig.png" alt=""></div>
 					</div>
@@ -190,7 +190,7 @@
 	<!-- Footer -->
 
 	<?php require("modules/footer.php") ?>
-	
+
 </div>
 
 <script src="Content/js/jquery-3.3.1.min.js"></script>
