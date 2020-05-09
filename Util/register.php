@@ -8,14 +8,14 @@
 		 and !empty($_POST['email'])
 		 and isset($_POST['password'])
 		 and !empty($_POST['password'])
-		 and isset($_POST['password_confirm'])
-		 and !empty($_POST['password_confirm'])  ) {
+		 and isset($_POST['confirm_password'])
+		 and !empty($_POST['confirm_password'])  ) {
 
- 		if($_POST['password']!== $_POST['password_confirm']){
+ 		if($_POST['password']!== $_POST['confirm_password']){
  			echo "<script>alert('Veuillez confirmer le mot de passe.');</script>";
  		}
 		else{
- 			$users = $model->get_all_users();
+ 			$users = $model->get_all_user();
 			$id=0;
 
   		foreach ($users as $u){

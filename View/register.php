@@ -21,13 +21,13 @@
   </header>
 
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form method="post">
 		<h2>S'inscrire</h2>
 		<p class="hint-text">Créer votre compte. Ça ne prend que quelques secondes.</p>
         <div class="form-group">
 			<div class="row">
-				<div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="Prénom" required="required"></div>
-				<div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="Nom" required="required"></div>
+				<div class="col-xs-6"><input type="text" class="form-control" name="firstname" placeholder="Prénom" required="required"></div>
+				<div class="col-xs-6"><input type="text" class="form-control" name="lastname" placeholder="Nom" required="required"></div>
 			</div>
         </div>
         <div class="form-group">
@@ -48,5 +48,8 @@
     </form>
 	<div class="text-center">Vous avez déjà un compte ? <a href="http://localhost/Tests/ProjetFinal/index.php?view=login">Se connecter</a></div>
 </div>
+<?php
+ include('Util/register.php');
+ ?>
 </body>
 </html>

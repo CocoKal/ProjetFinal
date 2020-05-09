@@ -22,7 +22,7 @@
   </header>
 
 <div class="signup-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form method="post">
 		<h2>Se connecter</h2>
         <div class="form-group">
         	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
@@ -36,5 +36,8 @@
     </form>
 	<div class="text-center">Vous n'avez pas de compte ? <a href="http://localhost/Tests/ProjetFinal/index.php?view=register">S'inscrire</a></div>
 </div>
+<?php
+ include('Util/login.php');
+ ?>
 </body>
 </html>
