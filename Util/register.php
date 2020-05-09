@@ -1,4 +1,6 @@
 <?php
+
+if (!isset($_SESSION["username"])) {
 	$bool=false;
      if(isset($_POST['firstname'])
 		 and !empty($_POST['firstname'])
@@ -26,9 +28,10 @@
       }
 
       if(!$bool){
-      $id++;
-      $expire = time()+3600;
-      setcookie('id',$id,$expire, '/');
+				$username = $_POST["lastname"]." ".$_POST["firstname"];
+				$userlevel = !empty($model->get_admin_id_by_user($id));
+				$_SESSION["username"] = $username;
+				$_SESSION["userlevel"] = $userlevel;
       $ajout = $model->add_user($_POST['lastname'],$_POST['firstname'],$_POST['email'],password_hash($_POST['password'], PASSWORD_DEFAULT));
       header("location:index.php");
     	}
@@ -38,4 +41,9 @@
 
   	}
 	}
+}
+else {
+	echo"<script>alert('Vous êtes déjà connecté.')</script>";
+	header('Refresh: 1; url=index.php');
+}
 ?>

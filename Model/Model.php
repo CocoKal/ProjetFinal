@@ -340,6 +340,23 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		//ADMIN
+
+		public function add_admin($id_user){
+			$requete = $this->bd->prepare(
+				"INSERT INTO user (id_user)
+				VALUES 							(:id_user)");
+
+			$requete->bindValue(":id_user", id_user);
+			return $requete->execute();
+		}
+
+		public function get_admin_id_by_user($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM admin WHERE id_user = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 }
 
 ?>

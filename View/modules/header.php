@@ -12,8 +12,20 @@
         </ul>
       </nav>
       <div>
-        <a href="http://localhost/Tests/ProjetFinal/index.php?view=login">
-          <button class="header_phone booking_button trans_200">Se connecter</button>
+        <?php
+          if (!isset($_SESSION["username"])) {
+            echo '<a href="http://localhost/Tests/ProjetFinal/index.php?view=login">';
+          }
+          else {
+            echo '<a href="http://localhost/Tests/ProjetFinal/index.php?view=account">';
+          }
+        ?>
+          <button class="header_phone booking_button trans_200">
+              <?php
+                if (isset($_SESSION["username"])) echo $_SESSION["username"];
+                else echo "Se Connecter";
+               ?>
+          </button>
         </a>
       </div>
 
@@ -32,7 +44,6 @@
       <ul>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php">Home</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">About us</a></li>
-        <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=rooms">Rooms</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contact</a></li>
       </ul>
     </nav>
