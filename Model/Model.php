@@ -316,20 +316,17 @@
 		//USER
 
 
-		public function add_user($id,$name,$username,$email,$password){
+		public function add_user($name,$username,$email,$password){
 			$requete = $this->bd->prepare(
-				"INSERT INTO user (id,
-													name,
-													username,
+				"INSERT INTO user (lastname,
+													firstname,
 													email,
 													password)
-				VALUES 							(:id,
-													:name,
+				VALUES 							(:name,
 													:username,
 													:email,
 													:password)");
 
-			$requete->bindValue(":id", $id);
 			$requete->bindValue(":name", $name);
 			$requete->bindValue(":username", $username);
 			$requete->bindValue(":email", $email);
