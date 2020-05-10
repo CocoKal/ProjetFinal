@@ -161,8 +161,8 @@ CREATE TABLE `id_card_type` (
 --
 
 INSERT INTO `id_card_type` (`id_card_type_id`, `id_card_type`) VALUES
-(1, 'Aadhar Card'),
-(2, 'Voter Id Card'),
+(1, 'Passport'),
+(2, ' Id Card'),
 (3, 'Pan Card'),
 (4, 'Driving License');
 
@@ -219,10 +219,23 @@ CREATE TABLE `room_type` (
 --
 
 INSERT INTO `room_type` (`room_type_id`, `room_type`, `price`, `max_person`) VALUES
-(1, 'Single', 1000, 1),
-(2, 'Double', 1500, 2),
-(3, 'Triple', 2000, 3),
-(4, 'Family', 3000, 2);
+(1, 'Standard Single', 1000, 1),
+(2, 'Standard Double', 1500, 2),
+(3, 'Standard Triple', 2000, 3),
+(4, 'Standard Family', 3000, 4);
+(5, 'Tourism Single', 1500, 1),
+(6, 'Tourism Double', 2000, 2),
+(7, 'Tourism Triple', 2500, 3),
+(8, 'Tourism Family', 3000, 4);
+(9, 'Confort Single', 2000, 1),
+(10, 'Confort Double', 2500, 2),
+(11, 'Confort Triple', 3000, 3),
+(12, 'Confort Family', 3000, 4);
+(13, 'Luxury Single', 2500, 1),
+(14, 'Luxury Double', 3000, 2),
+(15, 'Luxury Triple', 3500, 3),
+(16, 'Luxury Family', 4000, 4);
+
 
 -- --------------------------------------------------------
 
@@ -423,6 +436,10 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+ AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `booking`
