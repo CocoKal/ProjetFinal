@@ -45,14 +45,20 @@
         <li><a href="http://localhost/Tests/ProjetFinal/index.php">Home</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">About us</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contact</a></li>
+        <li>
+          <?php
+            if (!isset($_SESSION["username"])) {
+              echo '<a href="http://localhost/Tests/ProjetFinal/index.php?view=login">';
+              echo "Se Connecter";
+            }
+            else {
+              echo '<a href="http://localhost/Tests/ProjetFinal/index.php?view=account">';
+              echo $_SESSION["username"];
+            }
+           ?>
+        </a>
+      </li>
       </ul>
     </nav>
-  </div>
-  <div class="menu_extra">
-    <div class="menu_book text-right"><a href="#">Book online</a></div>
-    <div class="menu_phone d-flex flex-row align-items-center justify-content-center">
-      <img src="Content/images/phone-2.png" alt="">
-      <span>0183-12345678</span>
-    </div>
   </div>
 </div>
