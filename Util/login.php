@@ -14,6 +14,7 @@ if (!isset($_SESSION["username"])) {
        		$id = $u["id"];
 					$username = $u["lastname"]." ".$u["firstname"];
 					$userlevel = !empty($model->get_admin_id_by_user($id));
+					$_SESSION["id"] = $id;
 					$_SESSION["username"] = $username;
 					$_SESSION["userlevel"] = $userlevel;
         	$bool = true;
