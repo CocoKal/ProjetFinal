@@ -17,18 +17,16 @@
 
 		//BOOKING
 
-		public function add_booking($booking_id,$customer_id,$room_id,$check_in,$check_out,$total_price,$remaining_price,$payment_status){
+		public function add_booking($customer_id,$room_id,$check_in,$check_out,$total_price,$remaining_price,$payment_status){
 			$requete = $this->bd->prepare(
-				"INSERT INTO booking (booking_id,
-														customer_id,
+				"INSERT INTO booking (customer_id,
 														room_id,
 														check_in,
 														check_out,
 														total_price,
 														remaining_price,
 														payment_status)
-				VALUES (:booking_id,
- 							 :customer_id,
+				VALUES (:customer_id,
  							 :room_id,
  							 :check_in,
  							 :check_out,
@@ -201,16 +199,21 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_room_by_hotel_id($hotel_id)
+		{
+			$requete = $this->bd->prepare("SELECT * FROM room WHERE hotel_id = ".$hotel_id);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//ROOM_TYPE
 
-		public function add_room_type($room_type_id,$room_type,$price,$max_person){
+		public function add_room_type($room_type,$price,$max_person){
 			$requete = $this->bd->prepare(
-				"INSERT INTO room_type (room_type_id,
-														room_type,
+				"INSERT INTO room_type (room_type,
 														price,
 														max_person)
-				VALUES 							(:room_type_id,
-														:room_type,
+				VALUES 							(:room_type,
 														:price,
 														:max_person)");
 
@@ -344,7 +347,7 @@
 
 		public function add_admin($id_user){
 			$requete = $this->bd->prepare(
-				"INSERT INTO user (id_user)
+				"INSERT INTO admin (id_user)
 				VALUES 							(:id_user)");
 
 			$requete->bindValue(":id_user", id_user);
@@ -353,6 +356,38 @@
 
 		public function get_admin_id_by_user($id_user) {
 			$requete = $this->bd->prepare("SELECT * FROM admin WHERE id_user = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		//HOTEL
+
+		public function add_hotel($country, $city) {
+			$requete = $this->bd->prepare(
+				"INSERT INTO hotel (hotel_localisation_country, hotel_localisation_city)
+				VALUES 							(:hotel_localisation_country,
+														:hotel_localisation_city)");
+
+				$requete->bindValue(":hotel_localisation_country", $country);
+				$requete->bindValue(":hotel_localisation_city", $city);
+				return $requete->execute();
+		}
+
+		public function get_hotel_by_localisation($localisation) {
+			$requete = $this->bd->prepare("SELECT *
+																		FROM hotel
+																		WHERE hotel_localisation_country LIKE '".$localisation."'
+																		OR hotel_localisation_city LIKE '".$localisation."'" );
+
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_hotel_by_id($id) {
+			$requete = $this->bd->prepare("SELECT *
+																		FROM hotel
+																		WHERE hotel_id = ".$id );
+
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}

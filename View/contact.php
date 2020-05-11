@@ -94,6 +94,6 @@
 <script src="plugins/progressbar/progressbar.min.js"></script>
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="plugins/jquery-datepicker/jquery-ui.js"></script>
-<script src="Content/js/contact.js"></script>
+<script src="Content/js/header.js"></script>
 </body>
 </html>
