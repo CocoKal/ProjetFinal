@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 13 mai 2020 à 09:25
+-- Généré le :  mer. 13 mai 2020 à 09:35
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.3.1
 
@@ -107,6 +107,20 @@ INSERT INTO `hotel` (`hotel_id`, `hotel_localisation_country`, `hotel_localisati
 (8, 'Indonésie', 'Bali'),
 (9, 'Pays-Bas', 'Amsterdam'),
 (10, 'Brésil', 'Rio de Janeiro');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `hotel_service`
+--
+
+DROP TABLE IF EXISTS `hotel_service`;
+CREATE TABLE IF NOT EXISTS `hotel_service` (
+  `hotel_service_id` int(11) NOT NULL AUTO_INCREMENT,
+  `hotel_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  PRIMARY KEY (`hotel_service_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -246,6 +260,30 @@ INSERT INTO `room_type` (`room_type_id`, `room_type`, `got_tel`, `got_tv`, `pric
 (2, 'Tourisme', 1, 0, 1500, 1),
 (3, 'Confort', 1, 1, 3000, 2),
 (4, 'Luxe', 1, 1, 4000, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `service`
+--
+
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE IF NOT EXISTS `service` (
+  `id_service` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`id_service`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `service`
+--
+
+INSERT INTO `service` (`id_service`, `name`, `price`) VALUES
+(1, 'beaute', 20),
+(2, 'jeux', 10),
+(3, 'restauration', 25),
+(4, 'sport', 20);
 
 -- --------------------------------------------------------
 
