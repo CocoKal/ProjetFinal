@@ -20,7 +20,6 @@
 
 <div class="super_container">
 
-<?php include("Util/search_for_booking.php"); ?>
 <?php require("modules/header.php"); ?>
 
 	<!-- Home -->
