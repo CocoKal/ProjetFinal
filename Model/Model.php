@@ -52,6 +52,16 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_all_booking_by_room_id($rooms_id) {
+			$string_requete = ("SELECT * FROM booking WHERE 1=1");
+			foreach ($rooms_id as $room) {
+				$string_requete += (" AND room_id = ".$room["room_id"]);
+			}
+			$requete = $this->bd->prepare($string_requete);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//COMPLAINT
 
 
@@ -202,6 +212,13 @@
 		public function get_room_by_hotel_id($hotel_id)
 		{
 			$requete = $this->bd->prepare("SELECT * FROM room WHERE hotel_id = ".$hotel_id);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_room_id_by_hotel_id($hotel_id)
+		{
+			$requete = $this->bd->prepare("SELECT room_id FROM room WHERE hotel_id = ".$hotel_id);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
