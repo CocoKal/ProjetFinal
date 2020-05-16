@@ -13,7 +13,7 @@ Projet Final de Licence 3 Informatique - Luminy
     - Préparer une vue d'édition des infos de compte.
     - Insérer un lien vers la gestion d'hôtel pour les gerants.
     (voir pour compléter la bdd avec plus d'infos dans le compte)
-    
+
 * La Visualisation de tous les hotels de la chaîne:
     - Ecrire les fonctions du modèle afin d'aquerir les infos.
     - Préparer une vue afin de voir la liste de tous les hotels:
@@ -22,18 +22,17 @@ Projet Final de Licence 3 Informatique - Luminy
       - Rajouter une photo pour chaque hotel.
 
 * Visualisation d'une vue de présentation d'un hôtel:
-    Cette vue sera une adaptation de la vue de recherches de chambres.
-    Elle contiendra:
+    - Cette vue sera une adaptation de la vue de recherches de chambres.
+    - Elle contiendra:
       - Une présentation de l'hotel.
       - La liste des services sous forme d'une ligne d'icones.
       - Les types de chambres disponibles.
-      
+
 * Visualisation des informations d'une chambre:
     - Faire une vue qui présente toutes les infos.
     - Faire les fonctions modèle qui permettent d'aquérir ces infos.
-       
+
 * Finir la visualisation de la vue de recherche de chambres:
     - Rajouter les filtres.
     - Rajouter les dispo des chambres dans la recherche.
     - Ameliorer le rendu des cartes.
-    
