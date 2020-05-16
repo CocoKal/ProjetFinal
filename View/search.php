@@ -24,13 +24,28 @@
   <div class="super_container">
 
   <?php
-  if (!isset($_GET["id_hotel"])) {
+  if (!(isset($_POST["localisation"])
+  and !empty($_POST["localisation"])
+  and isset($_POST["check_in"])
+  and !empty($_POST["check_in"])
+  and isset($_POST["check_out"])
+  and !empty($_POST["check_out"])
+  and isset($_POST["number"])
+  and !empty($_POST["number"]))) {
+
     echo"<script>alert('Une erreur est survenue.')</script>";
   	header('Refresh: 1; url=index.php');
   }
   else {
-    $hotel_info = $model->get_hotel_by_id($_GET["id_hotel"]);
+    $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
+    $hotel_id;
+    if (empty($hotel))  echo"<script>alert('Nous n'avons malheureusement pas d'Hôtel ici')</script>";
+    else {
+      $hotel_id = $hotel[0]['hotel_id'];
+    }
+    $hotel_info = $model->get_hotel_by_id($hotel_id);
   }
+
   $content = "";
   if (!empty($hotel_info))  $content = "Sophie Tells de ".$hotel_info[0]["hotel_localisation_city"];
   require("modules/header.php");
@@ -51,11 +66,8 @@
     </div>
   </div>
   ";
-   ?>
 
-
-  <!-- Page Content -->
-    <div class="container searching_container">
+    echo '<div class="container searching_container">
 
       <div class="row">
 
@@ -73,10 +85,9 @@
 
         <div class="col-lg-9">
 
-          <div class="row">
+          <div class="row">';
 
-            <?php
-              $rooms = $model->get_room_by_hotel_id($_GET['id_hotel']);
+              $rooms = $model->get_room_by_hotel_id($hotel_id);
               $room_type = $model->get_all_room_type();
               $last_type = 0;
               foreach ($rooms as $r) {
