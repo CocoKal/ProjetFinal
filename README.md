@@ -9,7 +9,7 @@ Projet Final de Licence 3 Informatique - Luminy
 
 //TO DO
 
-* La page Accueil:
+* La page Accueil: (C. J'peux le faire après les vues mais si ca interresse quelqu'un, qu'il le fasse.)
     - Faire en sorte que les avis sois gérer en php.
         - Associer les avis à un compte.
         - Associer une photo du compte à l'avis.
