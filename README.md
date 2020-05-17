@@ -50,4 +50,4 @@ Projet Final de Licence 3 Informatique - Luminy
 * Finir la visualisation de la vue de recherche de chambres:
     - Rajouter les filtres. (C. Je pense qu'on va les enlever car inutile)
     - Rajouter les dispo des chambres dans la recherche. (C. Fait)
-    - Ameliorer le rendu des cartes.
+    - Ameliorer le rendu des cartes. (C. En cours.)
