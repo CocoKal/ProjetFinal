@@ -22,12 +22,12 @@ Projet Final de Licence 3 Informatique - Luminy
     - Insérer un lien vers la gestion d'hôtel pour les gerants.
     (voir pour compléter la bdd avec plus d'infos dans le compte)
 
-* La Visualisation de tous les hotels de la chaîne:
-    - Ecrire les fonctions du modèle afin d'aquerir les infos.
-    - Préparer une vue afin de voir la liste de tous les hotels:
-      - Faire une liste sous forme de cartes.
-      - Rajouter des icones pour chaque services.
-      - Rajouter une photo pour chaque hotel.
+* La Visualisation de tous les hotels de la chaîne: (T. en cours)
+    - Ecrire les fonctions du modèle afin d'aquerir les infos. (T. en cours)
+    - Préparer une vue afin de voir la liste de tous les hotels: (T. en cours) 
+      - Faire une liste sous forme de cartes. (T. en cours)
+      - Rajouter des icones pour chaque services. (T. en cours)
+      - Rajouter une photo pour chaque hotel. (T. en cours)
 
 * Visualisation d'une vue de présentation d'un hôtel:
     - Cette vue sera une adaptation de la vue de recherches de chambres.
