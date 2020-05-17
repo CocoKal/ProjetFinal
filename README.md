@@ -9,6 +9,13 @@ Projet Final de Licence 3 Informatique - Luminy
 
 //TO DO
 
+* La page Accueil:
+    - Faire en sorte que les avis sois gérer en php.
+        - Associer les avis à un compte.
+        - Associer une photo du compte à l'avis.
+        - L'avis posté ne dois pas dépasser une certaine taille.
+            - Determiner cette fameuse certaine taille.
+
 * Le DashBoard: (S. En cours)
     - Ecrire les fonctions du modèle afin d'aquerir les infos.
     - Preparer un template de dashboard.
