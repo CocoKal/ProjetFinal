@@ -44,32 +44,37 @@
 
 
   <div class="container">
-    <div class="row">
-        <div class="col-12 mt-3">
-            <div class="card bg-dark">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
-                        <img class="" src="Content/images/index_1.jpg" style="width: 450px;" alt="Card image cap">
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title">Sophie Tells de "Ville" </h4>
-                      <div class="row">
-                        <div class="col-1 col_service">
-                          <img src="Content\images\icone\bar.png">
-                        </div>
+      <?php
+
+      $list_hotel = $model->get_all_hotels();
+
+      foreach ($list_hotel as $hotel) {
+
+        $city = $hotel["hotel_localisation_city"];
+        $path_illustration = str_replace(" ", "_", $city);
+        $id = $hotel["hotel_id"];
+
+          echo '<div class="row row_hotel">
+              <div class="offset-1 col-10 mt-3">
+                  <div class="card bg-dark">
+                      <div class="card-horizontal">
+                          <div class="img-square-wrapper">
+                              <img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1" style="width: 450px;" alt="Card image cap">
+                          </div>
+                          <div class="card-body">
+                            <h4 class="card-title card_title hotel_title">Sophie Tells de '.$city.' </h4>
+                              <a href="index.php?view=hotel_info&hotel_id='.$id.'" class="btn btn-primary pull-right">voir les chambres</p></a>
+                          </div>
                       </div>
-                      <p class="card-text">Présentation</p>
-                        <a href="#" class="btn btn-primary pull-right">voir les chambres</p></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+                  </div>
+              </div>
+          </div>';
+      }
+
+
+?>
   </div>
-
-
-
-
 
 
 

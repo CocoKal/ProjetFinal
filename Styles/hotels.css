@@ -879,17 +879,22 @@ stuff
 .row_hotel {
   padding-top: 30px;
 }
-
-.col_service {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.hotel_title {
+  font-size: 30px;
 }
 
-.card-text {
-  height: 40%;
+.card_title {
+  height: 65%;
+  width: 100%;
+
 }
 
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
+}
+
+.service_icon > img{
+  width: 30px;
+  height: 30px;
 }

@@ -401,6 +401,12 @@
 				return $requete->execute();
 		}
 
+		public function get_all_hotels() {
+			$requete = $this->bd->prepare("SELECT * FROM hotel");
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		public function get_hotel_by_localisation($localisation) {
 			$requete = $this->bd->prepare("SELECT *
 																		FROM hotel
