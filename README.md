@@ -2,7 +2,7 @@
 Projet Final de Licence 3 Informatique - Luminy
 
 * Liste Rapide:
-    - Trouver une icone pour chaque Services.
+    - Trouver une icone pour chaque Services. (C. Fait)
     - Trouver une photo pour illlustrer chaque type de chambre.
     - Trouver une photo pour chaque Hotel.
     - Trouver un template pour le dashboard.
