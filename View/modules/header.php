@@ -9,6 +9,7 @@
           <li class="active"><a href="http://localhost/Tests/ProjetFinal/index.php">Acceuil</a></li>
           <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">À propos</a></li>
           <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contacts</a></li>
+          <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=hotels">Hôtels</a></li>
         </ul>
       </nav>
       <div>
@@ -45,6 +46,7 @@
         <li><a href="http://localhost/Tests/ProjetFinal/index.php">Home</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=about">About us</a></li>
         <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=contact">Contact</a></li>
+        <li><a href="http://localhost/Tests/ProjetFinal/index.php?view=hotels">Hôtels</a></li>
         <li>
           <?php
             if (!isset($_SESSION["username"])) {
