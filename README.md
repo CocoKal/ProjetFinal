@@ -11,6 +11,8 @@ Projet Final de Licence 3 Informatique - Luminy
     - Ecrire les fonctions du modèle afin d'aquerir les infos.
     - Préparer une vue de visualisation des infos de compte.
     - Préparer une vue d'édition des infos de compte.
+    - Insérer un lien afin de gérer ses commandes pour un client.
+        - Cette vue doit permettre d'annuler une reservation.
     - Insérer un lien vers la gestion d'hôtel pour les gerants.
     (voir pour compléter la bdd avec plus d'infos dans le compte)
 
