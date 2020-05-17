@@ -3,8 +3,9 @@ Projet Final de Licence 3 Informatique - Luminy
 
 * Liste Rapide:
     - Trouver une icone pour chaque Services.
-    - Trouver un template pour le dashboard.
     - Trouver une photo pour illlustrer chaque type de chambre.
+    - Trouver une photo pour chaque Hotel.
+    - Trouver un template pour le dashboard.
 
 //TO DO
 
@@ -40,6 +41,6 @@ Projet Final de Licence 3 Informatique - Luminy
     - Faire les fonctions modèle qui permettent d'aquérir ces infos.
 
 * Finir la visualisation de la vue de recherche de chambres:
-    - Rajouter les filtres.
-    - Rajouter les dispo des chambres dans la recherche.
+    - Rajouter les filtres. (C. Je pense qu'on va les enlever car inutile)
+    - Rajouter les dispo des chambres dans la recherche. (C. Fait)
     - Ameliorer le rendu des cartes.
