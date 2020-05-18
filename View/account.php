@@ -94,9 +94,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                        foreach($user as $u)
-                                                            if($u['id'] == $_SESSION['id'])
-                                                                echo $u["lastname"]; ?> </p>
+                                                                echo $user[0]["lastname"]; ?> </p>
                                             </div>
                                         </div>
                                 <div class="row">
@@ -105,9 +103,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                            foreach($user as $u)
-                                                if($u['id'] == $_SESSION['id'])
-                                                    echo $u["firstname"]; ?> </p>
+                                                    echo $user[0]["firstname"]; ?> </p>
                                     </div>
                                 </div>
                                         <div class="row">
@@ -116,9 +112,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                    foreach($user as $u)
-                                                        if($u['id'] == $_SESSION['id'])
-                                                            echo $u["email"]; ?> </p>
+                                                            echo $user[0]["email"]; ?> </p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -127,9 +121,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                    foreach($user as $u)
-                                                        if($u['id'] == $_SESSION['id'])
-                                                            echo $u["password"]; ?> </p>
+                                                            echo $user[0]["password"]; ?> </p>
                                             </div>
                                         </div>
 
