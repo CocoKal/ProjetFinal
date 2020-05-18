@@ -371,6 +371,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_user_by_id($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//ADMIN
 
 		public function add_admin($id_user){
