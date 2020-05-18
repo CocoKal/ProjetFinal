@@ -20,7 +20,8 @@
 
   <?php require("modules/header.php"); ?>
 
-  <div class="home" style="height: 220px;">
+
+    <div class="home" style="height: 220px;">
 		<div class="background_image" style="background-image:url(Content/images/special.jpg)"></div>
 		<div class="home_container">
 			<div class="container">
@@ -48,26 +49,25 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>
-                                        Nom Prénom
-                                    </h5>
+
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Vos informations</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vos commandes</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vos Réservations</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <a href="index.php?view=account_gestion"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
+                        <a href="index.php?log=no"><input type="submit" class="log-out-btn" name="deco" value="Se déconnecter"/></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- Servira pour les gérants d'hotels qui verront ici la liste de leurs hôtels
+                        <!-- Servira pour les gérants d\'hotels qui verront ici la liste de leurs hôtels
                             Peut être
 
                         <div class="profile-work">
@@ -87,45 +87,52 @@
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Id</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti123</p>
-                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                <label>Nom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
+                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                        foreach($user as $u)
+                                                            if($u['id'] == $_SESSION['id'])
+                                                                echo $u["lastname"]; ?> </p>
                                             </div>
                                         </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Prénom</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
+                                            foreach($user as $u)
+                                                if($u['id'] == $_SESSION['id'])
+                                                    echo $u["firstname"]; ?> </p>
+                                    </div>
+                                </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
+                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                    foreach($user as $u)
+                                                        if($u['id'] == $_SESSION['id'])
+                                                            echo $u["email"]; ?> </p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
+                                                <label>Mot de passe</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                    foreach($user as $u)
+                                                        if($u['id'] == $_SESSION['id'])
+                                                            echo $u["password"]; ?> </p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Profession</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
+
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
@@ -197,5 +204,6 @@
           <script src="plugins/jquery-datepicker/jquery-ui.js"></script>
           <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
           <script src="Content/js/custom.js"></script>
+        <?php include('Util/account.php'); ?>
 </body>
 </html>
