@@ -17,7 +17,7 @@
 
   <header class="header">
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
-      <div class="logo"><a href="http://localhost/Tests/ProjetFinal/index.php">Sophie Tells</a></div>
+      <div class="logo"><a href="index.php">Sophie Tells</a></div>
     </div>
   </header>
 
