@@ -17,7 +17,7 @@
 
 		//BOOKING
 
-		public function add_booking($booking_id,$customer_id,$room_id,$check_in,$check_out,$total_price,$remaining_price,$payment_status){
+		public function add_booking($customer_id,$room_id,$check_in,$check_out,$total_price,$remaining_price,$payment_status){
 			$requete = $this->bd->prepare(
 				"INSERT INTO booking (customer_id,
 														room_id,
@@ -236,7 +236,7 @@
 
 		//ROOM_TYPE
 
-		public function add_room_type($room_type_id,$room_type,$price,$max_person){
+		public function add_room_type($room_type,$price,$max_person){
 			$requete = $this->bd->prepare(
 				"INSERT INTO room_type (room_type,
 														price,
@@ -371,8 +371,8 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function get_user(){
-			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = '".$_SESSION["id"]."'");
+		public function get_user_by_id($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
