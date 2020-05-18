@@ -747,7 +747,7 @@ INSERT INTO `service` (`id_service`, `name`) VALUES
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE IF NOT EXISTS `staff` (
-  `emp_id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
   `emp_name` varchar(100) NOT NULL,
   `staff_type_id` int(11) NOT NULL,
   `address` varchar(100) NOT NULL,

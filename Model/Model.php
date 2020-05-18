@@ -2,7 +2,7 @@
 	class Model{
 		private $bd;
 		public function __construct(){
-			//Pour récupérer les valeurs $login et $password
+			//Pour récupérer les valeurs $login et $password (BD CONNECTION) OK !!
 			$login="root";
 			$password="";
 			try{
@@ -15,44 +15,45 @@
 			}
 		}
 
-		//BOOKING
+		//BOOKING OK !!
 
-		public function add_booking($customer_id,$room_id,$check_in,$check_out,$total_price,$remaining_price,$payment_status){
+		public function add_booking($user_id,$room_id,$booking_date,$check_in,$check_out,$payment_status){		//ADD BOOKING OPERATION
 			$requete = $this->bd->prepare(
-				"INSERT INTO booking (customer_id,
+				"INSERT INTO booking (user_id,
 														room_id,
+														booking_date,
 														check_in,
 														check_out,
-														total_price,
-														remaining_price,
 														payment_status)
-				VALUES (:customer_id,
+												
+														
+				VALUES (     
+							 :user_id,
  							 :room_id,
+ 							 :booking_date,
  							 :check_in,
  							 :check_out,
- 							 :total_price,
- 							 :remaining_price,
  							 :payment_status)");
 
-			$requete->bindValue(":booking_id", $booking_id);
-			$requete->bindValue(":customer_id", $customer_id);
+			//$requete->bindValue(":booking_id", $booking_id);
+			$requete->bindValue(":user_id", $user_id);
 			$requete->bindValue(":room_id", $room_id);
+			$requete->bindValue(":booking_date", $booking_date);
 			$requete->bindValue(":check_in", $check_in);
 			$requete->bindValue(":check_out", $check_out);
-			$requete->bindValue(":total_price", $total_price);
-			$requete->bindValue(":remaining_price", $remaining_price);
 			$requete->bindValue(":payment_status", $payment_status);
 
 			return $requete->execute();
 		}
 
-		public function get_all_booking() {
-			$requete = $this->bd->prepare("SELECT * FROM booking");
+		public function get_all_booking()             //GET ALL BOOKING
+		{
+			$requete = $this->bd->prepare("SELECT * FROM booking ");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function get_all_booking_by_room_id($room_id, $check_in, $check_out) {
+		public function get_all_booking_by_room_id($room_id, $check_in, $check_out) { //GET BOOKING FOR A SPECIFIC ROOM
 			$string_requete = ("SELECT *
 			FROM booking
 			WHERE room_id = $room_id
@@ -67,148 +68,123 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//COMPLAINT
+		public function delete_booking($booking_id,$user_id){           //DELETE BOOKING BY ID_BOOKING AND ID_USER
+			$requete=$this->bd->prepare("DELETE *
+			FROM booking
+			WHERE booking_id=$booking_id AND(user_id=$user_id)");
+
+			$requete->bindValue(":booking_id", $booking_id);
+			$requete->bindValue(":user_id", $user_id);
+			$requete->execute();
+
+	   }
+
+		//COMPLAINT OK !!
 
 
-		public function add_complaint($id,$complainant_name,$complaint_type,$complaint,$resolve_status,$budget){
+		public function add_complaint($id_user,$grade,$title_complainte,$complaint,$created_at){ //ADD COMPLAINT
 			$requete = $this->bd->prepare(
-				"INSERT INTO complaint (id,
-														complainant_name,
-														complaint_type,
+				"INSERT INTO complaint (
+														id_user,
+														grade,
+														title_complainte,
 														complaint,
-														resolve_status,
-														budget)
-				VALUES 							(:id,
-														:complainant_name,
-														:complaint_type,
+														created_at)
+				VALUES 							(
+														:id_user,
+														:grade,
+														:title_complainte,
 														:complaint,
-														:resolve_status,
-														:budget)");
+														:created_at)");
 
-			$requete->bindValue(":id", $id);
-			$requete->bindValue(":complainant_name", $complainant_name);
-			$requete->bindValue(":complaint_type", $complaint_type);
+
+			$requete->bindValue(":id_user", $id_user);
+			$requete->bindValue(":grade", $grade);
+			$requete->bindValue(":title_complainte", $title_complainte);
 			$requete->bindValue(":complaint", $complaint);
-			$requete->bindValue(":resolve_status", $resolve_status);
-			$requete->bindValue(":budget", $budget);
+			$requete->bindValue(":created_at", $created_at);
 			return $requete->execute();
 		}
 
-		public function get_all_complaint() {
+		public function get_all_complaint() { // GET ALL COMPLAINTS
 			$requete = $this->bd->prepare("SELECT * FROM complaint");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//CUSTOMER
+		//USER
 
-		public function add_customer($customer_id,$customer_name,$contact_no,$email,$id_card_type_id,$id_card_no,$address){
+		public function add_user($lastname,$firstname,$email,$password,$created_at){  //ADD USER
 			$requete = $this->bd->prepare(
-				"INSERT INTO customer (customer_id,
-														customer_name,
-														contact_no,
+				"INSERT INTO user (
+														lastname,
+														firstname,
 														email,
-														id_card_type_id,
-														id_card_no,
-														address)
-				VALUES 							(:customer_id,
-														:customer_name,
-														:contact_no,
+														password,
+														
+														created_at)
+				VALUES 							(
+														:lastname,
+														:firstname,
 														:email,
-														:id_card_type_id,
-														:id_card_no,
-														:address)");
+														:password,
+														
+														:created_at)");
 
-			$requete->bindValue(":customer_id", $customer_id);
-			$requete->bindValue(":customer_name", $customer_name);
-			$requete->bindValue(":contact_no", $contact_no);
+
+			$requete->bindValue(":lastname", $lastname);
+			$requete->bindValue(":firstname", $firstname);
 			$requete->bindValue(":email", $email);
-			$requete->bindValue(":id_card_type_id", $id_card_type_id);
-			$requete->bindValue(":id_card_no", $id_card_no);
-			$requete->bindValue(":address", $address);
+			$requete->bindValue(":password", $password);
+			$requete->bindValue(":created_at", $created_at);
+
 			return $requete->execute();
 		}
 
-		public function get_all_customer() {
-			$requete = $this->bd->prepare("SELECT * FROM customer");
+		public function get_all_users() {                 //GET_ALL_USERS
+			$requete = $this->bd->prepare("SELECT * FROM user");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//EMP_HISTORY
-
-		public function add_emp_history($id,$emp_id,$shift_id,$to_date){
-			$requete = $this->bd->prepare(
-				"INSERT INTO emp_history (id,
-														emp_id,
-														shift_id,
-														to_date)
-				VALUES 							(:id,
-														:emp_id,
-														:shift_id,
-														:to_date)");
+		public function delete_user($id,$email){     //DELETE USER BY ID AND EMAIL
+			$requete=$this->bd->prepare("DELETE *
+			FROM user
+			WHERE id=$id AND(email=$email)");
 
 			$requete->bindValue(":id", $id);
-			$requete->bindValue(":emp_id", $emp_id);
-			$requete->bindValue(":shift_id", $shift_id);
-			$requete->bindValue(":to_date", $to_date);
-			return $requete->execute();
-		}
-
-		public function get_all_emp_history() {
-			$requete = $this->bd->prepare("SELECT * FROM emp_history");
+			$requete->bindValue(":email", $email);
 			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//ID_CARD_TYPE
 
 
-		public function add_id_card_type($id_card_type_id,$id_card_type){
-			$requete = $this->bd->prepare(
-				"INSERT INTO id_card_type (id_card_type_id,
-														id_card_typee)
-				VALUES 							(:id_card_type_id,
-														:id_card_type)");
 
-			$requete->bindValue(":id_card_type_id", $id_card_type_id);
-			$requete->bindValue(":id_card_type", $id_card_type);
-			return $requete->execute();
-		}
-
-		public function get_all_id_card_type() {
-			$requete = $this->bd->prepare("SELECT * FROM id_card_type");
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
 
 		//ROOM
 
-		public function add_room($room_id,$room_type_id,$room_no,$status,$check_in_status,$check_out_status){
+		public function add_room($room_type_id,$room_no,$hotel_id){  //ADD ROOM
 			$requete = $this->bd->prepare(
-				"INSERT INTO room (room_id,
+				"INSERT INTO room (
 														room_type_id,
 														room_no,
-														status,
-														check_in_status,
-														check_out_status)
-				VALUES 							(:room_id,
+														hotel_id
+														)
+				VALUES 							(
 														:room_type_id,
 														:room_no,
-														:status,
-														:check_in_status,
-														:check_out_status)");
+														:hotel_id,
+														)");
 
-			$requete->bindValue(":room_id", $room_id);
+
 			$requete->bindValue(":room_type_id", $room_type_id);
 			$requete->bindValue(":room_no", $room_no);
-			$requete->bindValue(":status", $status);
-			$requete->bindValue(":check_in_status", $check_in_status);
-			$requete->bindValue(":check_out_status", $check_out_status);
+			$requete->bindValue(":hotel_id", $hotel_id);
+
 			return $requete->execute();
 		}
 
-		public function get_all_room() {
+		public function get_all_room() {     //GET ALL ROOMS
 			$requete = $this->bd->prepare("SELECT * FROM room");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -236,89 +212,70 @@
 
 		//ROOM_TYPE
 
-		public function add_room_type($room_type,$price,$max_person){
+		public function add_room_type($room_type,$got_tel,$got_tv,$price,$nbr_bed){     //ADD ROOM TYPE
 			$requete = $this->bd->prepare(
 				"INSERT INTO room_type (room_type,
+                                                     got_tel,
+                                                     got_tv,
 														price,
-														max_person)
+														nbr_bed)
 				VALUES 							(:room_type,
+				                                 :got_tel,
+				                                 :got_tv,
+				                                 
 														:price,
-														:max_person)");
+														:nbr_bed)");
 
-			$requete->bindValue(":room_type_id", $room_type_id);
+
 			$requete->bindValue(":room_type", $room_type);
+			$requete->bindValue(":got_tel", $got_tel);
+			$requete->bindValue(":got_tv", $got_tv);
 			$requete->bindValue(":price", $price);
-			$requete->bindValue(":max_person", $max_person);
+			$requete->bindValue(":nbr_bed", $nbr_bed);
 			return $requete->execute();
 		}
 
-		public function get_all_room_type() {
+		public function get_all_room_type() {     //GET ALL ROOMS TYPES
 			$requete = $this->bd->prepare("SELECT * FROM room_type");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//SHIFT
 
-
-		public function add_shift($shift_id,$shift,$shift_timing){
-			$requete = $this->bd->prepare(
-				"INSERT INTO shift (shift_id,
-														shift,
-														shift_timing)
-				VALUES 							(:shift_id,
-														:shift,
-														:shift_timing)");
-
-			$requete->bindValue(":shift_id", $shift_id);
-			$requete->bindValue(":shift", $shift);
-			$requete->bindValue(":shift_timing", $shift_timing);
-			return $requete->execute();
-		}
-
-		public function get_all_shift() {
-			$requete = $this->bd->prepare("SELECT * FROM shift");
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
 
 		//STAFF
 
 
-		public function add_staff($emp_id,$emp_name,$staff_type_id,$shift_id,$id_card_type,$id_card_no,$address,$contact_no,$salary){
+		public function add_staff($emp_name,$staff_type_id,$address,$contact_no,$salary){    //ADD EMPLOYE
 			$requete = $this->bd->prepare(
-				"INSERT INTO staff (emp_id,
+				"INSERT INTO staff (
 													emp_name,
 													staff_type_id,
-													shift_id,
-													id_card_type,
-													id_card_no,
+												
 													address,
 													contact_no,
 													salary)
-				VALUES 							(:emp_id,
+				VALUES 							(
 													:emp_name,
 													:staff_type_id,
-													:shift_id,
-													:id_card_type,
-													:id_card_no,
+													
+													
+													
 													:address,
 													:contact_no,
 													:salary)");
 
-			$requete->bindValue(":emp_id", $emp_id);
+
 			$requete->bindValue(":emp_name", $emp_name);
 			$requete->bindValue(":staff_type_id", $staff_type_id);
-			$requete->bindValue(":shift_id", $shift_id);
-			$requete->bindValue(":id_card_type", $id_card_type);
-			$requete->bindValue(":id_card_no", $id_card_no);
+
 			$requete->bindValue(":address", $address);
 			$requete->bindValue(":contact_no", $contact_no);
 			$requete->bindValue(":salary", $salary);
 			return $requete->execute();
 		}
 
-		public function get_all_staff() {
+		public function get_all_staff() {     //GET ALL STAFF
 			$requete = $this->bd->prepare("SELECT * FROM staff");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -326,7 +283,7 @@
 
 		//STAFF_TYPE
 
-		public function add_staff_type($staff_type_id,$staff_type){
+		public function add_staff_type($staff_type_id,$staff_type){     //ADD STAFF TYPE
 			$requete = $this->bd->prepare(
 				"INSERT INTO staff_type (staff_type_id,
 														staff_type)
@@ -338,32 +295,13 @@
 			return $requete->execute();
 		}
 
-		public function get_all_staff_type() {
+		public function get_all_staff_type() {     //GET ALL STAFF TYPES
 			$requete = $this->bd->prepare("SELECT * FROM staff_type");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		//USER
 
-
-		public function add_user($name,$username,$email,$password){
-			$requete = $this->bd->prepare(
-				"INSERT INTO user (lastname,
-													firstname,
-													email,
-													password)
-				VALUES 							(:name,
-													:username,
-													:email,
-													:password)");
-
-			$requete->bindValue(":name", $name);
-			$requete->bindValue(":username", $username);
-			$requete->bindValue(":email", $email);
-			$requete->bindValue(":password", $password);
-			return $requete->execute();
-		}
 
 		public function get_all_user() {
 			$requete = $this->bd->prepare("SELECT * FROM user");
@@ -376,6 +314,7 @@
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
+
 
 		//ADMIN
 
@@ -431,6 +370,9 @@
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
+
+
+
 
 }
 
