@@ -17,22 +17,27 @@
 </head>
 <body>
 
-<div class="super_container">
+<?php
+	if (!isset($_GET["hotel_id"])) {
 
-	<!-- Header -->
+    echo"<script>alert('Une erreur est survenue.')</script>";
+  	header('Refresh: 1; url=index.php?view=hotels');
+  }
+		echo '<div class="super_container">';
+ 		require("modules/header.php");
+		$hotel = $model->get_hotel_by_id($_GET["hotel_id"]);
+		$background_style = "background-image:url(Content/images/illustration_hotel/".$hotel[0]["hotel_localisation_city"]."_1.jpg)";
 
-	<?php require("modules/header.php"); ?>
-
-	<!-- Home -->
+?>
 
 	<div class="home">
-		<div class="background_image" style="background-image:url(Content/images/testimonials.jpg)"></div>
+		<div class="background_image" style=<?php echo $background_style; ?>></div>
 		<div class="home_container">
 			<div class="container">
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Sophie Tells de "Ville"</div>
+							<div class="home_title">Sophie Tells de <?php echo $hotel[0]["hotel_localisation_city"]; ?> </div>
 							<div class="booking_form_container">
 							</div>
 						</div>
@@ -43,9 +48,8 @@
 	</div>
 
 
-  <div class="container">
-
-  </div>
+	<?php require("modules/room_type.php");
+				require("modules/services.php"); ?>
 
 
 
