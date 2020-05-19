@@ -708,6 +708,106 @@ input[type=number]::-webkit-outer-spin-button
 	background: rgba(255,255,255,0.2);
 }
 
+/*********************************
+9. Testimonials
+*********************************/
+
+.testimonials
+{
+	padding-top: 117px;
+	padding-bottom: 114px;
+}
+.testimonials_overlay
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(13,11,24,0.79);
+	pointer-events: none;
+}
+.test_slider_item
+{
+	background: #181a1b;
+	padding-top: 43px;
+	padding-bottom: 58px;
+	padding-left: 45px;
+	padding-right: 45px;
+}
+.rating i::before
+{
+	font-family: 'FontAwesome';
+	content: "\f005";
+	font-style: normal;
+	font-size: 18px;
+	color: rgba(0,0,0,0.2);
+}
+.rating i:not(:last-of-type)
+{
+	margin-right: 6px;
+}
+.rating_1 i:first-child::before{color: #ffb400;}
+.rating_2 i:first-child::before{color: #ffb400;}
+.rating_2 i:nth-child(2)::before{color: #ffb400;}
+.rating_3 i:first-child::before{color: #ffb400;}
+.rating_3 i:nth-child(2)::before{color: #ffb400;}
+.rating_3 i:nth-child(3)::before{color: #ffb400;}
+.rating_4 i:first-child::before{color: #ffb400;}
+.rating_4 i:nth-child(2)::before{color: #ffb400;}
+.rating_4 i:nth-child(3)::before{color: #ffb400;}
+.rating_4 i:nth-child(4)::before{color: #ffb400;}
+.rating_5 i:first-child::before{color: #ffb400;}
+.rating_5 i:nth-child(2)::before{color: #ffb400;}
+.rating_5 i:nth-child(3)::before{color: #ffb400;}
+.rating_5 i:nth-child(4)::before{color: #ffb400;}
+.rating_5 i:nth-child(5)::before{color: #ffb400;}
+.testimonial_title
+{
+	margin-top: 21px;
+}
+.testimonial_title a
+{
+	font-size: 24px;
+	font-weight: 600;
+	color:  #adadad;
+	line-height: 1.2;
+}
+.testimonial_title a:hover
+{
+	color: #ffa37b;
+}
+.testimonial_text
+{
+	margin-top: 24px;
+}
+.testimonial_image
+{
+	width: 106px;
+	height: 106px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+}
+.testimonial_author
+{
+	margin-top: 26px;
+	font-size: 15px;
+	font-weight: 600;
+	color:  #adadad;
+}
+.testimonial_author a
+{
+	font-size: 15px;
+	font-weight: 600;
+	color:  #adadad;
+}
+.testimonial_author a:hover
+{
+	color: #ffa37b;
+}
 
 /*********************************
 10. Footer
@@ -897,4 +997,33 @@ stuff
 .service_icon > img{
   width: 30px;
   height: 30px;
+}
+.room_type_overlay
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(13,11,24,0.79);
+	pointer-events: none;
+}
+.illustration_chambre {
+	height: 150px;
+}
+.bed_icon {
+	height: 30px;
+	padding-left: 10	px;
+}
+
+.service_title {
+	padding: 40px;
+}
+.nbr_bed {
+	display: flex;
+}
+.nbr_bed > h6 {
+	padding-top: 4px;
+	padding-right: 10px;
+	color: black;
 }
