@@ -432,6 +432,48 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		//SERVICES
+
+		public function add_service($name) {
+			$requete = $this->bd->prepare(
+				"INSERT INTO services (name)
+				VALUES 							(:name)");
+
+				$requete->bindValue(":name", $name);
+				return $requete->execute();
+		}
+
+		public function get_all_services() {
+			$requete = $this->bd->prepare("SELECT * FROM service");
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+
+		//HOTEL_SERVICES
+
+		public function add_hotel_service($hotel_id, $service_id) {
+			$requete = $this->bd->prepare(
+				"INSERT INTO services (hotel_id, service_id)
+				VALUES 							(:hotel_id,
+														:service_id)");
+
+				$requete->bindValue(":hotel_id", $hotel_id);
+				$requete->bindValue(":service_id", $service_id);
+				return $requete->execute();
+		}
+
+		public function get_all_hotel_services() {
+			$requete = $this->bd->prepare("SELECT * FROM hotel_service");
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_all_hotel_services_by_hotel_id($hotel_id) {
+			$requete = $this->bd->prepare("SELECT * FROM hotel_service WHERE hotel_id = ".$hotel_id);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
 }
 
 ?>
