@@ -345,6 +345,13 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function check_if_admin($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM admin WHERE id_user = ".$id_user);
+			$requete->execute();
+			$admin = $requete->fetchAll(PDO::FETCH_ASSOC);
+			return !empty($admin);
+		}
+
 		//HOTEL
 
 		public function add_hotel($country, $city) {

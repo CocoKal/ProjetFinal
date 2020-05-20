@@ -61,6 +61,11 @@
                         </div>
                     </div>
                     <div class="col-md-2">
+                      <?php
+                      if ($model->check_if_admin($_SESSION["id"])) {
+                        echo '<a href="index.php?view=dashboard"><input type="submit" class="profile-edit-btn" name="dash" value="Dashboard"/></a>';
+                      }
+                      ?>
                         <a href="index.php?view=account_gestion"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
                         <a href="index.php?log=no"><input type="submit" class="log-out-btn" name="deco" value="Se déconnecter"/></a>
                     </div>
