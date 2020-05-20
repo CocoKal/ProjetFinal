@@ -25,9 +25,9 @@
 														check_in,
 														check_out,
 														payment_status)
-												
-														
-				VALUES (     
+
+
+				VALUES (
 							 :user_id,
  							 :room_id,
  							 :booking_date,
@@ -64,6 +64,12 @@
 			OR (check_in < '".$check_in."' AND check_out > '".$check_out."')
 			)");
 			$requete = $this->bd->prepare($string_requete);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_all_booking_by_id_user($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM booking WHERE user_id = ".$id_user." AND check_out > CURRENT_TIMESTAMP");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
@@ -121,14 +127,14 @@
 														firstname,
 														email,
 														password,
-														
+
 														created_at)
 				VALUES 							(
 														:lastname,
 														:firstname,
 														:email,
 														:password,
-														
+
 														:created_at)");
 
 
@@ -190,6 +196,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_room_by_id($id_room) {
+			$requete = $this->bd->prepare("SELECT * FROM room WHERE room_id = ".$id_room);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		public function get_room_by_hotel_id($hotel_id)
 		{
 			$requete = $this->bd->prepare("SELECT * FROM room WHERE hotel_id = ".$hotel_id);
@@ -222,7 +234,7 @@
 				VALUES 							(:room_type,
 				                                 :got_tel,
 				                                 :got_tv,
-				                                 
+
 														:price,
 														:nbr_bed)");
 
@@ -251,16 +263,16 @@
 				"INSERT INTO staff (
 													emp_name,
 													staff_type_id,
-												
+
 													address,
 													contact_no,
 													salary)
 				VALUES 							(
 													:emp_name,
 													:staff_type_id,
-													
-													
-													
+
+
+
 													:address,
 													:contact_no,
 													:salary)");
