@@ -101,11 +101,11 @@
 
                   if (empty($booking_of_room)) $number_of_room_free++;
                 }
-
+                $path_illustration = "Content/images/illustration_chambre/".$type["room_type_id"].".jpg";
                 echo '
                 <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                  <div class="card bg-dark h-100">
+                    <a href="#"><img class="card-img-top" src="'.$path_illustration.'"></a>
                     <div class="card-body">
                       <h4 class="card-title">
                         <a href="#">'.$type["room_type"].'</a>
