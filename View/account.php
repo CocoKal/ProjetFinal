@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                            <img src="Content/images/pdp_default.png" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Changer de Photo
                                 <input type="file" name="file"/>
@@ -115,64 +115,64 @@
                                                             echo $user[0]["email"]; ?> </p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Mot de passe</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                            echo $user[0]["password"]; ?> </p>
-                                            </div>
-                                        </div>
-
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+
+                              <div class="row">
+                                  <div class="col-md-2">
+                                      <label>Ville</label>
+                                  </div>
+                                  <div class="col-md-1">
+                                      <label>Num.</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <label>Date arrivée</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <label>Date départ</label>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <label>Paiement</label>
+                                  </div>
+                              </div>
+
+                              <?php
+                                $booking = $model->get_all_booking_by_id_user($user[0]["id"]);
+
+                                foreach ($booking as $book) {
+                                  $room = $model->get_room_by_id($book["room_id"]);
+                                  $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
+
+                                  echo '
+                                  <div class="row">
+                                      <div class="col-md-2">
+                                          <label>'.$hotel[0]["hotel_localisation_city"].'</label>
+                                      </div>
+                                      <div class="col-md-1">
+                                          <label>'.$room[0]["room_no"].'</label>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <label>'.$book["check_in"].'</label>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <label>'.$book["check_out"].'</label>
+                                      </div>';
+                                      if (!$book["payment_status"]) {
+                                        echo ' <div class="col-md-3">
+                                            <a href=""><label>En attente</label></a>
+                                        </div> ';
+                                      }
+                                      else {
+                                        echo '<div class="col-md-3">
+                                            <label>Payé</label>
+                                        </div>';
+                                      }
+
+                                  echo '</div>';
+                                }
+
+
+                              ?>
                             </div>
                         </div>
                     </div>
@@ -196,6 +196,5 @@
           <script src="plugins/jquery-datepicker/jquery-ui.js"></script>
           <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
           <script src="Content/js/custom.js"></script>
-        <?php include('Util/account.php'); ?>
 </body>
 </html>
