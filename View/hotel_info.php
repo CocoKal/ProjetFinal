@@ -26,7 +26,8 @@
 		echo '<div class="super_container">';
  		require("modules/header.php");
 		$hotel = $model->get_hotel_by_id($_GET["hotel_id"]);
-		$background_style = "background-image:url(Content/images/illustration_hotel/".$hotel[0]["hotel_localisation_city"]."_1.jpg)";
+		$city = str_replace(" ", "_", $hotel[0]["hotel_localisation_city"]);
+		$background_style = "background-image:url(Content/images/illustration_hotel/".$city."_1.jpg)";
 
 ?>
 

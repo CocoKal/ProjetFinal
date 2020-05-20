@@ -10,7 +10,7 @@
       foreach ($hotel_service as $service) {
         echo '
         <div class="col">
-          <img src="Content/images/icone/'.$service["service_id"].'.png">
+          <img class="img_service" src="Content/images/icone/'.$service["service_id"].'.png">
         </div>
         ';
       }
