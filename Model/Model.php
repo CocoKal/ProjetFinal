@@ -147,7 +147,7 @@
 			return $requete->execute();
 		}
 
-		public function get_all_users() {                 //GET_ALL_USERS
+		public function get_all_user() {                 //GET_ALL_USERS
 			$requete = $this->bd->prepare("SELECT * FROM user");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -161,6 +161,12 @@
 			$requete->bindValue(":id", $id);
 			$requete->bindValue(":email", $email);
 			$requete->execute();
+		}
+
+		public function get_user_by_id($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
 
@@ -308,17 +314,8 @@
 
 
 
-		public function get_all_user() {
-			$requete = $this->bd->prepare("SELECT * FROM user");
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
 
-		public function get_user_by_id($id_user) {
-			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
+
 
 
 		//ADMIN
@@ -422,6 +419,7 @@
 				$requete->bindValue(":service_id", $service_id);
 				return $requete->execute();
 		}
+
 
 		public function get_all_hotel_services() {
 			$requete = $this->bd->prepare("SELECT * FROM hotel_service");
