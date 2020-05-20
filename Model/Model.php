@@ -253,6 +253,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_room_type_by_id($room_type) {
+			$requete = $this->bd->prepare("SELECT * FROM room_type WHERE room_type_id = ".$room_type);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 
 
 		//STAFF
