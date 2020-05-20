@@ -259,37 +259,27 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_room_type_by_id($room_type) {
+			$requete = $this->bd->prepare("SELECT * FROM room_type WHERE room_type_id = ".$room_type);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 
 
 		//STAFF
 
 
-		public function add_staff($emp_name,$staff_type_id,$address,$contact_no,$salary){    //ADD EMPLOYE
+		public function add_staff($id_user,$staff_type_id){    //ADD EMPLOYE
 			$requete = $this->bd->prepare(
-				"INSERT INTO staff (
-													emp_name,
-													staff_type_id,
-
-													address,
-													contact_no,
-													salary)
-				VALUES 							(
-													:emp_name,
-													:staff_type_id,
+				"INSERT INTO staff (id_user,
+													staff_type_id,)
+				VALUES 							(:id_user,
+													:staff_type_id)");
 
 
-
-													:address,
-													:contact_no,
-													:salary)");
-
-
-			$requete->bindValue(":emp_name", $emp_name);
+			$requete->bindValue(":emp_name", $id_user);
 			$requete->bindValue(":staff_type_id", $staff_type_id);
-
-			$requete->bindValue(":address", $address);
-			$requete->bindValue(":contact_no", $contact_no);
-			$requete->bindValue(":salary", $salary);
 			return $requete->execute();
 		}
 
@@ -299,16 +289,19 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_staff_by_id_user($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM staff WHERE id_user = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//STAFF_TYPE
 
-		public function add_staff_type($staff_type_id,$staff_type){     //ADD STAFF TYPE
+		public function add_staff_type($staff_type){     //ADD STAFF TYPE
 			$requete = $this->bd->prepare(
-				"INSERT INTO staff_type (staff_type_id,
-														staff_type)
-				VALUES 							(:staff_type_id,
-														:staff_type)");
+				"INSERT INTO staff_type (staff_type)
+				VALUES 							(:staff_type)");
 
-			$requete->bindValue(":staff_type_id", $staff_type_id);
 			$requete->bindValue(":staff_type", $staff_type);
 			return $requete->execute();
 		}
@@ -340,6 +333,13 @@
 			$requete = $this->bd->prepare("SELECT * FROM admin WHERE id_user = ".$id_user);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function check_if_admin($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM admin WHERE id_user = ".$id_user);
+			$requete->execute();
+			$admin = $requete->fetchAll(PDO::FETCH_ASSOC);
+			return !empty($admin);
 		}
 
 		//HOTEL
@@ -380,8 +380,14 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_hotel_by_manager_id($emp_id) {
+			$requete = $this->bd->prepare("SELECT *
+																		FROM hotel
+																		WHERE manager_id = ".$emp_id );
 
-
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
 
 		//SERVICES
 
