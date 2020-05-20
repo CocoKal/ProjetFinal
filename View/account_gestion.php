@@ -37,29 +37,15 @@
 
   <div class="container emp-profile bg-dark">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Changer de Photo
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        Nom Prénom
-                                    </h5>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="index.php?view=account_gestion"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
+                  <div class="col-md-4">
+                      <div class="profile-img">
+                          <img src="Content/images/pdp_default.png" alt=""/>
+                          <div class="file btn btn-lg btn-primary">
+                              Changer de Photo
+                              <input type="file" name="file"/>
+                          </div>
+                      </div>
+                  </div>
                     <div class="col-md-8">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                               <form action="" method="post">

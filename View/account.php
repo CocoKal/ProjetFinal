@@ -17,8 +17,25 @@
 </head>
 <body>
 
+  <?php
+    if (!isset($_SESSION["id"])) {
 
-  <?php require("modules/header.php"); ?>
+      echo"<script>alert('Une erreur est survenue.')</script>";
+      header('Refresh: 1; url=index.php');
+    }
+      echo '<div class="super_container">';
+      require("modules/header.php");
+
+      $staff = $model->get_staff_by_id_user($_SESSION["id"]);
+      $is_manager;
+      if (!empty($staff)) {
+        if ($staff[0]["staff_type_id"] == 1) {
+          $is_manager = true;
+        }
+      }
+      else $is_manager = false;
+
+  ?>
 
 
     <div class="home" style="height: 220px;">
@@ -41,10 +58,6 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="Content/images/pdp_default.png" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Changer de Photo
-                                <input type="file" name="file"/>
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -57,6 +70,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vos Réservations</a>
                                 </li>
+                                <?php
+                                  if ($is_manager) {
+                                      echo '<li class="nav-item">
+                                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Vos Hôtels</a>
+                                          </li>';
+                                  }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -71,24 +91,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <!-- Servira pour les gérants d\'hotels qui verront ici la liste de leurs hôtels
-                            Peut être
-
-                        <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
-                        </div> -->
-                    </div>
-                    <div class="col-md-8">
+                    <div class="offset-4 col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
@@ -178,11 +181,28 @@
 
 
                               ?>
-                            </div>
                         </div>
+                        <?php if ($is_manager) {
+                          echo '<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="home-tab">';
+                          $hotel_list = $model->get_hotel_by_manager_id($staff[0]["emp_id"]);
+                          foreach ($hotel_list as $h) {
+                            echo '   <div class="row">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Sophie Tells de '.$h["hotel_localisation_city"].'</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href=""> <p>Gérer</p> </a>
+                                            </div>
+                                        </div>';
+                          }
+                          echo '</div>';
+                        } ?>
                     </div>
                 </div>
         </div>
+      </div>
 
           <?php require("modules/footer.php"); ?>
 

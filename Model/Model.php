@@ -383,6 +383,15 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_hotel_by_manager_id($emp_id) {
+			$requete = $this->bd->prepare("SELECT *
+																		FROM hotel
+																		WHERE manager_id = ".$emp_id );
+
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//SERVICES
 
 		public function add_service($name) {
