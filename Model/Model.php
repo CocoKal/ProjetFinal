@@ -169,6 +169,11 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function modify_user($id,$lastname,$firstname,$email){
+			$requete = $this->bd->prepare("UPDATE user SET lastname ='$lastname' ,firstname ='$firstname', email='$email' WHERE id ='$id' ");
+			return $requete->execute();
+		}
+
 
 
 
