@@ -70,9 +70,14 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="email" name="lastname" placeholder="" required="required">
+                                                <input type="email" name="email" placeholder="" required="required">
                                             </div>
                                         </div>
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <input type="submit" id="submit_btn" name="confirmation_button" value="Confirmer" placeholder="" required="required">
+                                      </div>
+                                  </div>
                                       </form>
                             </div>
                     </div>
@@ -80,6 +85,10 @@
         </div>
 
           <?php require("modules/footer.php"); ?>
+
+  <?php
+  include('Util/account_gestion.php');
+  ?>
 
           <script src="Content/js/jquery-3.3.1.min.js"></script>
           <script src="styles/bootstrap-4.1.2/popper.js"></script>
