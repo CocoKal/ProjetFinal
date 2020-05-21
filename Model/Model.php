@@ -74,6 +74,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_booking_historic($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM booking WHERE user_id = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		public function delete_booking($booking_id,$user_id){           //DELETE BOOKING BY ID_BOOKING AND ID_USER
 			$requete=$this->bd->prepare("DELETE *
 			FROM booking
@@ -173,8 +179,6 @@
 			$requete = $this->bd->prepare("UPDATE user SET lastname ='$lastname' ,firstname ='$firstname', email='$email' WHERE id ='$id' ");
 			return $requete->execute();
 		}
-
-
 
 
 
@@ -390,6 +394,12 @@
 																		FROM hotel
 																		WHERE manager_id = ".$emp_id );
 
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_count_clients_in_hotel_by_id($id){
+			$requete = $this->bd->prepare("SELECT count(*) FROM booking,room WHERE booking.room_id = room.room_id AND room.hotel_id = ".$id." AND booking.check_in < CURRENT_TIMESTAMP AND booking.check_out > CURRENT_TIMESTAMP");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
