@@ -10,7 +10,7 @@ if(!isset($_SESSION["user"]))
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -102,26 +102,21 @@ if(!isset($_SESSION["user"]))
                                             <label>Type Of Room *</label>
                                             <select name="troom"  class="form-control" required>
 												<option value selected ></option>
-                                                <option value="Superior Room">SUPERIOR ROOM</option>
-                                                <option value="Deluxe Room">DELUXE ROOM</option>
-												<option value="Guest House">GUEST HOUSE</option>
-												<option value="Single Room">SINGLE ROOM</option>
+                                                <option value="Standard">STANDARD ROOM</option>
+                                                <option value="Tourism Room">Tourism ROOM</option>
+												<option value="Confort Room">CONFORT ROOM</option>
+												<option value="LUXE Room">LUXE ROOM</option>
                                             </select>
                               </div>
 							  
 								<div class="form-group">
-                                            <label>Bedding Type</label>
-                                            <select name="bed" class="form-control" required>
-												<option value selected ></option>
-                                                <option value="Single">Single</option>
-                                                <option value="Double">Double</option>
-												<option value="Triple">Triple</option>
-                                                <option value="Quad">Quad</option>
-												<option value="Triple">None</option>
-                                                                                             
-                                            </select>
-                                            
-                               </div>
+                                            <label>Room Number</label>
+                                    <label>
+                                        <input name="number" class="form-control"  placeholder="Enter Room Number" required>
+
+                                    </label>
+
+                                </div>
 							 <input type="submit" name="add" value="Add New" class="btn btn-primary"> 
 							</form>
 							<?php
@@ -129,12 +124,16 @@ if(!isset($_SESSION["user"]))
 							 if(isset($_POST['add']))
 							 {
 										$room = $_POST['troom'];
-										$bed = $_POST['bed'];
-										$place = 'Free';
+										$nb = $_POST['number'];
+
 										
-										$check="SELECT * FROM room WHERE type = '$room' AND bedding = '$bed'";
+										$check="SELECT * FROM room WHERE room_no = '$nb' ";
 										$rs = mysqli_query($con,$check);
 										$data = mysqli_fetch_array($rs, MYSQLI_NUM);
+										$sql="SELECT room_type_id FROM room_type WHERE room_type=$room ";
+										$rep=mysqli_query($con,$sql);
+										$data2=mysqli_fetch_array($rep);
+										$rd=$data2['room_type_id'];
 										if($data[0] > 1) {
 											echo "<script type='text/javascript'> alert('Room Already in Exists')</script>";
 											
@@ -144,7 +143,7 @@ if(!isset($_SESSION["user"]))
 										{
 							 
 										
-										$sql ="INSERT INTO `room`( `type`, `bedding`,`place`) VALUES ('$room','$bed','$place')" ;
+										$sql ="INSERT INTO `room`( `room_type_id`, `room_no`) VALUES ('$rd','$nb')" ;
 										if(mysqli_query($con,$sql))
 										{
 										 echo '<script>alert("New Room Added") </script>' ;
@@ -171,7 +170,7 @@ if(!isset($_SESSION["user"]))
 								<!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <?php
-						$sql = "select * from room limit 0,10";
+						$sql = "select * from room limit 0,15";
 						$re = mysqli_query($con,$sql)
 						?>
                         <div class="panel-body">
@@ -180,8 +179,8 @@ if(!isset($_SESSION["user"]))
                                     <thead>
                                         <tr>
                                             <th>Room ID</th>
-                                            <th>Room Type</th>
-											<th>Bedding</th>
+                                            <th>Room No</th>
+											<th>Hotel ID</th>
                                             
                                         </tr>
                                     </thead>
@@ -190,21 +189,30 @@ if(!isset($_SESSION["user"]))
 									<?php
 										while($row= mysqli_fetch_array($re))
 										{
-												$id = $row['id'];
-											if($id % 2 == 0) 
+
+												$id = $row['room_id'];
+												$ho=$row['hotel_id'];
+												$room_type_id=$row['room_type_id'];
+												$req="SELECT room_type from room_type where room_type_id='$room_type_id'";
+                                                $ree = mysqli_query($con,$req);
+                                                $row2=mysqli_fetch_array($ree);
+                                                $req3="SELECT hotel_localisation_city from hotel where hotel_id=$ho";
+                                                $rep3=mysqli_query($con,$req3);
+                                                $r=mysqli_fetch_array($rep3);
+												if($id % 2 == 0)
 											{
 												echo "<tr class=odd gradeX>
-													<td>".$row['id']."</td>
-													<td>".$row['type']."</td>
-												   <th>".$row['bedding']."</th>
+													<td>".$row['room_id']."</td>
+													<td>".$row2['room_type']."</td>
+												   <th>".$r['hotel_localisation_city']."</th>
 												</tr>";
 											}
 											else
 											{
 												echo"<tr class=even gradeC>
-													<td>".$row['id']."</td>
-													<td>".$row['type']."</td>
-												   <th>".$row['bedding']."</th>
+													<td>".$row['room_id']."</td>
+													<td>".$row2['room_type']."</td>
+												   <th>".$r['hotel_localisation_city']."</th>
 												</tr>";
 											
 											}

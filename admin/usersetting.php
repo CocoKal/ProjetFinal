@@ -12,7 +12,7 @@ ob_start();
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -43,7 +43,7 @@ ob_start();
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="usersetting.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="usersetting.php"><i class="fa fa-user fa-fw"></i> Admin Profile</a>
                         </li>
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -63,7 +63,7 @@ ob_start();
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="settings.php"><i class="fa fa-dashboard"></i>User Dashboard</a>
+                        <a class="active-menu" href="settings.php"><i class="fa fa-dashboard"></i>Admin Dashboard</a>
                     </li>
 					
 					
@@ -87,7 +87,7 @@ ob_start();
                                  
             <?php
 						include ('db.php');
-						$sql = "SELECT * FROM `login`";
+						$sql = "SELECT * FROM `user`";
 						$re = mysqli_query($con,$sql)
 				?>
                 
@@ -100,10 +100,13 @@ ob_start();
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>User ID</th>
-											<th>User name</th>
-                                            <th>Password</th>
-                                            
+                                            <th>Admin ID</th>
+                                            <th>Admin lasname</th>
+											<th>Admin firstname</th>
+                                            <th>Admin Email</th>
+                                            <th>Admin Password</th>
+                                            <th> Creation Date</th>
+
 											<th>Update</th>
 											<th>Remove</th>
                                             
@@ -116,14 +119,20 @@ ob_start();
 										{
 										
 											$id = $row['id'];
-											$us = $row['usname'];
-											$ps = $row['pass'];
+											$ls = $row['lastname'];
+											$fs = $row['firstname'];
+											$em= $row['email'];
+											$ps=$row['password'];
+											$cd=$row['created_at'];
 											if($id % 2 ==0 )
 											{
 												echo"<tr class='gradeC'>
 													<td>".$id."</td>
-													<td>".$us."</td>
+													<td>".$ls."</td>
+													<td>".$fs."</td>
+													<td>".$em."</td>
 													<td>".$ps."</td>
+													<td>".$cd."</td>
 													
 													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
 															 Update 
@@ -135,9 +144,11 @@ ob_start();
 											{
 												echo"<tr class='gradeU'>
 													<td>".$id."</td>
-													<td>".$us."</td>
+													<td>".$ls."</td>
+													<td>".$fs."</td>
+													<td>".$em."</td>
 													<td>".$ps."</td>
-													
+													<td>".$cd."</td>
 													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
                               Update 
                             </button></td>
@@ -171,13 +182,28 @@ ob_start();
 										<form method="post">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                            <label>Add new User name</label>
-                                            <input name="newus"  class="form-control" placeholder="Enter User name">
+                                            <label>Add new admin  lastname</label>
+                                            <input name="newls"  class="form-control" placeholder="Enter Admin lastname">
 											</div>
 										</div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Add new admin  firstname</label>
+                                                    <input name="newfs"  class="form-control" placeholder="Enter Admin firstname">
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>New Admin Email</label>
+                                                    <input name="newem"  class="form-control" placeholder="Enter Admin Email">
+                                                </div>
+                                            </div>
+
+
 										<div class="modal-body">
                                             <div class="form-group">
-                                            <label>New Password</label>
+                                            <label>New Admin Password</label>
                                             <input name="newps"  class="form-control" placeholder="Enter Password">
 											</div>
                                         </div>
@@ -196,10 +222,12 @@ ob_start();
 						<?php
 						if(isset($_POST['in']))
 						{
-							$newus = $_POST['newus'];
-							$newps = $_POST['newps'];
+							$newls = $_POST['newls'];
+							$newfs = $_POST['newfs'];
+                            $newem = $_POST['newem'];
+                            $newps = $_POST['newps'];
 							
-							$newsql ="Insert into login (usname,pass) values ('$newus','$newps')";
+							$newsql ="Insert into user (lastname,firstname,email,password) values ('$newls','$newfs','$newem','$newps')";
 							if(mysqli_query($con,$newsql))
 							{
 							echo' <script language="javascript" type="text/javascript"> alert("User name and password Added") </script>';
@@ -217,19 +245,19 @@ ob_start();
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">Change the User name and Password</h4>
+                                            <h4 class="modal-title" id="myModalLabel">Change Admin Details</h4>
                                         </div>
 										<form method="post">
                                         <div class="modal-body">
                                             <div class="form-group">
                                             <label>Change User name</label>
-                                            <input name="usname" value="<?php echo $us; ?>" class="form-control" placeholder="Enter User name">
+                                            <input name="firstname" value="<?php echo $fs; ?>" class="form-control" placeholder="Enter User name">
 											</div>
 										</div>
 										<div class="modal-body">
                                             <div class="form-group">
                                             <label>Change Password</label>
-                                            <input name="pasd" value="<?php echo $ps; ?>" class="form-control" placeholder="Enter Password">
+                                            <input name="password" value="<?php echo $ps; ?>" class="form-control" placeholder="Enter Password">
 											</div>
                                         </div>
 										
@@ -251,10 +279,10 @@ ob_start();
                 <?php 
 				if(isset($_POST['up']))
 				{
-					$usname = $_POST['usname'];
-					$passwr = $_POST['pasd'];
+					$firstname = $_POST['firstname'];
+					$password = $_POST['password'];
 					
-					$upsql = "UPDATE `login` SET `usname`='$usname',`pass`='$passwr' WHERE id = '$id'";
+					$upsql = "UPDATE `user` SET `firstname`='$firstname',`password`='$password' WHERE id = '$id'";
 					if(mysqli_query($con,$upsql))
 					{
 					echo' <script language="javascript" type="text/javascript"> alert("User name and password update") </script>';

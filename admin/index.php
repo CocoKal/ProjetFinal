@@ -2,7 +2,7 @@
  session_start();  
  if(isset($_SESSION["user"]))  
  {  
-      header("location:home.php");  
+      header("location: home.php");
  }  
  
  ?>
@@ -51,14 +51,14 @@
       </div> <!-- end login -->
 
     </div>
-    <div class="bottom">  <h3><a href="../index.php">SUN RISE HOMEPAGE</a></h3></div>
+    <div class="bottom">  <h3><a href="../index.php">SOPHIE TELLS HOMEPAGE</a></h3></div>
   
   
 </body>
 </html>
 
 <?php
-   include('db.php');
+   include('C:\xampp\htdocs\ProjetFinal\admin\db.php');
   
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -67,10 +67,11 @@
       $myusername = mysqli_real_escape_string($con,$_POST['user']);
       $mypassword = mysqli_real_escape_string($con,$_POST['pass']); 
       
-      $sql = "SELECT id FROM login WHERE usname = '$myusername' and pass = '$mypassword'";
+      $sql = "SELECT id FROM user WHERE (firstname = '$myusername') and (password = '$mypassword') ";
+
       $result = mysqli_query($con,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+     // $active = $row['active'];
       
       $count = mysqli_num_rows($result);
       
