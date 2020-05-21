@@ -1030,3 +1030,30 @@ stuff
 .img_service {
 	max-height: 80px;
 }
+.hotel_list{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.hotel_list_title {
+	padding-top: 40px;
+}
+.hotel_list_quote {
+	width: 80%;
+	padding-left: 20%;
+	font-size: 18px;
+}
+.quote_left {
+	height: 20px;
+	width: 20px;
+	margin-left: 15%;
+}
+.quote_right {
+	height: 20px;
+	width: 20px;
+	margin-right: 15%;
+}
+.list_separator {
+	border-width: 5px;
+}
