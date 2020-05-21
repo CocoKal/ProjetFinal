@@ -14,30 +14,27 @@ if(!isset($_SESSION["user"]))
 		}
 		else {
 				$curdate=date("Y/m/d");
-				include ('db.php');
+				include ('C:\xampp\htdocs\ProjetFinal\admin\db.php');
 				$id = $_GET['rid'];
 				
 				
-				$sql ="Select * from roombook where id = '$id'";
+				$sql ="Select * from booking where user_id = '$id'";
 				$re = mysqli_query($con,$sql);
-				while($row=mysqli_fetch_array($re))
-				{
-					$title = $row['Title'];
-					$fname = $row['FName'];
-					$lname = $row['LName'];
-					$email = $row['Email'];
-					$nat = $row['National'];
-					$country = $row['Country'];
-					$Phone = $row['Phone'];
-					$troom = $row['TRoom'];
-					$nroom = $row['NRoom'];
-					$bed = $row['Bed'];
-					$non = $row['NRoom'];
-					$meal = $row['Meal'];
-					$cin = $row['cin'];
-					$cout = $row['cout'];
-					$sta = $row['stat'];
-					$days = $row['nodays'];
+				$sql2="SELECT lastname,firstname from user WHERE id='$id'";
+				$ree=mysqli_query($con,$sql2);
+
+				while($row=mysqli_fetch_array($re,$ree))
+                {
+                    $lastname=$row['lastname'];
+                    $firstname=$row['firstname'];
+					$booking_id = $row['booking_id'];
+					$user_id = $row['user_id'];
+					$room_id = $row['room_id'];
+					$booking_date = $row['booking_date'];
+					$check_in = $row['check_in'];
+					$check_out = $row['check_out'];
+					$payment_status=$row['payment_status'];
+
 					
 				
 				

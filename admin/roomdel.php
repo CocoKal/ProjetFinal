@@ -9,7 +9,7 @@ ob_start();
 
 <?php
 include('db.php');
-$rsql ="select id from room";
+$rsql ="select room_id from room";
 $rre=mysqli_query($con,$rsql);
 
 ?>
@@ -19,7 +19,7 @@ $rre=mysqli_query($con,$rsql);
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -49,7 +49,7 @@ $rre=mysqli_query($con,$rsql);
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="usersetting.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -114,7 +114,7 @@ $rre=mysqli_query($con,$rsql);
 												<?php
 												while($rrow=mysqli_fetch_array($rre))
 												{
-												$value = $rrow['id'];
+												$value = $rrow['room_id'];
 												 echo '<option value="'.$value.'">'.$value.'</option>';
 												
 												}
@@ -134,7 +134,7 @@ $rre=mysqli_query($con,$rsql);
 								$did = $_POST['id'];
 								
 								
-								$sql ="DELETE FROM `room` WHERE id = '$did'" ;
+								$sql ="DELETE FROM `room` WHERE room_id = '$did'" ;
 								if(mysqli_query($con,$sql))
 								{
 								 echo '<script type="text/javascript">alert("Delete the Room") </script>' ;
@@ -150,9 +150,8 @@ $rre=mysqli_query($con,$rsql);
                         
                     </div>
                 </div>
-                
-                  
-           <?php
+
+           <!--
 						include ('db.php');
 						$sql = "select * from room";
 						$re = mysqli_query($con,$sql)
@@ -160,10 +159,10 @@ $rre=mysqli_query($con,$rsql);
                 <div class="row">
 				
 				
-				<?php
+				<!
 										while($row= mysqli_fetch_array($re))
 										{
-												$id = $row['type'];
+												$id = $row['room_type'];
 											if($id == "Superior Room") 
 											{
 												echo"<div class='col-md-3 col-sm-12 col-xs-12'>

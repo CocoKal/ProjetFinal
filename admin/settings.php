@@ -10,7 +10,7 @@ if(!isset($_SESSION["user"]))
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS </title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -40,7 +40,7 @@ if(!isset($_SESSION["user"]))
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="usersetting.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -98,64 +98,68 @@ if(!isset($_SESSION["user"]))
 				<?php
 										while($row= mysqli_fetch_array($re))
 										{
-												$id = $row['type'];
-											if($id == "Superior Room") 
+												$id = $row['room_type_id'];
+												$sql2="select room_type from room_type where room_type_id=$id";
+												$req=mysqli_query($con,$sql2);
+												$row2=mysqli_fetch_array($req);
+
+											if($id == 1)
 											{
 												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
 													<div class='panel panel-primary text-center no-boder bg-color-blue'>
 														<div class='panel-body'>
 															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
+															<h3>".$row['room_no']."</h3>
 														</div>
 														<div class='panel-footer back-footer-blue'>
-															".$row['type']."
+															".$row2['room_type']."
 
 														</div>
 													</div>
 												</div>";
 											}
-											else if ($id == "Deluxe Room")
+											else if ($id == "2")
 											{
 												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
 													<div class='panel panel-primary text-center no-boder bg-color-green'>
 														<div class='panel-body'>
 															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
+															<h3>".$row['room_no']."</h3>
 														</div>
 														<div class='panel-footer back-footer-green'>
-															".$row['type']."
+															".$row2['room_type']."
 
 														</div>
 													</div>
 												</div>";
 											
 											}
-											else if($id =="Guest House")
+											else if($id =="3")
 											{
 												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
 													<div class='panel panel-primary text-center no-boder bg-color-brown'>
 														<div class='panel-body'>
 															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
+															<h3>".$row['room_no']."</h3>
 														</div>
 														<div class='panel-footer back-footer-brown'>
-															".$row['type']."
+															".$row2['room_type']."
 
 														</div>
 													</div>
 												</div>";
 											
 											}
-											else if($id =="Single Room")
+											else if($id =="4")
 											{
 												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
 													<div class='panel panel-primary text-center no-boder bg-color-red'>
 														<div class='panel-body'>
 															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
+															<h3>".$row['room_no']."</h3>
 														</div>
 														<div class='panel-footer back-footer-red'>
-															".$row['type']."
+															".$row2['room_type']."
 
 														</div>
 													</div>

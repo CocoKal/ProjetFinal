@@ -67,9 +67,7 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
-					<li>
-                        <a href="roombook.php"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
-                    </li>
+
                     <li>
                         <a href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
@@ -91,111 +89,335 @@ if(!isset($_SESSION["user"]))
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
-
-
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
+                           Rooms Booking <small></small>
+                        </h1>
+                    </div>
+                </div>
+                <?php
+					include ('db.php');
+						$sql = "select * from hotel";
+						$re = mysqli_query($con,$sql);
+						$h =0;
+						while($row=mysqli_fetch_array($re) )
+						{$h++;}?> <!-- Nombre des hôtels -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="panel-group" id="accordion">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                    <button class="btn btn-default" type="button">
+                                                      Hotels  <span class="badge"><?php echo $h ; ?></span>
+                                                    </button>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="panel panel-default">
+
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                <tr>
+
+                                                                    <th>HOTEL ID</th>
+                                                                    <th>HOTEL COUNTRY</th>
+                                                                    <th>HOTEL CITY</th>
+                                                                    <th>MANAGER ID</th>
+
+
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                <?php
+                                                                $hsql = "select * from hotel";
+                                                                $hre = mysqli_query($con,$hsql);
+                                                                while($hrow=mysqli_fetch_array($hre) )
+                                                                {
+
+                                                                    echo"<tr>
+												<th>".$hrow['hotel_id']."</th>
+												<th>".$hrow['hotel_localisation_country']."</th>
+												<th>".$hrow['hotel_localisation_city']."</th>
+												<th>".$hrow['manager_id']."</th>
+												
+												
+												
+								
+												</tr>";
+                                                                }
+
+
+                                                                ?>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-sm-5">
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-heading">
+                                                            Choose Hotel to see his bookings
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <form name="form" method="post">
+                                                                <div class="form-group">
+                                                                    <label>Hotel</label>
+                                                                    <select name="hotel_id"  class="form-control" required>
+                                                                        <option value selected ></option>
+                                                                        <option value="1">Marrakech</option>
+                                                                        <option value="2">Paris </option>
+                                                                        <option value="3">Dubai</option>
+                                                                        <option value="4">New York</option>
+                                                                        <option value="5">Rome</option>
+                                                                        <option value="6">Londres</option>
+                                                                        <option value="7">Bangkok</option>
+                                                                        <option value="8">Bali</option>
+                                                                        <option value="5">Amsterdam</option>
+                                                                        <option value="5">Rio de Janeiro</option>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <input type="submit" name="search" value="search" class="btn btn-primary">
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                            <?php
+                                                            include('db.php');
+                                                            if(isset($_POST['search']))
+                                                            {
+                                                                $hotel_id = $_POST['hotel_id'];
+                                                                  echo"<div class='row'>
+                          <div class='col-md-12'>
+                          <h1 class='page-header'>
+                            Status <small>Room Booking </small>
+                        </h1>
+                    </div>
+                </div>";
+
+                                                                  $sql1="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
+
+
+
+						$re = mysqli_query($con,$sql1);
+
+
+						$c =0;
+						while($row=mysqli_fetch_array($re) )
+						{$c++;
+						};
+
+
+
+
+
+
+
+                                      echo"          <div class='row'>
+                                                    <div class='col-md-12'>
+                                                        <div class='panel panel-default'>
+                                                            <div class='panel-heading'>
+
+                                                            </div>
+                                                            <div class='panel-body'>
+                                                                <div class='panel-group' id='accordion'>
+
+                                                                    <div class='panel panel-primary'>
+                                                                        <div class='panel-heading'>
+                                                                            <h4 class='panel-title'>
+                                                                                <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
+                                                                                    <button class='btn btn-default' type='button'>
+                                                                                        New Room Bookings  <span class='badge'>" ;
+                                                                                        echo $c ; echo"</span>
+                                                                                    </button>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id='collapseTwo' class='panel-collapse in' style='height: auto;'>
+                                                                            <div class='panel-body'>
+                                                                                <div class='panel panel-default'>
+
+                                                                                    <div class='panel-body'>
+                                                                                        <div class='table-responsive'>
+                                                                                            <table class='table'>
+                                                                                                <thead>
+                                                                                                <tr>
+
+                                                                                                    <th>Booking ID</th>
+                                                                                                    <th>User ID</th>
+                                                                                                    <th>Room ID</th>
+                                                                                                    <th>Booking Date</th>
+                                                                                                    <th>Check In</th>
+                                                                                                    <th>Check Out</th>
+
+                                                                                                    <th> Payment Status</th>
+
+                                                                                                   
+
+                                                                                                </tr>";
+                                                                $sql2="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
+
+
+
+                                                                $rep = mysqli_query($con,$sql2);
+
+                                                                while($rowh=mysqli_fetch_array($rep) )
+                                                                {
+                                                                    echo "<tr>
+												<th>" . $rowh['booking_id'] . "</th>
+												<th>" . $rowh['user_id'] . "</th>
+												<th>" . $rowh['room_id'] . "</th>
+												<th>" . $rowh['booking_date'] . "</th>
+												<th>" . $rowh['check_in'] . "</th>
+												<th>" . $rowh['check_out'] . "</th>
+												<th>" . $rowh['payment_status'] . "</th> ";   }
+                                                                                                echo"</thead>
+                                                                                                <tbody>";
+                                                                  }
+                                                                                        /*
+
+                                                                                                $tsql = "select * from booking";
+                                                                                                $tre = mysqli_query($con,$tsql);
+                                                                                                while($trow=mysqli_fetch_array($tre) ) {
+
+                                                                                                    echo "<tr>
+												<th>" . $trow['booking_id'] . "</th>
+												<th>" . $trow['user_id'] . "</th>
+												<th>" . $trow['room_id'] . "</th>
+												<th>" . $trow['booking_date'] . "</th>
+												<th>" . $trow['check_in'] . "</th>
+												<th>" . $trow['check_out'] . "</th>
+												<th>" . $trow['payment_status'] . "</th>
+												
+												
+												<th><a href='roombook.php?rid=" . $trow['booking_id'] . " ' class='btn btn-primary'>Action</a></th>
+												</tr>
+                                                                                                }
+
+
+                                                                                               
+
+                                                                                                </tbody>
+                                                                                            </table>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- End  Basic Table  -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            }
+                                                            ?>
+                                                <div class='row'>
+                          <div class='col-md-12'>
+                          <h1 class='page-header'>
                             Status <small>Room Booking </small>
                         </h1>
                     </div>
                 </div>
-                <!-- /. ROW  -->
-				<?php
-						include ('db.php');
-						$sql = "select * from roombook";
-						$re = mysqli_query($con,$sql);
-						$c =0;
-						while($row=mysqli_fetch_array($re) )
-						{
-								$new = $row['stat'];
-								$cin = $row['cin'];
-								$id = $row['id'];
-								if($new=="Not Conform")
-								{
-									$c = $c + 1;
-									
-								
-								}
-						
-						}
-						
-									
-									
+                <!-- /. ROW  -->";
 
-						
-				?>
+                                                                                                    include('db.php');
+                                                                                                    $sql = "select * from booking";
+                                                                                                    $re = mysqli_query($con, $sql);
+                                                                                                    $c = 0;
+                                                                                                    while ($row = mysqli_fetch_array($re)) {
+                                                                                                        $c++;
 
-					<div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+
+                                                                                                    }
+
+
+
+                                                                                                   /*echo "
+
+					<div class='row'>
+                <div class='col-md-12'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading'>
                             
                         </div>
-                        <div class="panel-body">
-                            <div class="panel-group" id="accordion">
+                        <div class='panel-body'>
+                            <div class='panel-group' id='accordion'>
 							
-							<div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-											<button class="btn btn-default" type="button">
-												 New Room Bookings  <span class="badge"><?php echo $c ; ?></span>
+							<div class='panel panel-primary'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'>
+                                            <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
+											<button class='btn btn-default' type='button'>
+												 New Room Bookings  <span class='badge'>";
+                                                                                                    echo $c;
+                                                                                                    echo "</span>
 											</button>
 											</a>
                                         </h4>
                                     </div>
-                                    <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
-                                        <div class="panel-body">
-                                           <div class="panel panel-default">
+                                    <div id='collapseTwo' class='panel-collapse in' style='height: auto;'>
+                                        <div class='panel-body'>
+                                           <div class='panel panel-default'>
                         
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
+                        <div class='panel-body'>
+                            <div class='table-responsive'>
+                                <table class='table'>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Country</th>
-											<th>Room</th>
-											<th>Bedding</th>
-											<th>Meal</th>
+
+                                            <th>Booking ID</th>
+                                            <th>User ID</th>
+                                            <th>Room ID</th>
+											<th>Booking Date</th>
 											<th>Check In</th>
 											<th>Check Out</th>
-											<th>Status</th>
+
+											<th> Payment Status</th>
+
 											<th>More</th>
 											
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        
-									<?php
-									$tsql = "select * from roombook";
-									$tre = mysqli_query($con,$tsql);
-									while($trow=mysqli_fetch_array($tre) )
-									{	
-										$co =$trow['stat']; 
-										if($co=="Not Conform")
-										{
-											echo"<tr>
-												<th>".$trow['id']."</th>
-												<th>".$trow['FName']." ".$trow['LName']."</th>
-												<th>".$trow['Email']."</th>
-												<th>".$trow['Country']."</th>
-												<th>".$trow['TRoom']."</th>
-												<th>".$trow['Bed']."</th>
-												<th>".$trow['Meal']."</th>
-												<th>".$trow['cin']."</th>
-												<th>".$trow['cout']."</th>
-												<th>".$trow['stat']."</th>
+                                    <tbody>";
+
+
+                                                                                                    $tsql = "select * from booking";
+                                                                                                    $tre = mysqli_query($con, $tsql);
+                                                                                                    while ($trow = mysqli_fetch_array($tre)) {
+
+                                                                                                        echo "<tr>
+												<th>" . $trow['booking_id'] . "</th>
+												<th>" . $trow['user_id'] . "</th>
+												<th>" . $trow['room_id'] . "</th>
+												<th>" . $trow['booking_date'] . "</th>
+												<th>" . $trow['check_in'] . "</th>
+												<th>" . $trow['check_out'] . "</th>
+												<th>" . $trow['payment_status'] . "</th>
 												
-												<th><a href='roombook.php?rid=".$trow['id']." ' class='btn btn-primary'>Action</a></th>
+												
+												<th><a href='roombook.php?rid=" . $trow['booking_id'] . " ' class='btn btn-primary'>Action</a></th>
 												</tr>";
-										}	
-									
-									}
-									?>
+                                                                                                    }
+
+
+                                                                                                    echo "
                                         
                                     </tbody>
                                 </table>
@@ -206,10 +428,12 @@ if(!isset($_SESSION["user"]))
                       <!-- End  Basic Table  --> 
                                         </div>
                                     </div>
-                                </div>
-								<?php
-								
-								$rsql = "SELECT * FROM `roombook`";
+                                </div>";
+                                                                                                }}
+
+
+
+								 $rsql = "SELECT * FROM `roombook`";
 								$rre = mysqli_query($con,$rsql);
 								$r =0;
 								while($row=mysqli_fetch_array($rre) )
@@ -226,13 +450,13 @@ if(!isset($_SESSION["user"]))
 								
 								}
 						
-								?>
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
-											<button class="btn btn-primary" type="button">
-												 Booked Rooms  <span class="badge"><?php echo $r ; ?></span>
+								echo"
+                                <div class='panel panel-info'>
+                                    <div class='panel-heading'>
+                                        <h4 class='panel-title'>
+                                            <a data-toggle='collapse' data-parent='#accordion' href=''#collapseOne' class='collapsed'>
+											<button class='btn btn-primary' type='button'>
+												 Booked Rooms  <span class='badge'>"; echo $r ; echo"</span>
 											</button>
 											
 											</a>
@@ -240,7 +464,7 @@ if(!isset($_SESSION["user"]))
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
-										<?php
+										<
 										$msql = "SELECT * FROM `roombook`";
 										$mre = mysqli_query($con,$msql);
 										
@@ -281,7 +505,7 @@ if(!isset($_SESSION["user"]))
                                     </div>
 									
                                 </div>
-                                <?php
+                                <
 								
 								$fsql = "SELECT * FROM `contact`";
 								$fre = mysqli_query($con,$fsql);
@@ -298,7 +522,7 @@ if(!isset($_SESSION["user"]))
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
 											<button class="btn btn-primary" type="button">
-												 Followers  <span class="badge"><?php echo $f ; ?></span>
+												 Followers  <span class="badge">< echo $f ; ?></span>
 											</button>
 											</a>
                                         </h4>
@@ -321,7 +545,7 @@ if(!isset($_SESSION["user"]))
                                     </thead>
                                     <tbody>
                                         
-									<?php
+									<
 									$csql = "select * from contact";
 									$cre = mysqli_query($con,$csql);
 									while($crow=mysqli_fetch_array($cre) )
@@ -353,9 +577,9 @@ if(!isset($_SESSION["user"]))
                     </div>
                 </div>
             </div>
-            
+            -->
 			
-				<!-- DEOMO-->
+				<!-- DEOMO-
 				<div class='panel-body'>
                             <button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
                               Update 
@@ -371,13 +595,13 @@ if(!isset($_SESSION["user"]))
                                         <div class='modal-body'>
                                             <div class='form-group'>
                                             <label>Change User name</label>
-                                            <input name='usname' value='<?php echo $fname; ?>' class='form-control' placeholder='Enter User name'>
+                                            <input name='firstname' value='<php echo $firstname; ?>' class='form-control' placeholder='Enter User name'>
 											</div>
 										</div>
 										<div class='modal-body'>
                                             <div class='form-group'>
                                             <label>Change Password</label>
-                                            <input name='pasd' value='<?php echo $ps; ?>' class='form-control' placeholder='Enter Password'>
+                                            <input name='pasd' value='<php echo $ps; ?>' class='form-control' placeholder='Enter Password'>
 											</div>
                                         </div>
 										
@@ -393,9 +617,9 @@ if(!isset($_SESSION["user"]))
                             </div>
                         </div>
 				
-				<!--DEMO END-->
+				<-DEMO END-->
 				
-										
+
                     
 
                 <!-- /. ROW  -->
@@ -422,4 +646,4 @@ if(!isset($_SESSION["user"]))
 
 </body>
 
-</html>
+</html>*/
