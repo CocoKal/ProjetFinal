@@ -17,11 +17,10 @@
 
 		//BOOKING OK !!
 
-		public function add_booking($user_id,$room_id,$booking_date,$check_in,$check_out,$payment_status){		//ADD BOOKING OPERATION
+		public function add_booking($user_id,$room_id,$check_in,$check_out){		//ADD BOOKING OPERATION
 			$requete = $this->bd->prepare(
 				"INSERT INTO booking (user_id,
 														room_id,
-														booking_date,
 														check_in,
 														check_out,
 														payment_status)
@@ -41,7 +40,7 @@
 			$requete->bindValue(":booking_date", $booking_date);
 			$requete->bindValue(":check_in", $check_in);
 			$requete->bindValue(":check_out", $check_out);
-			$requete->bindValue(":payment_status", $payment_status);
+			$requete->bindValue(":payment_status", 0);
 
 			return $requete->execute();
 		}

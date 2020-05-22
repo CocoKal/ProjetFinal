@@ -15,7 +15,7 @@
       <div class="row footer_row">
 
         <!-- Address -->
-        <div class="col-lg-3">
+        <div class="offset-2 col-lg-3">
           <div class="footer_title">Our Address</div>
           <div class="footer_list">
             <ul>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Reservations -->
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <div class="footer_title">Reservations</div>
           <div class="footer_list">
             <ul>
@@ -35,17 +35,6 @@
               <li>Fax; 6783 4567 889</li>
               <li>reservations@hotelriver.com</li>
             </ul>
-          </div>
-        </div>
-
-        <!-- Newsletter -->
-        <div class="col-lg-3">
-          <div class="footer_title">Newsletter</div>
-          <div class="newsletter_container">
-            <form action="#" class="newsletter_form" id="newsletter_form">
-              <input type="email" class="newsletter_input" placeholder="Your email address" required="required">
-              <button class="newsletter_button">Subscribe</button>
-            </form>
           </div>
         </div>
 

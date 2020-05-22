@@ -47,8 +47,7 @@
 			<div class="row">
 
 				<!-- Contact Content -->
-				<div class="col-lg-6">
-					<div class="contact_content">
+						<div class="col-md-4" style="padding-top: 90px;">
 						<div class="contact_title"><h2>Get in touch</h2></div>
 						<div class="contact_list">
 							<ul>
@@ -57,6 +56,8 @@
 								<li>music@contact.com</li>
 							</ul>
 						</div>
+					</div>
+					<div class="col-md-8">
 						<div class="contact_form_container">
 							<form action="#" class="contact_form" id="contact_form">
 								<div class="row">
@@ -76,10 +77,7 @@
 				</div>
 
 
-	<!-- Footer -->
-
-		<?php require("modules/footer.php") ?>
-</div>
+<?php require("modules/footer.php") ?>
 
 <script src="Content/js/jquery-3.3.1.min.js"></script>
 <script src="styles/bootstrap-4.1.2/popper.js"></script>

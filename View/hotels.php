@@ -43,33 +43,60 @@
 	</div>
 
 
-  <div class="container">
+<div class="container">
       <?php
 
       $list_hotel = $model->get_all_hotels();
+			$c = 0;
 
       foreach ($list_hotel as $hotel) {
-
+				$c++;
         $city = $hotel["hotel_localisation_city"];
         $path_illustration = str_replace(" ", "_", $city);
         $id = $hotel["hotel_id"];
 
-          echo '<div class="row row_hotel">
-              <div class="offset-1 col-10 mt-3">
-                  <div class="card bg-dark">
-                      <div class="card-horizontal">
-                          <div class="img-square-wrapper">
-                              <img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1" style="width: 450px;" alt="Card image cap">
-                          </div>
-                          <div class="card-body">
-                            <h4 class="card-title card_title hotel_title">Sophie Tells de '.$city.' </h4>
-                              <a href="index.php?view=hotel_info&hotel_id='.$id.'" class="btn btn-primary pull-right">voir les chambres</p></a>
-                          </div>
-                      </div>
+          echo '<div class="row">
+								<div class="col-6 text-center hotel_list">';
+								if ($c % 2 == 0) {
+									echo '<div class="img-square-wrapper">
+													<a href="index.php?view=hotel_info&hotel_id='.$id.'">
+													<img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1" style="width: 100%;">
+													</a>
+									</div>';
+								}
+								else {
+									echo '		<a href="index.php?view=hotel_info&hotel_id='.$id.'">
+														<h2 class="hotel_list_title">Sophie Tells de '.$city.' </h2>
+														<img src="Content/images/icone/geo.png" style="height: 20px;width: 20px;">
+														<p>'.$city.', '.$hotel["hotel_localisation_country"].'</p>
+														<img class="pull-left quote_left" src="Content/images/icone/quote_1.png">
+														<p class="font-italic hotel_list_quote">'.$hotel["quote"].'</p>
+														<img class="pull-right quote_right" src="Content/images/icone/quote_2.png">
+														</a>';
+								}
+					echo	'</div>
+								<div class="col-6 text-center hotel_list">';
+								if ($c % 2 == 0) {
+									echo '		<a href="index.php?view=hotel_info&hotel_id='.$id.'">
+														<h2 class="hotel_list_title">Sophie Tells de '.$city.' </h2>
+														<img src="Content/images/icone/geo.png" style="height: 20px;width: 20px;">
+														<p>'.$city.', '.$hotel["hotel_localisation_country"].'</p>
+														<img class="pull-left quote_left" src="Content/images/icone/quote_1.png">
+														<p class="font-italic hotel_list_quote">'.$hotel["quote"].'</p>
+														<img class="pull-right quote_right" src="Content/images/icone/quote_2.png">
+														</a>';
+								}
+								else {
+									echo '<div class="img-square-wrapper">
+									<a href="index.php?view=hotel_info&hotel_id='.$id.'">
+									<img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1" style="width: 100%;">
+									</a>
+									</div>';
+								}
 
-                  </div>
-              </div>
-          </div>';
+					echo	'</div>
+							</div>
+							<hr class="list_separator">';
       }
 
 
