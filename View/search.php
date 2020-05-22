@@ -37,6 +37,8 @@
   	header('Refresh: 1; url=index.php');
   }
   else {
+     include('Util/reserver.php');
+    var_dump($_SESSION["id"]);
     $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
     $hotel_id;
     if (empty($hotel))  echo"<script>alert('Nous n'avons malheureusement pas d'Hôtel ici')</script>";
@@ -87,38 +89,51 @@
 
           <div class="row">';
 
-          $check_in = date('Y-m-d H:i:s' ,strtotime($_POST["check_in"]));
-          $check_out = date('Y-m-d H:i:s' ,strtotime($_POST["check_out"]));
-
+              $check_in = date('Y-m-d H:i:s' ,strtotime($_POST["check_in"]));
+              $check_out = date('Y-m-d H:i:s' ,strtotime($_POST["check_out"]));
               $room_type = $model->get_all_room_type();
               $last_type = 0;
 
               foreach ($room_type as $type) {
+
                 $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type["room_type_id"]);
-                $number_of_room_free = 0;
+                $id_of_room_free = [];
+
                 foreach ($rooms as $r) {
                   $booking_of_room = $model->get_all_booking_by_room_id($r["room_id"], $check_in, $check_out);
 
-                  if (empty($booking_of_room)) $number_of_room_free++;
+                  if (empty($booking_of_room)) array_push($id_of_room_free, $r["room_id"]);
                 }
+
                 $path_illustration = "Content/images/illustration_chambre/".$type["room_type_id"].".jpg";
+                if (!empty($id_of_room_free)) {
+                  echo '<form  method="post">
+                          <input type="hidden" name="id_room" value="'.$id_of_room_free[0].'">
+                          <input type="hidden" name="check_in" value="'.$_POST["check_in"].'">
+                          <input type="hidden" name="check_out" value="'.$_POST["check_out"].'">
+                          <input type="hidden" name="id_user" value="'.$_SESSION["id"].'">
+                  ';
+                }
                 echo '
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="card bg-dark h-100">
-                    <a href="#"><img class="card-img-top" src="'.$path_illustration.'"></a>
+                    <img class="card-img-top" src="'.$path_illustration.'">
                     <div class="card-body">
                       <h4 class="card-title">
                         <a href="#">'.$type["room_type"].'</a>
                       </h4>
                       <h5>$'.$type["price"].'</h5>
-                      <p class="card-text">'.$number_of_room_free.' chambre(s) libre(s).</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
+                      <p class="card-text">'.sizeof($id_of_room_free).' chambre(s) libre(s).</p>';
+                      if (!empty($id_of_room_free)) {
+                        echo '<input type="submit" class="btn btn-primary pull-right" value="Réserver">';
+                      }
+                    echo '</div>
                   </div>
                 </div>
                 ';
+                if (!empty($id_of_room_free)) {
+                  echo '</form>';
+                }
               }
 
              ?>
