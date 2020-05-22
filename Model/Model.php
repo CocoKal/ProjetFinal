@@ -73,6 +73,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_booking_historic($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM booking WHERE user_id = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		public function delete_booking($booking_id,$user_id){           //DELETE BOOKING BY ID_BOOKING AND ID_USER
 			$requete=$this->bd->prepare("DELETE *
 			FROM booking
@@ -146,7 +152,7 @@
 			return $requete->execute();
 		}
 
-		public function get_all_users() {                 //GET_ALL_USERS
+		public function get_all_user() {                 //GET_ALL_USERS
 			$requete = $this->bd->prepare("SELECT * FROM user");
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -162,7 +168,16 @@
 			$requete->execute();
 		}
 
+		public function get_user_by_id($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
 
+		public function modify_user($id,$lastname,$firstname,$email){
+			$requete = $this->bd->prepare("UPDATE user SET lastname ='$lastname' ,firstname ='$firstname', email='$email' WHERE id ='$id' ");
+			return $requete->execute();
+		}
 
 
 
@@ -307,17 +322,8 @@
 
 
 
-		public function get_all_user() {
-			$requete = $this->bd->prepare("SELECT * FROM user");
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
 
-		public function get_user_by_id($id_user) {
-			$requete = $this->bd->prepare("SELECT * FROM user WHERE id = ".$id_user);
-			$requete->execute();
-			return $requete->fetchAll(PDO::FETCH_ASSOC);
-		}
+
 
 
 		//ADMIN
@@ -391,6 +397,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_count_clients_in_hotel_by_id($id){
+			$requete = $this->bd->prepare("SELECT count(*) FROM booking,room WHERE booking.room_id = room.room_id AND room.hotel_id = ".$id." AND booking.check_in < CURRENT_TIMESTAMP AND booking.check_out > CURRENT_TIMESTAMP");
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//SERVICES
 
 		public function add_service($name) {
@@ -421,6 +433,7 @@
 				$requete->bindValue(":service_id", $service_id);
 				return $requete->execute();
 		}
+
 
 		public function get_all_hotel_services() {
 			$requete = $this->bd->prepare("SELECT * FROM hotel_service");

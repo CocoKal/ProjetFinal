@@ -40,12 +40,12 @@
      include('Util/reserver.php');
     var_dump($_SESSION["id"]);
     $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
-    $hotel_id;
+
     if (empty($hotel))  echo"<script>alert('Nous n'avons malheureusement pas d'Hôtel ici')</script>";
     else {
       $hotel_id = $hotel[0]['hotel_id'];
-    }
-    $hotel_info = $model->get_hotel_by_id($hotel_id);
+
+    $hotel_info = $model->get_hotel_by_id($hotel_id);}
   }
 
   $content = "";
@@ -95,9 +95,8 @@
               $last_type = 0;
 
               foreach ($room_type as $type) {
-
-                $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type["room_type_id"]);
-                $id_of_room_free = [];
+                $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type['room_type_id']);
+                $number_of_room_free = 0;
 
                 foreach ($rooms as $r) {
                   $booking_of_room = $model->get_all_booking_by_room_id($r["room_id"], $check_in, $check_out);

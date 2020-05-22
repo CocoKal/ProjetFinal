@@ -16,7 +16,7 @@
 
   <header class="header">
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
-      <div class="logo"><a href="http://localhost/Tests/ProjetFinal/index.php">Sophie Tells</a></div>
+      <div class="logo"><a href="http://localhost/ProjetFinal/index.php">Sophie Tells</a></div>
     </div>
   </header>
 
@@ -46,7 +46,7 @@
             <button type="submit" class="btn btn-success btn-lg btn-block">S'inscrire maintenant</button>
         </div>
     </form>
-	<div class="text-center">Vous avez déjà un compte ? <a href="http://localhost/Tests/ProjetFinal/index.php?view=login">Se connecter</a></div>
+	<div class="text-center">Vous avez déjà un compte ? <a href="http://localhost/ProjetFinal/index.php?view=login">Se connecter</a></div>
 </div>
 <?php
  include('Util/register.php');
