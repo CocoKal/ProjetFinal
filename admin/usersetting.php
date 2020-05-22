@@ -63,7 +63,7 @@ ob_start();
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="settings.php"><i class="fa fa-dashboard"></i>Admin Dashboard</a>
+                     <!--   <a class="active-menu" href="settings.php"><i class="fa fa-dashboard"></i>Admin Dashboard</a>-->
                     </li>
 					
 					
@@ -87,7 +87,7 @@ ob_start();
                                  
             <?php
 						include ('db.php');
-						$sql = "SELECT * FROM `user`";
+						$sql = "SELECT * FROM user as u ,admin as a WHERE (a.id_user=u.id)";
 						$re = mysqli_query($con,$sql)
 				?>
                 
@@ -101,14 +101,14 @@ ob_start();
                                     <thead>
                                         <tr>
                                             <th>Admin ID</th>
-                                            <th>Admin lasname</th>
+                                            <th>Admin lastname</th>
 											<th>Admin firstname</th>
                                             <th>Admin Email</th>
                                             <th>Admin Password</th>
                                             <th> Creation Date</th>
+                                            <th>Update</th>
 
-											<th>Update</th>
-											<th>Remove</th>
+
                                             
                                         </tr>
                                     </thead>
@@ -137,7 +137,7 @@ ob_start();
 													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
 															 Update 
 													</button></td>
-													<td><a href=usersettingdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>
+													<!--<td><a href=usersettingdel.php?eid=$  <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>-->
 												</tr>";
 											}
 											else
@@ -149,10 +149,10 @@ ob_start();
 													<td>".$em."</td>
 													<td>".$ps."</td>
 													<td>".$cd."</td>
-													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
+													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal' id='$id'>
                               Update 
                             </button></td>
-													<td><a href=usersettingdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>
+													<!--<td><a href=usersettingdel.php?eid=$id  <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>-->
 												</tr>";
 											
 											}
@@ -168,6 +168,8 @@ ob_start();
                         </div>
                     </div>
                     <!--End Advanced Tables -->
+
+                    <!-- ADD NEW ADMIN-->
 					<div class="panel-body">
                             <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal1">
 															Add New Admin
@@ -219,6 +221,7 @@ ob_start();
                                 </div>
                             </div>
                         </div>
+            </div>
 						<?php
 						if(isset($_POST['in']))
 						{
@@ -227,19 +230,76 @@ ob_start();
                             $newem = $_POST['newem'];
                             $newps = $_POST['newps'];
 							
-							$newsql ="Insert into user (lastname,firstname,email,password) values ('$newls','$newfs','$newem','$newps')";
-							if(mysqli_query($con,$newsql))
+							$newsql1 ="Insert into user (lastname,firstname,email,password) values ('$newls','$newfs','$newem','$newps')";
+                            $newsql2="SELECT max(id) from USER";
+                            $cd=mysqli_query($con,$newsql2);
+                            $ad=mysqli_fetch_array($cd);
+                            $dd=$ad[0]+1;
+							if(mysqli_query($con,$newsql1))
 							{
-							echo' <script language="javascript" type="text/javascript"> alert("User name and password Added") </script>';
-							
-						
+
+                                //$t=mysqli_fetch_array($rd);
+
+                                $newsql3="INSERT into admin(id_user) values($dd)";
+                                $rad=mysqli_query($con,$newsql3);
+                                echo' <script language="javascript" type="text/javascript"> alert("Admin Added") </script>';
+                                header("Refresh:0");
 							}
-						header("Location: usersetting.php");
+							else
+                            {echo"erreur";}
+						//header("Location: usersetting.php");
 						}
 						?>
-						
+                <!--DELETE USER-->
+                <div class="panel-body">
+                    <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal2">
+                       Delete Admin
+                    </button>
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Delete Admin</h4>
+                                </div>
+                                <form method="post">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Add Admin ID</label>
+                                            <input name="admin"  class="form-control" placeholder="Enter Admin ID">
+                                        </div>
+                                    </div>
+
+                                        <input type="submit" name="de" value="delete" class="btn btn-primary">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                if(isset($_POST['de']))
+                {
+                    $admin = $_POST['admin'];
+
+                    $deletesql2="DELETE FROM admin where id='$admin' ";
+
+
+                    if(mysqli_query($con,$deletesql2))
+                    {
+
+                        echo' <script language="javascript" type="text/javascript"> alert("Admin Deleted") </script>';
+                        header("Refresh:0");
+                    }
+                    else
+                    {echo"erreur";}
+                    //header("Location: usersetting.php");
+                }
+                ?>
+						<!-- UPDATE ADMIN-->
 					<div class="panel-body">
-                            
+
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -250,24 +310,33 @@ ob_start();
 										<form method="post">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                            <label>Change User name</label>
-                                            <input name="firstname" value="<?php echo $fs; ?>" class="form-control" placeholder="Enter User name">
+                                            <label>Change Firstname</label>
+                                            <input name="firstname" value="<?php echo $fs; ?>" class="form-control" placeholder="Enter  firstname">
 											</div>
 										</div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Change Lastname</label>
+                                                    <input name="lastname" value="<?php echo $ls; ?>" class="form-control" placeholder="Enter lastname">
+                                                </div>
+                                            </div>
 										<div class="modal-body">
                                             <div class="form-group">
                                             <label>Change Password</label>
                                             <input name="password" value="<?php echo $ps; ?>" class="form-control" placeholder="Enter Password">
 											</div>
                                         </div>
-										
+
+
+
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											
+
                                            <input type="submit" name="up" value="Update" class="btn btn-primary">
-										  </form>
-										   
                                         </div>
+										  </form>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -276,21 +345,24 @@ ob_start();
             </div>
                
                 <!-- /. ROW  -->
-                <?php 
+                <?php
+
 				if(isset($_POST['up']))
 				{
 					$firstname = $_POST['firstname'];
 					$password = $_POST['password'];
-					
-					$upsql = "UPDATE `user` SET `firstname`='$firstname',`password`='$password' WHERE id = '$id'";
+					$lastname=$_POST['lastname'];
+
+					$upsql = "UPDATE `user` SET `firstname`='$firstname',lastname='$lastname',`password`='$password' WHERE (id=$id) ";
 					if(mysqli_query($con,$upsql))
 					{
 					echo' <script language="javascript" type="text/javascript"> alert("User name and password update") </script>';
 					
 				
 					}
+					else{echo"erreur";}
 				
-				header("Location: usersetting.php");
+				//header("Location: usersetting.php");
 				
 				}
 				ob_end_flush();
