@@ -132,8 +132,8 @@
 
         $path_illustration = "Content/images/illustration_chambre/".$type["room_type_id"].".jpg";
         if (!empty($id_of_room_free)) {
-          echo '<form  method="post">
-                  <input type="hidden" name="id_room" value="'.$id_of_room_free[0].'">
+          echo '<form action="index.php?view=reserver" method="post">
+                  <input type="hidden" name="room_id" value="'.$id_of_room_free[0].'">
                   <input type="hidden" name="check_in" value="'.$_POST["check_in"].'">
                   <input type="hidden" name="check_out" value="'.$_POST["check_out"].'">
           ';
