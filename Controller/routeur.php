@@ -4,10 +4,9 @@ class Router{
      {
      if (isset($_GET['log'])){
 			 session_destroy();
-			 unset($_COOKIE['id']);
-			 unset($_COOKIE['username']);
-			 unset($_COOKIE['userlevel']);
-			 setcookie('id','',time()-3600,'/');
+			 setcookie('id', "", time() - 1, null, null, false, true);
+			 setcookie('username', "", time() - 1, null, null, false, true);
+			 setcookie('userlevel', "", time() - 1, null, null, false, true);
     	 header("location:index.php");
 		 }
 
