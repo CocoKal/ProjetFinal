@@ -1,9 +1,9 @@
 <?php  
 session_start();  
-if(!isset($_SESSION["user"]))
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
+}*/
 ?> 
 
 <!DOCTYPE html>
@@ -69,27 +69,36 @@ if(!isset($_SESSION["user"]))
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                        <a class="active-menu"  href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                     </li>
                     <li>
                         <a  href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
-					<li>
+
+                    <li>
+                        <a   href="usersetting.php"><i class="fa fa-desktop"></i> Administrator Settings</a>
+                    </li>
+                    <li>
+                        <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
+                    </li>
+                    <li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
+                    </li>
+                    <li>
+                        <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                     </li>
                     <li>
                         <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
-					 <li>
-                        <a class="active-menu" href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                    <li>
+                        <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
                     </li>
-                    
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
-                    
 
-                    
+
+
             </div>
 
         </nav>

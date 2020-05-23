@@ -1,10 +1,11 @@
-<?php  
-session_start();  
+<?php
+session_start();
+$current = date('m/d/Y');
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
 }*/
-?> 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -78,6 +79,7 @@ session_start();
                 <li>
                     <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
                 </li>
+
                 <li>
                     <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                 </li>
@@ -102,7 +104,7 @@ session_start();
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        Current Bookings<small></small>
+                        Clients in Hotels <?php echo"$current"?><small></small>
                         </h1>
                     </div>
                 </div>
@@ -182,7 +184,7 @@ session_start();
                                                 <div class="col-md-5 col-sm-5">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
-                                                            Choose Hotel to see his bookings
+                                                            Choose Hotel To see the List of Clients Today
                                                         </div>
                                                         <div class="panel-body">
                                                             <form name="form" method="post">
@@ -228,21 +230,21 @@ session_start();
                                                                   echo"<div class='row'>
                           <div class='col-md-12'>
                           <h1 class='page-header'>
-                            Status <small>Room Booking </small>
+                            Status Current<small>Clients </small>
                         </h1>
                     </div>
                 </div>";
 
-                                                                  $sql1="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
+                                                                  $sql2="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current)";
 
 
 
-						$re = mysqli_query($con,$sql1);
+						$red = mysqli_query($con,$sql2);
 
 
-						$c =0;
-						while($row=mysqli_fetch_array($re) )
-						{$c++;
+						$s =0;
+						while($row=mysqli_fetch_array($red) )
+						{$s++;
 						};
 
 
@@ -265,8 +267,8 @@ session_start();
                                                                             <h4 class='panel-title'>
                                                                                 <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
                                                                                     <button class='btn btn-default' type='button'>
-                                                                                        New Room Bookings  <span class='badge'>" ;
-                                                                                        echo $c ; echo"</span>
+                                                                                        Clients  <span class='badge'>" ;
+                                                                                        echo $s ;"</span>
                                                                                     </button>
                                                                                 </a>
                                                                             </h4>
@@ -281,34 +283,26 @@ session_start();
                                                                                                 <thead>
                                                                                                 <tr>
 
-                                                                                                    <th>Booking ID</th>
-                                                                                                    <th>User ID</th>
-                                                                                                    <th>Room ID</th>
-                                                                                                    <th>Booking Date</th>
-                                                                                                    <th>Check In</th>
-                                                                                                    <th>Check Out</th>
-
-                                                                                                    <th> Payment Status</th>
-
+                                                                                                    <th>Client ID</th>
+                                                                                                    <th>Client Lastname</th>
+                                                                                                    <th>Client Firstname</th>
+                                                                                                    
                                                                                                    
 
                                                                                                 </tr>";
-                                                                $sql2="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
+                                                                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current)";
 
 
 
-                                                                $rep = mysqli_query($con,$sql2);
+                                                                $rec= mysqli_query($con,$sql3);
 
-                                                                while($rowh=mysqli_fetch_array($rep) )
+                                                                while($rowc=mysqli_fetch_array($rec) )
                                                                 {
                                                                     echo "<tr>
-							                     	<th>" . $rowh['booking_id'] . "</th>
-												<th>" . $rowh['user_id'] . "</th>
-												<th>" . $rowh['room_id'] . "</th>
-												<th>" . $rowh['booking_date'] . "</th>
-												<th>" . $rowh['check_in'] . "</th>
-												<th>" . $rowh['check_out'] . "</th>
-												<th>" . $rowh['payment_status'] . "</th> ";   }
+							                     	<th>" . $rowc['user_id'] . "</th>
+												<th>" . $rowc['lastname'] . "</th>
+												<th>" . $rowc['firstname'] . "</th>
+												 ";   }
                                                                                                 echo"</thead>
                                                                                                 <tbody>";}
                                                             ?>
@@ -324,7 +318,7 @@ session_start();
             </div>
 
                 <!-- /. ROW  -->
-				
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>

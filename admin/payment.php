@@ -1,9 +1,9 @@
 <?php  
 session_start();  
-if(!isset($_SESSION["user"]))
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
+}*/
 ?> 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -76,6 +76,10 @@ if(!isset($_SESSION["user"]))
                     </li>
 					<li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
+                    </li>
+
+                    <li>
+                        <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                     </li>
                     <li>
                         <a class="active-menu" href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
