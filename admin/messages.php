@@ -63,16 +63,27 @@ session_start();
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                        <a   href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
+                        <a  class="active-menu" href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
-					<li>
+
+                    <li>
+                        <a   href="usersetting.php"><i class="fa fa-desktop"></i> Administrator Settings</a>
+                    </li>
+                    <li>
+                        <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
+                    </li>
+                    <li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
                     </li>
+
                     <li>
-                        <a href="Payment.php"><i class="fa fa-qrcode"></i> Payment</a>
+                        <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
+                    </li>
+                    <li>
+                        <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
                     <li>
                         <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
@@ -80,10 +91,9 @@ session_start();
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
-                    
 
 
-                    
+
             </div>
 
         </nav>
@@ -100,7 +110,7 @@ session_start();
                  <!-- /. ROW  -->
 				 <?php
 				include('db.php');
-				$mail = "SELECT * FROM `contact`";
+				$mail = "SELECT * FROM `user`";
 				$rew = mysqli_query($con,$mail);
 				
 			   ?>
@@ -108,16 +118,7 @@ session_start();
                 <div class="col-md-12">
                     <div class="jumbotron">
                         <h3>Send The News Letters to Followers</h3>
-						<?php
-						while($rows = mysqli_fetch_array($rew))
-						{
-								$app=$rows['approval'];
-								if($app=="Allowed")
-								{
-									
-								}
-						}
-						?>
+
                         <p></p>
                         <p>
 						<div class="panel-body">
@@ -164,13 +165,15 @@ session_start();
 							<?php
 							if(isset($_POST['log']))
 							{	
-								$log ="INSERT INTO `newsletterlog`(`title`, `subject`, `news`) VALUES ('$_POST[title]','$_POST[subject]','$_POST[news]')";
-								if(mysqli_query($con,$log))
+								$log ="SELECT email from user ";
+								$i=0;
+								while(mysqli_query($con,$log))
 								{
-									echo '<script>alert("New Room Added") </script>' ;
+                                    mail($log[$i], $_POST['subject'], $_POST['comment']);
+									$i++;
 											
 								}
-								
+                                echo '<script>alert("News letter sent !") </script>' ;
 							}
 							
 								
@@ -183,7 +186,7 @@ session_start();
             </div>
                <?php
 				
-				$sql = "SELECT * FROM `contact`";
+				$sql = "SELECT * FROM `user`";
 				$re = mysqli_query($con,$sql);
 				
 			   ?>
@@ -196,14 +199,11 @@ session_start();
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-											<th>Phone Number</th>
+                                            <th>Last Name</th>
+											<th>First Name</th>
                                             <th>Email</th>
-                                            <th>Date</th>
-											<th>Status</th>
-											<th>Approval</th>
-											<th>Remove</th>
-                                            
+                                            <th>Creation Date</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -217,25 +217,22 @@ session_start();
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
-													<td>".$row['fullname']."</td>
-													<td>".$row['phoneno']."</td>
+													<td>".$row['lastname']."</td>
+													<td>".$row['firstname']."</td>
 													<td>".$row['email']."</td>
-													<td>".$row['cdate']."</td>
-													<td>".$row['approval']."</td>
-													<td><a href=newsletter.php?eid=".$id ." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
-													<td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>
+													<td>".$row['created_at']."</td>
+													
 												</tr>";
 											}
 											else
 											{
 												echo"<tr class='gradeU'>
-													<td>".$row['fullname']."</td>
-													<td>".$row['phoneno']."</td>
+													<td>".$row['lastname']."</td>
+													<td>".$row['firstname']."</td>
 													<td>".$row['email']."</td>
-													<td>".$row['cdate']."</td>
-													<td>".$row['approval']."</td>
-													<td><a href=newsletter.php?eid=".$id." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
-													<td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete </button></td>		
+													<td>".$row['created_at']."</td>
+													
+															
 												</tr>";
 											
 											}
