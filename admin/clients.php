@@ -64,7 +64,7 @@ $current = date('m/d/Y');
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu"  href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                    <a   href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                 </li>
                 <li>
                     <a  href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
@@ -81,7 +81,7 @@ $current = date('m/d/Y');
                 </li>
 
                 <li>
-                    <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
+                    <a class="active-menu" href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                 </li>
                 <li>
                     <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
