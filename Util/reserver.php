@@ -4,9 +4,9 @@ and empty($_POST["check_in"])
 and !isset($_POST["check_out"])
 and empty($_POST["check_out"])
 and !isset($_POST["room_id"])
-and empty($_POST["room_id"])) {
+and empty($_POST["room_id"]))) {
 
-  echo"<script>alert('Une erreur est survenue.')</script>";
+  echo "<script>alert('Une erreur est survenue.')</script>";
   header('Refresh: 1; url=../index.php');
 }
 else if (empty($_POST["id_user"])) {

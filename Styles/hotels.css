@@ -1009,7 +1009,7 @@ stuff
 	pointer-events: none;
 }
 .illustration_chambre {
-	height: 150px;
+	height: 250px;
 }
 .bed_icon {
 	height: 30px;
@@ -1056,4 +1056,13 @@ stuff
 }
 .list_separator {
 	border-width: 5px;
+}
+
+.description_title {
+	padding-top: 50px;
+	padding-bottom: 30px;
+}
+.description_text > p {
+	font-size: 20px;
+	padding-bottom: 50px;
 }

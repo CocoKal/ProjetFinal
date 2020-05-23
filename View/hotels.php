@@ -51,6 +51,7 @@
 
       foreach ($list_hotel as $hotel) {
 				$c++;
+				$hotel_description = $model->get_hotel_description_by_id($hotel["hotel_id"]);
         $city = $hotel["hotel_localisation_city"];
         $path_illustration = str_replace(" ", "_", $city);
         $id = $hotel["hotel_id"];
@@ -70,7 +71,7 @@
 														<img src="Content/images/icone/geo.png" style="height: 20px;width: 20px;">
 														<p>'.$city.', '.$hotel["hotel_localisation_country"].'</p>
 														<img class="pull-left quote_left" src="Content/images/icone/quote_1.png">
-														<p class="font-italic hotel_list_quote">'.$hotel["quote"].'</p>
+														<p class="font-italic hotel_list_quote">'.$hotel_description[0]["quote"].'</p>
 														<img class="pull-right quote_right" src="Content/images/icone/quote_2.png">
 														</a>';
 								}
@@ -82,7 +83,7 @@
 														<img src="Content/images/icone/geo.png" style="height: 20px;width: 20px;">
 														<p>'.$city.', '.$hotel["hotel_localisation_country"].'</p>
 														<img class="pull-left quote_left" src="Content/images/icone/quote_1.png">
-														<p class="font-italic hotel_list_quote">'.$hotel["quote"].'</p>
+														<p class="font-italic hotel_list_quote">'.$hotel_description[0]["quote"].'</p>
 														<img class="pull-right quote_right" src="Content/images/icone/quote_2.png">
 														</a>';
 								}

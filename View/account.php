@@ -96,108 +96,89 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nom</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                                echo $user[0]["lastname"]; ?> </p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Prénom</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                    echo $user[0]["firstname"]; ?> </p>
-                                    </div>
-                                </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> <?php $user = $model->get_user_by_id($_SESSION['id']);
-                                                            echo $user[0]["email"]; ?> </p>
-                                            </div>
-                                        </div>
+                                          <table class="table">
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">Nom</th>
+                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                                echo $user[0]["lastname"]; ?></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Prénom</th>
+                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                            echo $user[0]["firstname"]; ?></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Email</th>
+                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                            echo $user[0]["email"]; ?></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
                               <div class="row">
-                                  <div class="col-md-2">
-                                      <label>Ville</label>
-                                  </div>
-                                  <div class="col-md-1">
-                                      <label>Num.</label>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <label>Date arrivée</label>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <label>Date départ</label>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <label>Paiement</label>
-                                  </div>
-                              </div>
+                              <table class="table table-striped table-bordered table-hover">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Ville</th>
+                                    <th scope="col">N°</th>
+                                    <th scope="col">Date arrivée</th>
+                                    <th scope="col">Date départ</th>
+                                    <th scope="col">Paiement</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <?php
+                                    $booking = $model->get_all_booking_by_id_user($user[0]["id"]);
 
-                              <?php
-                                $booking = $model->get_all_booking_by_id_user($user[0]["id"]);
+                                    foreach ($booking as $book) {
+                                      $room = $model->get_room_by_id($book["room_id"]);
+                                      $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
+                                      $payment_status = ($book["payment_status"]) ? "Payé"
+                                      : '<button type="button" class="btn btn-primary" style="width: 90px; height:50px;">
+                                          <img src="Content\images\icone\credit-card.png" style="height: 20px;">
+                                         </button>';
 
-                                foreach ($booking as $book) {
-                                  $room = $model->get_room_by_id($book["room_id"]);
-                                  $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
-
-                                  echo '
-                                  <div class="row">
-                                      <div class="col-md-2">
-                                          <label>'.$hotel[0]["hotel_localisation_city"].'</label>
-                                      </div>
-                                      <div class="col-md-1">
-                                          <label>'.$room[0]["room_no"].'</label>
-                                      </div>
-                                      <div class="col-md-3">
-                                          <label>'.$book["check_in"].'</label>
-                                      </div>
-                                      <div class="col-md-3">
-                                          <label>'.$book["check_out"].'</label>
-                                      </div>';
-                                      if (!$book["payment_status"]) {
-                                        echo ' <div class="col-md-3">
-                                            <a href=""><label>En attente</label></a>
-                                        </div> ';
-                                      }
-                                      else {
-                                        echo '<div class="col-md-3">
-                                            <label>Payé</label>
-                                        </div>';
-                                      }
-
-                                  echo '</div>';
-                                }
+                                      echo '<tr>
+                                              <td>'.$hotel[0]["hotel_localisation_city"].'</td>
+                                              <td>'.$room[0]["room_no"].'</td>
+                                              <td>'.$book["check_in"].'</td>
+                                              <td>'.$book["check_out"].'</td>
+                                              <td style="padding: 0px;width: 90px; height:50px;">'.$payment_status.'</td>
+                                              <td style="padding: 0px;width: 50px; height:50px;">
+                                                <button type="button" class="btn btn-danger" style="width: 50px; height:50px;">
+                                                  <img src="Content\images\icone\cancel.png" style="height: 20px;">
+                                                </button>
+                                              </td>
+                                            </tr>';
+                                    }
+                                  ?>
+                                </tbody>
+                              </table>
+                            </div>
 
 
-                              ?>
+
                         </div>
                         <?php if ($is_manager) {
-                          echo '<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="home-tab">';
+                          echo '<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="home-tab">
+                                  <div class="row">
+                                    <table>
+                                      <tbody>';
                           $hotel_list = $model->get_hotel_by_manager_id($staff[0]["emp_id"]);
                           foreach ($hotel_list as $h) {
-                            echo '   <div class="row">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Sophie Tells de '.$h["hotel_localisation_city"].'</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a href=""> <p>Gérer</p> </a>
-                                            </div>
-                                        </div>';
+                            echo '    <tr>
+                                        <th scope="row">Sophie Tells de '.$h["hotel_localisation_city"].'</th>
+                                        <td class="row_table_managment"><button type="button" class="btn btn-primary">Gérer</button</td>
+                                      </tr>';
                           }
-                          echo '</div>';
+                          echo '  </tbody>
+                                </table>
+                              </div>
+                            </div>';
                         } ?>
                     </div>
                 </div>

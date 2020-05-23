@@ -54,14 +54,12 @@
 
 		public function get_all_booking_by_room_id($room_id, $check_in, $check_out) { //GET BOOKING FOR A SPECIFIC ROOM
 			$string_requete = ("SELECT *
-			FROM booking
-			WHERE room_id = $room_id
-			AND (
-			(check_in <= '".$check_out."' AND check_out > '".$check_out."')
-			OR (check_in <= '".$check_in."' AND check_out > '".$check_in."')
-			OR ((check_in < '".$check_out."' AND check_in >= '".$check_in."') AND (check_out < '".$check_out."' AND check_out >= '".$check_out."'))
-			OR (check_in < '".$check_in."' AND check_out > '".$check_out."')
-			)");
+													FROM booking
+													WHERE room_id = $room_id
+													AND ((check_in <= '".$check_out."' AND check_out > '".$check_out."')
+													OR (check_in <= '".$check_in."' AND check_out > '".$check_in."')
+													OR ((check_in < '".$check_out."' AND check_in >= '".$check_in."') AND (check_out < '".$check_out."' AND check_out >= '".$check_out."'))
+													OR (check_in < '".$check_in."' AND check_out > '".$check_out."'))");
 			$requete = $this->bd->prepare($string_requete);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -443,6 +441,29 @@
 
 		public function get_all_hotel_services_by_hotel_id($hotel_id) {
 			$requete = $this->bd->prepare("SELECT * FROM hotel_service WHERE hotel_id = ".$hotel_id);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		//HOTEL_DESCRIPTION
+
+		public function add_hotel_description($hotel_id, $quote, $description) {
+			$requete = $this->bd->prepare(
+				"INSERT INTO services (hotel_id,
+															quote,
+															description)
+				VALUES 							 (:hotel_id,
+															:quote,
+															:description)");
+
+				$requete->bindValue(":hotel_id", $hotel_id);
+				$requete->bindValue(":quote", $quote);
+				$requete->bindValue(":description", $description);
+				return $requete->execute();
+		}
+
+		public function get_hotel_description_by_id($hotel_id) {
+			$requete = $this->bd->prepare("SELECT * FROM hotel_description WHERE id_hotel = ".$hotel_id);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
