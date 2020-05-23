@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_SESSION["username"])) {
+if (!isset($_COOKIE["username"])) {
 	$bool=false;
      if(isset($_POST['email'])
 		 and !empty($_POST['email'])
@@ -14,9 +14,9 @@ if (!isset($_SESSION["username"])) {
        		$id = $u["id"];
 					$username = $u["lastname"]." ".$u["firstname"];
 					$userlevel = !empty($model->get_admin_id_by_user($id));
-					$_SESSION["id"] = $id;
-					$_SESSION["username"] = $username;
-					$_SESSION["userlevel"] = $userlevel;
+					setcookie('id', $id, time() + 365*24*3600, null, null, false, true);
+					setcookie('username', $username, time() + 365*24*3600, null, null, false, true);
+					setcookie('userlevel', $userlevel, time() + 365*24*3600, null, null, false, true);
         	$bool = true;
           echo"<script>alert('Bienvenue ".$u['lastname']." ".$u['firstname']." !')</script>";
         }

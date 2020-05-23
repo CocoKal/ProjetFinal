@@ -18,7 +18,7 @@
 <body>
 
   <?php
-    if (!isset($_SESSION["id"])) {
+    if (!isset($_COOKIE["id"])) {
 
       echo"<script>alert('Une erreur est survenue.')</script>";
       header('Refresh: 1; url=index.php');
@@ -26,7 +26,7 @@
       echo '<div class="super_container">';
       require("modules/header.php");
 
-      $staff = $model->get_staff_by_id_user($_SESSION["id"]);
+      $staff = $model->get_staff_by_id_user($_COOKIE["id"]);
       $is_manager;
       if (!empty($staff)) {
         if ($staff[0]["staff_type_id"] == 1) {
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-md-2">
                       <?php
-                      if ($model->check_if_admin($_SESSION["id"])) {
+                      if ($model->check_if_admin($_COOKIE["id"])) {
                         echo '<a href="index.php?view=dashboard"><input type="submit" class="profile-edit-btn" name="dash" value="Dashboard"/></a>';
                       }
                       ?>
@@ -100,17 +100,17 @@
                                             <tbody>
                                               <tr>
                                                 <th scope="row">Nom</th>
-                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                <td><?php $user = $model->get_user_by_id($_COOKIE['id']);
                                                                 echo $user[0]["lastname"]; ?></td>
                                               </tr>
                                               <tr>
                                                 <th scope="row">Prénom</th>
-                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                <td><?php $user = $model->get_user_by_id($_COOKIE['id']);
                                                             echo $user[0]["firstname"]; ?></td>
                                               </tr>
                                               <tr>
                                                 <th scope="row">Email</th>
-                                                <td><?php $user = $model->get_user_by_id($_SESSION['id']);
+                                                <td><?php $user = $model->get_user_by_id($_COOKIE['id']);
                                                             echo $user[0]["email"]; ?></td>
                                               </tr>
                                             </tbody>

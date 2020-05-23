@@ -14,7 +14,7 @@
       </nav>
       <div>
         <?php
-          if (!isset($_SESSION["username"])) {
+          if (!isset($_COOKIE["username"])) {
             echo '<a href="index.php?view=login">';
           }
           else {
@@ -23,7 +23,7 @@
         ?>
           <button class="header_phone booking_button trans_200">
               <?php
-                if (isset($_SESSION["username"])) echo $_SESSION["username"];
+                if (isset($_COOKIE["username"])) echo $_COOKIE["username"];
                 else echo "Se Connecter";
                ?>
           </button>
@@ -49,13 +49,13 @@
         <li><a href="index.php?view=hotels">Hôtels</a></li>
         <li>
           <?php
-            if (!isset($_SESSION["username"])) {
+            if (!isset($_COOKIE["username"])) {
               echo '<a href="index.php?view=login">';
               echo "Se Connecter";
             }
             else {
               echo '<a href="index.php?view=account">';
-              echo $_SESSION["username"];
+              echo $_COOKIE["username"];
             }
            ?>
         </a>
