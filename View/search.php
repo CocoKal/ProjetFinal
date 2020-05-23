@@ -115,10 +115,10 @@
       $checkIn = date('Y-m-d H:i:s' ,strtotime($_POST["check_in"]));
       $checkOut = date('Y-m-d H:i:s' ,strtotime($_POST["check_out"]));
       $room_type = $model->get_all_room_type();
-      $id_of_room_free = [];
       $last_type = 0;
 
       foreach ($room_type as $type) {
+        $id_of_room_free = [];
         $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type['room_type_id']);
 
         foreach ($rooms as $r) {
