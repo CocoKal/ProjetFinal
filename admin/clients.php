@@ -36,7 +36,7 @@ $current = date('m/d/Y');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php"><?php echo $_SESSION["user"]; ?> </a>
+            <a class="navbar-brand" href="home.php"><?php echo $_COOKIE["username"]; ?> </a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -165,10 +165,10 @@ $current = date('m/d/Y');
 												<th>".$hrow['hotel_localisation_country']."</th>
 												<th>".$hrow['hotel_localisation_city']."</th>
 												<th>".$hrow['manager_id']."</th>
-												
-												
-												
-								
+
+
+
+
 												</tr>";
                                                                 }
 
@@ -253,7 +253,7 @@ $current = date('m/d/Y');
 
 
 
-                                      echo"          
+                                      echo"
                                                     <div class='col-md-12'>
                                                         <div class='panel panel-default'>
                                                             <div class='panel-heading'>
@@ -286,11 +286,20 @@ $current = date('m/d/Y');
                                                                                                     <th>Client ID</th>
                                                                                                     <th>Client Lastname</th>
                                                                                                     <th>Client Firstname</th>
-                                                                                                    
-                                                                                                   
+
+
 
                                                                                                 </tr>";
-                                                                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current)";
+                                                                $sql3="select *
+                                                                       from booking as b, user as u
+                                                                       where(
+                                                                         room_id IN (
+                                                                           select room_id
+                                                                           from room
+                                                                           where hotel_id=$hotel_id) )
+                                                                           and (b.user_id = u.id)
+                                                                           and(b.check_in=$current)
+                                                                           and (b.check_out<$current)";
 
 
 

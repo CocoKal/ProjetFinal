@@ -1,10 +1,10 @@
-<?php  
-session_start();  
+<?php
+session_start();
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
 }*/
-?> 
+?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,13 +16,13 @@ session_start();
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    
+
 	<link rel="stylesheet" href="assets/css/morris.css">
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js//raphael-min.js"></script>
 	<script src="assets/js/morris.min.js"></script>
 
-   
+
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
@@ -32,7 +32,7 @@ session_start();
 </head>
 <body>
     <div id="wrapper">
-        
+
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -41,7 +41,7 @@ session_start();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.php"><?php echo $_SESSION["user"]; ?> </a>
+                <a class="navbar-brand" href="home.php"><?php echo $_COOKIE["username"]; ?> </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -111,18 +111,18 @@ session_start();
                            Profit Details<small> </small>
                         </h1>
                     </div>
-                </div> 
+                </div>
                  <!-- /. ROW  -->
-				 
-				 
+
+
             <div class="row">
-			
-				<?php 
+
+				<?php
 				//index.php
 				//$connect = mysqli_connect("localhost", "root", "", "hotel");
 				include('db.php');
-				
-					
+
+
 					$query = "SELECT * FROM payment";
 					$result = mysqli_query($con, $query);
 					$chart_data = '';
@@ -133,9 +133,9 @@ session_start();
 					 $tot = $tot + $row["fintot"] *10/100;
 					}
 					$chart_data = substr($chart_data, 0, -2);
-				
+
 ?>
-				 
+
 				<br>
 				<br>
 				<br>
@@ -157,21 +157,21 @@ session_start();
 											<th>Meals </th>
 											<th>Gr.Total</th>
 											<th>Profit</th>
-											
-                                            
+
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+
 									<?php
-										
+
 										$sql="select * from payment";
 										$re = mysqli_query($con,$sql);
 										while($row = mysqli_fetch_array($re))
 										{
-										
+
 											$id = $row['id'];
-											
+
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
@@ -179,8 +179,8 @@ session_start();
 													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
 													<td>".$row['cin']."</td>
 													<td>".$row['cout']."</td>
-													
-													
+
+
 													<td>$".$row['ttot']."</td>
 													<td>$".$row['mepr']."</td>
 													<td>$".$row['btot']."</td>
@@ -193,40 +193,40 @@ session_start();
 												echo"<tr class='gradeU'>
 													<td>".$row['id']." </td>
 													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-													
+
 													<td>".$row['cin']."</td>
 													<td>".$row['cout']."</td>
-													
-													
+
+
 													<td>$".$row['ttot']."</td>
 													<td>$".$row['mepr']."</td>
 													<td>$".$row['btot']."</td>
 													<td>$".$row['fintot']."</td>
 													<td>$".$row['fintot']*10/100 ."</td>
 													</tr>";
-											
+
 											}
-										
+
 										}
-										
+
 									?>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!--End Advanced Tables -->
                 </div>
             </div>
                 <!-- /. ROW  -->
-            
+
                 </div>
-               
+
             </div>
-        
-               
+
+
     </div>
              <!-- /. PAGE INNER  -->
             </div>
@@ -249,8 +249,8 @@ session_start();
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-    
-   
+
+
 </body>
 </html>
 <script>
