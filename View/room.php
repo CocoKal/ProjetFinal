@@ -36,7 +36,7 @@
         <div class="row">
           <div class="col">
             <div class="home_content text-center">
-              <div class="home_title">Votre Chambre</div>
+              <div class="home_title"></div>
             </div>
           </div>
         </div>
