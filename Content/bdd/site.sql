@@ -849,6 +849,7 @@ COMMIT;
 DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
                            `id_payment` int(10) NOT NULL AUTO_INCREMENT,
+
                            `id_user`int(10) NOT NULL ,
                           `name_card` varchar(20) NOT NULL,
                            `number_card` int(20) NOT NULL,
@@ -858,13 +859,14 @@ CREATE TABLE `payment` (
                            `amount_services` int(11) NOT NULL,
 
                            `code` int(5) NOT NULL,
+                           `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                            PRIMARY KEY (`id_payment`)
 ) ENGINE=InnoDB  AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 
 --
-INSERT INTO `payment` (`id_payment`,`id_user`, `name_card`, `number_card`, `date_card`, `amount_total`, `amount_rooms`, `amount_services`, `code`) VALUES
-(1, 'salem',2, 1254874, '20/05/2024', 115000, 100000, 15000, 251);
+INSERT INTO `payment` (`id_payment`,`id_user`, `name_card`, `number_card`, `date_card`, `amount_total`, `amount_rooms`, `amount_services`, `code`,`payment_date`) VALUES
+(1, 'salem',2, 1254874, '20/05/2024', 115000, 100000, 15000, 251,'2020-05-26 00:00:00');
 
 COMMIT;
 
