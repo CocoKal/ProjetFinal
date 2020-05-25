@@ -117,9 +117,16 @@
       $room_type = $model->get_all_room_type();
       $last_type = 0;
 
+
       foreach ($room_type as $type) {
         $id_of_room_free = [];
         $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type['room_type_id']);
+
+        $datetime1 = new DateTime($_POST["check_in"]);
+        $datetime2 = new DateTime($_POST["check_out"]);
+        $interval = $datetime1->diff($datetime2);
+        $int_interval = $interval->format('%a');
+        $price = $type["price"] * $int_interval;
 
         foreach ($rooms as $r) {
           $booking_of_room = $model->get_all_booking_by_room_id($r["room_id"], $checkIn, $checkOut);
@@ -150,7 +157,7 @@
                   <h4 class="card-title">
                     <a href="#">'.$type["room_type"].'</a>
                   </h4>
-                  <h5>$'.$type["price"].'</h5>
+                  <h5>'.$price.' €</h5>
                   <p class="card-text">'.sizeof($id_of_room_free).' chambre(s) libre(s).</p>';
               if (!empty($id_of_room_free)) {
                 echo '<input type="submit" class="btn btn-primary pull-right" value="Réserver">';
