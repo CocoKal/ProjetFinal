@@ -105,7 +105,7 @@
               <div class="col-3 pull-left">
                 <img src="Content\images\illustration_chambre\\'.$room[0]["room_type_id"].'.jpg" style="height: 130px;">
               </div>
-              <div class="col-7 pull-right">
+              <div class="col-7 pull-right div_infos">
                 <h4>'.$room_type[0]["room_type"].'</h4>
                 <p>Nombre de lit: '.$room_type[0]["nbr_bed"].'</p>
                 <p>Date d\'arrivée: '.$check_in.'</p>

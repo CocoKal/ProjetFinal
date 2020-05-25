@@ -83,7 +83,7 @@
                     <div class="col-md-2">
                       <?php
                       if ($model->check_if_admin($_COOKIE["id"])) {
-                        echo '<a href="index.php?view=dashboard"><input type="submit" class="profile-edit-btn" name="dash" value="Dashboard"/></a>';
+                        echo '<a href="admin/home.php"><input type="submit" class="profile-edit-btn" name="dash" value="Dashboard"/></a>';
                       }
                       ?>
                       <a href="index.php?view=recap_bag"><input type="submit" class="profile-edit-btn" name="btn_bag" value="Votre Panier"/></a>
