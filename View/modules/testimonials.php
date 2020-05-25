@@ -24,7 +24,7 @@
                     <div class=\"testimonial_text\">
                       <p>".$testimonials["complaint"]."</p>
                     </div>
-                    <div class=\"testimonial_image\"><img src=\"Content/images/user_1.jpg\" alt=\"\"></div>
+                    <div class=\"testimonial_image\"><img src=\"Content/images/pdp_default.png\" alt=\"\"></div>
                     <div class=\"testimonial_author\"><a href=\"#\">".$user[0]["firstname"]." ".$user[0]["lastname"]."</a></div>
                   </div>";
 
