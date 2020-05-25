@@ -235,7 +235,7 @@ $current = date('m/d/Y');
                     </div>
                 </div>";
 
-                                                                  $sql2="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(date(d/m/y,b.check_in)=$current)";
+                                                                  $sql2="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current) and (b.check_out<$current)";
 
 
 
@@ -290,7 +290,7 @@ $current = date('m/d/Y');
                                                                                                    
 
                                                                                                 </tr>";
-                                                                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current)";
+                                                                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(date(b.check_in)=$current) and (b.check_out<$current)";
 
 
 
