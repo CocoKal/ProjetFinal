@@ -163,15 +163,17 @@
               if (!empty($id_of_room_free)) {
                 $services_by_hotel = $model->get_all_hotel_services_by_hotel_id($hotel_id);
                 $compteur = 0;
-                echo '<div class="form-check" style="height: 90px;">
+                echo '<div class="form-check" style="height: 100px;">
                         <div class="pull-left">';
 
                 foreach ($services_by_hotel as $service_of_hotel) {
                   $compteur = $compteur + 1;
                   $service = $model->get_service_by_id($service_of_hotel['service_id']);
                   $id_check = str_replace(" ", "_", $service[0]['name']);
+
+                  if ($service[0]['id_service'] != 15 && $service[0]['id_service'] != 16 && $service[0]['id_service'] != 10) {
                   echo '
-                    <input class="form-check-input" type="checkbox" value="'.$service[0]['id_service'].'" id="'.$id_check.'" name="'.$service[0]['id_service'].'">
+                    <input class="form-check-input" type="checkbox" value="'.$service[0]['id_service'].'" id="'.$id_check.'" name="'.$id_check.'">
                       <label class="form-check-label" for="'.$id_check.'">
                       '.$service[0]['name'].'
                       </label>
@@ -180,6 +182,7 @@
                       if ($compteur == 4) echo '</div>
                                                 <div class="pull-right">';
                 }
+              }
 
                 echo '</div>
                   </div>
@@ -195,28 +198,7 @@
           echo '</form>';
         }
       }
-
-
-
      ?>
-
-          </div>
-        </div>
-      <h3>Services :</h3>
-      <?
-
-      $req="SELECT * from service as s , hotel_service as h where (s.id_service=h.service_id) and (h.hotel_id=$hotel_id)";
-      $repp=mysqli_query($req);
-      $i=0;
-      while($hrow=mysqli_fetch_array($req)){
-          echo"
-												<input value=".$hrow['name']."</input>";
-
-
-        }
-
-
-      ?>
 
 
       </div>
