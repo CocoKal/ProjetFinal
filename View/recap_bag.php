@@ -82,6 +82,7 @@
   <thead>
     <tr>
       <th scope="col">Description</th>
+			<th scope="col">Services</th>
       <th scope="col">Price</th>
       <th scope="col">Options</th>
     </tr>
@@ -102,6 +103,7 @@
 						$interval = $datetime1->diff($datetime2);
 						$int_interval = $interval->format('%a');
 						$price = $room_type[0]["price"] * $int_interval;
+
 						echo '
 						<form method="post" action="index.php?view=recap_bag">
 						<input type="hidden" name="room_id" value="'.$_SESSION['panier']['id'][$i].'">
@@ -117,10 +119,20 @@
                 <p>Date de départ: '.$check_out.'</p>
               </div>
             </td>
+						<td>
+							<ul>';
+
+							foreach ($_SESSION['panier']['services'][$i] as $service_id) {
+
+								$service = $model->get_service_by_id($service_id);
+								$price += $service[0]['price'];
+								echo '<li>'.$service[0]['name'].'</li>';
+							}
+						echo '</ul>
+						</td>
             <td>'.$price.' €</td>
-            <td>
-							<button type="submit" class="btn btn-outline-danger btn_supprimer">Supprimer</button>
-							<br>
+            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button></td>
+            <br>
 							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
 						</td>
 						</tr>

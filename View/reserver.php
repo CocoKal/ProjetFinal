@@ -41,10 +41,20 @@ and empty($_POST["room_id"]))) {
 }
 else {
 
+$service_array = array();
+$services = $model->get_all_services();
+foreach ($services as $service) {
+  $id_check = str_replace(" ", "_", $service['name']);
+  if (isset($_POST[$id_check])) {
+    array_push($service_array, $service['id_service']);
+  }
+}
+
 $select = array();
 $select['id'] = $_POST["room_id"];
 $select['check_in'] = $_POST["check_in"];
 $select['check_out'] = $_POST["check_out"];
+if (!empty($service_array)) $select['services_index'] = $service_array;
 
 /* On vérifie l'existence du panier, sinon, on le crée */
 if(!isset($_SESSION['panier']))
@@ -55,11 +65,13 @@ if(!isset($_SESSION['panier']))
     $_SESSION['panier']['id'] = array();
     $_SESSION['panier']['check_in'] = array();
     $_SESSION['panier']['check_out'] = array();
+    $_SESSION['panier']['services'] = array();
 }
 /* Ici, on sait que le panier existe, donc on ajoute l'article dedans. */
 array_push($_SESSION['panier']['id'],$select['id']);
 array_push($_SESSION['panier']['check_in'],$select['check_in']);
 array_push($_SESSION['panier']['check_out'],$select['check_out']);
+array_push($_SESSION['panier']['services'],$select['services_index']);
 
 header('Refresh: 1; url=index.php?view=recap_bag');
 }
