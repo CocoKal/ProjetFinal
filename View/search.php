@@ -38,8 +38,8 @@
     }
     else {
       $localisation = ucfirst($_POST["localisation"]);
-      $check_in = date('j-F-Y' ,strtotime($_POST["check_in"]));
-      $check_out = date('j-F-Y' ,strtotime($_POST["check_out"]));
+      $check_in = date('j F Y' ,strtotime($_POST["check_in"]));
+      $check_out = date('j F Y' ,strtotime($_POST["check_out"]));
       $number = $_POST["number"];
 
       $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
