@@ -77,13 +77,17 @@
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
-      if($count == 1) {
-         
-         $_SESSION['user'] = $myusername;
+     // if($count == 1) {
+
+
+       include('Util/login.php');
+
+
+       $_SESSION['user'] = $_COOKIE["username"];
          
          header("location: home.php");
-      }else {
-         echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
-      }
+      //else {
+         //echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
+    //  }
    }
 ?>
