@@ -38,8 +38,8 @@
     }
     else {
       $localisation = ucfirst($_POST["localisation"]);
-      $check_in = date('j-F-Y' ,strtotime($_POST["check_in"]));
-      $check_out = date('j-F-Y' ,strtotime($_POST["check_out"]));
+      $check_in = date('j F Y' ,strtotime($_POST["check_in"]));
+      $check_out = date('j F Y' ,strtotime($_POST["check_out"]));
       $number = $_POST["number"];
 
       $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
@@ -109,7 +109,7 @@
         </div>
       </div>
 
-      <div class="offset-1 col-8">
+      <div class=" col-9">
       <?php
 
       $checkIn = date('Y-m-d H:i:s' ,strtotime($_POST["check_in"]));
@@ -117,9 +117,16 @@
       $room_type = $model->get_all_room_type();
       $last_type = 0;
 
+
       foreach ($room_type as $type) {
         $id_of_room_free = [];
         $rooms = $model->get_room_by_hotel_id_and_type($hotel_id, $type['room_type_id']);
+
+        $datetime1 = new DateTime($_POST["check_in"]);
+        $datetime2 = new DateTime($_POST["check_out"]);
+        $interval = $datetime1->diff($datetime2);
+        $int_interval = $interval->format('%a');
+        $price = $type["price"] * $int_interval;
 
         foreach ($rooms as $r) {
           $booking_of_room = $model->get_all_booking_by_room_id($r["room_id"], $checkIn, $checkOut);
@@ -142,18 +149,41 @@
 
           <div class="card bg-dark search_card">
             <div class="row">
-              <div class="col-sm-5">
-                <img class="d-block w-100 search_img" src="'.$path_illustration.'">
+              <div class="col-sm-6">
+                <img class="d-block w-100 search_img" style ="height: 100%;" src="'.$path_illustration.'">
               </div>
-              <div class="col-sm-7">
+              <div class="col-sm-6">
                 <div class="card-block">
                   <h4 class="card-title">
-                    <a href="#">'.$type["room_type"].'</a>
+                    <a href="index.php?view=room&room_type='.$type["room_type_id"].'">'.$type["room_type"].'</a>
                   </h4>
-                  <h5>$'.$type["price"].'</h5>
+                  <h5>'.$price.' €</h5>
                   <p class="card-text">'.sizeof($id_of_room_free).' chambre(s) libre(s).</p>';
+
               if (!empty($id_of_room_free)) {
-                echo '<input type="submit" class="btn btn-primary pull-right" value="Réserver">';
+                $services_by_hotel = $model->get_all_hotel_services_by_hotel_id($hotel_id);
+                $compteur = 0;
+                echo '<div class="form-check" style="height: 90px;">
+                        <div class="pull-left">';
+
+                foreach ($services_by_hotel as $service_of_hotel) {
+                  $compteur = $compteur + 1;
+                  $service = $model->get_service_by_id($service_of_hotel['service_id']);
+                  $id_check = str_replace(" ", "_", $service[0]['name']);
+                  echo '
+                    <input class="form-check-input" type="checkbox" value="'.$service[0]['id_service'].'" id="'.$id_check.'" name="'.$service[0]['id_service'].'">
+                      <label class="form-check-label" for="'.$id_check.'">
+                      '.$service[0]['name'].'
+                      </label>
+                      <br>
+                      ';
+                      if ($compteur == 4) echo '</div>
+                                                <div class="pull-right">';
+                }
+
+                echo '</div>
+                  </div>
+                <input type="submit" class="btn btn-primary pull-right" value="Réserver">';
               }
             echo '</div>
               </div>
@@ -166,10 +196,29 @@
         }
       }
 
+
+
      ?>
 
           </div>
         </div>
+      <h3>Services :</h3>
+      <?
+
+      $req="SELECT * from service as s , hotel_service as h where (s.id_service=h.service_id) and (h.hotel_id=$hotel_id)";
+      $repp=mysqli_query($req);
+      $i=0;
+      while($hrow=mysqli_fetch_array($req)){
+          echo"
+												<input value=".$hrow['name']."</input>";
+
+
+        }
+
+
+      ?>
+
+
       </div>
     </div>
 

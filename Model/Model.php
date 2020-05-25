@@ -418,6 +418,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		public function get_service_by_id($id_service){
+			$requete = $this->bd->prepare("SELECT * FROM service WHERE id_service = ".$id_service);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 
 		//HOTEL_SERVICES
 
