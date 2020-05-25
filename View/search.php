@@ -180,20 +180,7 @@
           </div>
         </div>
       <h3>Services :</h3>
-      <?
 
-      $req="SELECT * from service as s , hotel_service as h where (s.id_service=h.service_id) and (h.hotel_id=$hotel_id)";
-      $repp=mysqli_query($req);
-      $i=0;
-      while($hrow=mysqli_fetch_array($req)){
-          echo"
-												<input value=".$hrow['name']."</input>";
-												
-
-        }
-
-
-      ?>
 
 
       </div>

@@ -97,103 +97,199 @@ session_start();
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
-            <div id="page-inner">
-			 <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                           Payment Details<small> </small>
-                        </h1>
+
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+    <div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Payments<small></small>
+            </h1>
+        </div>
+    </div>
+<?php
+include ('db.php');
+$sql = "select * from hotel";
+$re = mysqli_query($con,$sql);
+$h =0;
+while($row=mysqli_fetch_array($re) )
+{$h++;}?> <!-- Nombre des hôtels -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <button class="btn btn-default" type="button">
+                                            Hotels  <span class="badge"><?php echo $h ; ?></span>
+                                        </button>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                <div class="panel-body">
+                                    <div class="panel panel-default">
+
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+
+                                                        <th>HOTEL ID</th>
+                                                        <th>HOTEL COUNTRY</th>
+                                                        <th>HOTEL CITY</th>
+                                                        <th>MANAGER ID</th>
+
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    <?php
+                                                    $hsql = "select * from hotel";
+                                                    $hre = mysqli_query($con,$hsql);
+                                                    while($hrow=mysqli_fetch_array($hre) )
+                                                    {
+
+                                                        echo"<tr>
+												<th>".$hrow['hotel_id']."</th>
+												<th>".$hrow['hotel_localisation_country']."</th>
+												<th>".$hrow['hotel_localisation_city']."</th>
+												<th>".$hrow['manager_id']."</th>
+
+
+
+
+												</tr>";
+                                                    }
+
+
+                                                    ?>
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                Choose Hotel to payments
+                                            </div>
+                                            <div class="panel-body">
+                                                <form name="form" method="post">
+                                                    <div class="form-group">
+                                                        <label>Hotel</label>
+                                                        <select name="hotel_id"  class="form-control" required>
+                                                            <option value selected ></option>
+                                                            <option value="1">Marrakech</option>
+                                                            <option value="2">Paris </option>
+                                                            <option value="3">Dubai</option>
+                                                            <option value="4">New York</option>
+                                                            <option value="5">Rome</option>
+                                                            <option value="6">Londres</option>
+                                                            <option value="7">Bangkok</option>
+                                                            <option value="8">Bali</option>
+                                                            <option value="5">Amsterdam</option>
+                                                            <option value="5">Rio de Janeiro</option>
+                                                        </select>
+                                                    </div>
+
+
+                                                    <input type="submit" name="search" value="search" class="btn btn-primary">
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                 <!-- /. ROW  -->
+            </div>
+        </div>
+    </div>
+
+<?php
+include('db.php');
+if(isset($_POST['search']))
+{$hotel_id=$_POST['hotel_id'];
+
+    echo"<div class='row'>
+     <div class='col-md-12'>
+     <h1 class='page-header'>
+     Payments <small>Details </small>
+                        </h1>
+                    </div>
+                </div>";
 
 
-            <div class="row">
-                <div class="col-md-12">
+
+
+
+
+    echo" 
+                <div class='col-md-12'>
                     <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <div class='panel panel-default'>
+                        <div class='panel-body'>
+                            <div class='table-responsive'>
+                                <table class='table table-striped table-bordered table-hover' id='dataTables-example'>
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-											<th>Room type</th>
-                                            <th>Bed Type</th>
-                                            <th>Check in</th>
-											<th>Check out</th>
-											<th>No of Room</th>
-											<th>Meal Type</th>
+                                            <th>ID PAYMENT</th>
+											<th>NAME</th>
+                                            <th>CARD NUMBER</th>
+                                            <th>CARD DATE</th>
+											<th>CARD CODE</th>
+											<th>ROOMS AMOUNT</th>
+											<th>SERVICES AMOUNT</th>
 
-                                            <th>Room Rent</th>
-											<th>Bed Rent</th>
-											<th>Meals </th>
-											<th>Gr.Total</th>
-											<th>Print</th>
+                                            <th>TOTAL AMOUNT</th>
+
 
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    </table>
 
-									<?php
-										include ('db.php');
-										$sql="select * from payment";
-										$re = mysqli_query($con,$sql);
-										while($row = mysqli_fetch_array($re))
-										{
 
-											$id = $row['id'];
-
-											if($id % 2 ==1 )
-											{
-												echo"<tr class='gradeC'>
-													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['troom']."</td>
-													<td>".$row['tbed']."</td>
-													<td>".$row['cin']."</td>
-													<td>".$row['cout']."</td>
-													<td>".$row['nroom']."</td>
-													<td>".$row['meal']."</td>
-
-													<td>".$row['ttot']."</td>
-													<td>".$row['mepr']."</td>
-													<td>".$row['btot']."</td>
-													<td>".$row['fintot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Print</button></td>
-													</tr>";
-											}
-											else
-											{
-												echo"<tr class='gradeU'>
-													<td>".$row['title']." ".$row['fname']." ".$row['lname']."</td>
-													<td>".$row['troom']."</td>
-													<td>".$row['tbed']."</td>
-													<td>".$row['cin']."</td>
-													<td>".$row['cout']."</td>
-													<td>".$row['nroom']."</td>
-													<td>".$row['meal']."</td>
-
-													<td>".$row['ttot']."</td>
-													<td>".$row['mepr']."</td>
-													<td>".$row['btot']."</td>
-													<td>".$row['fintot']."</td>
-													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Print</button></td>
-													</tr>";
-
-											}
-
-										}
-
-									?>
-
-                                    </tbody>
-                                </table>
                             </div>
 
                         </div>
-                    </div>
-                    <!--End Advanced Tables -->
+                    </div>";
+
+                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.name_card IN (SELECT * from user as u ,booking as b where u.id=b.user_id )))";
+                    $rep = mysqli_query($con,$sql2);
+
+                                                                while($rowp=mysqli_fetch_array($rep) )
+                                                                {
+                                                                     echo "<tr>
+							                     	<th>" . $rowp['id_payment'] . "</th>
+												<th>" . $rowp['name_card'] . "</th>
+												<th>" . $rowp['number_card'] . "</th>
+												<th>" . $rowp['date_card'] . "</th>
+												<th>" . $rowp['code'] . "</th>
+												<th>" . $rowp['amount_rooms'] . "</th>
+												<th>" . $rowp['amount_services'] . "</th> 
+												<th>" . $rowp['amount_total'] . "</th> ";   }
+                                                                                                echo"</thead>
+                                                                                                <tbody>";}
+
+                                                                echo"
+
+
                 </div>
             </div>
                 <!-- /. ROW  -->
@@ -203,7 +299,7 @@ session_start();
             </div>
 
 
-    </div>
+    </div>";?>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
