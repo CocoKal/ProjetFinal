@@ -97,6 +97,11 @@
 						$check_in = date('j F Y' ,strtotime($_SESSION['panier']['check_in'][$i]));
 						$check_out = date('j F Y' ,strtotime($_SESSION['panier']['check_out'][$i]));
 
+						$datetime1 = new DateTime($_SESSION['panier']['check_in'][$i]);
+						$datetime2 = new DateTime($_SESSION['panier']['check_out'][$i]);
+						$interval = $datetime1->diff($datetime2);
+						$int_interval = $interval->format('%a');
+						$price = $room_type[0]["price"] * $int_interval;
 						echo '
 						<form method="post" action="index.php?view=recap_bag">
 						<input type="hidden" name="room_id" value="'.$_SESSION['panier']['id'][$i].'">
@@ -112,8 +117,12 @@
                 <p>Date de départ: '.$check_out.'</p>
               </div>
             </td>
-            <td>'.$room_type[0]["price"].' €</td>
-            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button></td>
+            <td>'.$price.' €</td>
+            <td>
+							<button type="submit" class="btn btn-outline-danger btn_supprimer">Supprimer</button>
+							<br>
+							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
+						</td>
 						</tr>
 						</form>
             ';
