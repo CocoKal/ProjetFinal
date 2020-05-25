@@ -1,10 +1,10 @@
-<?php  
-session_start();  
+<?php
+session_start();
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
 }*/
-?> 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -35,7 +35,7 @@ session_start();
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php"><?php echo $_SESSION["user"]; ?> </a>
+            <a class="navbar-brand" href="home.php"><?php echo $_COOKIE["username"]; ?> </a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -163,10 +163,10 @@ session_start();
 												<th>".$hrow['hotel_localisation_country']."</th>
 												<th>".$hrow['hotel_localisation_city']."</th>
 												<th>".$hrow['manager_id']."</th>
-												
-												
-												
-								
+
+
+
+
 												</tr>";
                                                                 }
 
@@ -251,7 +251,7 @@ session_start();
 
 
 
-                                      echo"          
+                                      echo"
                                                     <div class='col-md-12'>
                                                         <div class='panel panel-default'>
                                                             <div class='panel-heading'>
@@ -290,7 +290,7 @@ session_start();
 
                                                                                                     <th> Payment Status</th>
 
-                                                                                                   
+
 
                                                                                                 </tr>";
                                                                 $sql2="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
@@ -324,7 +324,7 @@ session_start();
             </div>
 
                 <!-- /. ROW  -->
-				
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>
