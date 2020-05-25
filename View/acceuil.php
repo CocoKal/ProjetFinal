@@ -20,7 +20,7 @@
 
 <div class="super_container">
 
-<?php require("modules/header.php"); ?>
+<?php require("modules/header.php");?>
 
 	<!-- Home -->
 

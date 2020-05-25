@@ -26,6 +26,7 @@
 		echo '<div class="super_container">';
  		require("modules/header.php");
 		$hotel = $model->get_hotel_by_id($_GET["hotel_id"]);
+		$hotel_description = $model->get_hotel_description_by_id($_GET["hotel_id"]);
 		$city = str_replace(" ", "_", $hotel[0]["hotel_localisation_city"]);
 		$background_style = "background-image:url(Content/images/illustration_hotel/".$city."_1.jpg)";
 
@@ -48,11 +49,22 @@
 		</div>
 	</div>
 
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-12 description_title">
+				<h1>Description de la ville</h1>
+			</div>
+			<div class="offset-2 col-8 description_text">
+				<p class="font-italic"><?php
+					echo $hotel_description[0]["city_description"];
+				 ?></p>
+			</div>
+		</div>
+	</div>
+
 
 	<?php require("modules/room_type.php");
 				require("modules/services.php"); ?>
-
-
 
   <!-- Footer -->
 

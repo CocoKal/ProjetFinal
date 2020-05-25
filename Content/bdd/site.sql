@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 20 mai 2020 à 23:29
+-- Généré le :  ven. 22 mai 2020 à 10:37
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.3.1
 
@@ -448,6 +448,37 @@ INSERT INTO `hotel` (`hotel_id`, `hotel_localisation_country`, `hotel_localisati
 (8, 'Indonésie', 'Bali', 1),
 (9, 'Pays-Bas', 'Amsterdam', 1),
 (10, 'Brésil', 'Rio de Janeiro', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `hotel_description`
+--
+
+DROP TABLE IF EXISTS `hotel_description`;
+CREATE TABLE IF NOT EXISTS `hotel_description` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_hotel` int(11) NOT NULL,
+  `quote` varchar(250) NOT NULL,
+  `city_description` varchar(1600) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `hotel_description`
+--
+
+INSERT INTO `hotel_description` (`id`, `id_hotel`, `quote`, `city_description`) VALUES
+(1, 1, 'Véritable palette impressionniste à l’ombre de l’Atlas enneigé, Marrakech ensorcelle.', 'Enivrante de parfums de jasmin, de fleur d’oranger ou de thé à la menthe, éclatante de vie et de sonorités chantantes, la Ville rouge ne se laisse pas enfermer par son surnom : multicolore, elle déploie, au détour de ses ruelles, des bleus Majorelle, des verts mordants – comme à la fabuleuse Palmeraie plantée de 100 000 arbres, des jaune canari et des cuivrés chatoyants. Véritable palette impressionniste à l’ombre de l’Atlas enneigé, Marrakech ensorcelle.'),
+(2, 2, 'Paris est un véritable océan. Jetez-y la sonde, vous n’en connaîtrez jamais la profondeur.', 'Altière, classique subtilement rebelle, classieuse un brin irrévérencieuse, la Ville Lumière recèle d’innombrables temps forts et ne se livre totalement qu’au visiteur qui s’attarde. Ville Lumière, disons-nous ? Paris puise en effet son surnom au XVIIe siècle, où les visiteurs de passage s’émerveillèrent de son éclairage public dense et précurseur pour l’époque, et de la présence de lanternes aux fenêtres des habitants.'),
+(3, 3, 'Cette métropole futuriste offre aux visiteurs une expérience unique et riche.', 'Telle une flamboyante oasis venue sourdre des sables du désert, Dubaï cristallise toute la ferveur du Moyen-Orient. Il y a encore quelques décennies, avant que les gratte-ciel ne s’alignent dans une opulence étincelante, Dubaï n’était qu’un modeste port de pêche, adossé à un désert aride sillonné de Bédouins et réputé pour son commerce de perles. Le pétrole, coulant en abondance à la fin des années 60, donna naissance à la cité cosmopolite d’aujourd’hui.'),
+(4, 4, 'Trépidante, vibrionnante, elle sait faire résonner chaque couleur, texture, sonorité avec une force inénarrable.', 'Extrasensorielle par essence, stimulante par excellence, New York éveille mille sensations et décuple les émotions comme nulle autre au monde. Trépidante, vibrionnante, elle sait faire résonner chaque couleur, texture, sonorité ou parfum avec une force inénarrable. Hautement sensitive, terriblement addictive, elle vous saisit à bras le corps, pour ne plus jamais vous lâcher. A chaque coin de rue, de Madison Avenue à Greenwich Village, New York est un choc émotionnel qui décline ses stimuli exaltants : odeur alléchante du Paris-NY du pâtissier français Dominique Ansel, vrombissement d’un Hummer succédant au chuintement feutré du dernier modèle Tesla, vertige visuel de Chrysler Building ou du ballet des yellow cabs, saveurs créatives distillées par Anne-Sophie Pic dans son restaurant flambant neuf… La quintessence de la ville se respire, se touche, se déguste à chaque pas en un itinéraire frénétique jamais linéaire.'),
+(5, 5, 'La Ville Eternelle déploie une profusion d\'œuvres d\'art, de sites archéologiques iconiques, d\'églises baroques.', 'Façonnée depuis l\'Antiquité par l’histoire et les grands courants artistiques, Rome livre des trésors immémoriaux aux visiteurs en quête d’émerveillement. La Ville Eternelle déploie une profusion d\'œuvres d\'art, de sites archéologiques iconiques, d\'églises baroques et de monuments de toute beauté, enchâssés dans de verdoyants jardins abreuvés par les eaux du Tibre. « Tout à Rome étonne », notait ainsi Stendhal au début du XIXe siècle.'),
+(6, 6, 'Distinguée mais ouverte aux tendances, révérencieuse et libérée, la pétillante capitale anglaise bouillonne.', 'Tantôt muse arty, royale connaissance ou alliée shopping, Londres semble en permanence hésiter entre une coiffe princière et une crête punk. Entre Buckingham Palace et Camden. Distinguée mais ouverte aux tendances, révérencieuse et libérée, la pétillante capitale anglaise bouillonne et fait la fête court vêtue tout en sacralisant ses institutions et traditions. Une identité multiple dans laquelle cohabitent sans peine course ultra-racée du Royal Ascot, rebonds sur gazon de Wimbledon et tournoi de quidditch des studios Harry Potter.'),
+(7, 7, 'Au milieu d’une jungle urbaine percée de rares enclaves verdoyantes, les rituels ancestraux perdurent.', 'Fiévreuse et mystique à la fois, Bangkok cultive les paradoxes. A ses marchés flottants répondent des gratte-ciel gigantesques, et les malls luxueux défient désormais les quelque 400 temples traditionnels. Peu à peu, le folklore a fait de la place à l’ultra modernisme, sans que les Thaïs ne se départissent jamais de leur ferveur et de leur inextinguible sourire. Au milieu d’une jungle urbaine percée de rares enclaves verdoyantes comme le Parc Lumphini, les rituels ancestraux perdurent superbement.'),
+(8, 8, 'Bali condense une identité séculaire remarquable, des monuments saisissants et des paysages époustouflants.', 'Sur son territoire de poche, Bali condense une identité séculaire remarquable, des monuments saisissants et des paysages époustouflants. Apprivoisée à certains endroits par l’homme qui créa des cultures de riz en terrasses de toute beauté, la campagne balinaise a su préserver des zones sauvages : la délicate et inhabitée « île au cerf », Menjangan, qui mêle mangrove et parc national protégé, ou les impressionnantes chutes d’eau de Sekumpul. Volcanique, la région abrite de nombreux géants ensommeillés aux pentes fertiles tels les monts Batur et Agung qui offrent de belles ascensions et d’éblouissants levers de soleil aux randonneurs vaillants.'),
+(9, 9, 'Dans cette capitale à taille humaine, le quotidien se vit définitivement sur un autre tempo.', 'En péniche, à vélo ou à pieds, c’est en privilégiant un rythme souple et lent qu’on se laisse envoûter par la belle des Pays-Bas, dévoilant à la fois un abord simple et une étonnante complexité. Les multiples canaux qui la découpent créent un décor tantôt mystérieux, tantôt lyrique où se déploient le marché aux fleurs le plus réputé du monde, de grands diamantaires et une audacieuse scène créative. Amsterdam cristallise aussi l’histoire sans fin d’un combat contre la mer, d’extension en extension, et ses maisons à l’échine parfois courbée comptent les points, entre pilotis et ressac.'),
+(10, 10, 'Face à l\'Atlantique, sur la Côte Est du plus grand pays d\'Amérique Latine, Rio jaillit de la forêt tropicale.', 'Surplombée par le légendaire Christ Rédempteur, Rio de Janeiro ne se dévoile jamais si bien que depuis ses hauteurs montagneuses iconiques. Depuis le Corcovado, le Mont Urca, le Pedra da Gavea, ou le monolithe du Pain de Sucre, la baie de Guanabara donne le vertige. La bouillonnante mégapole monte à flanc de collines luxuriantes, enlace de vastes pans de granit et se coule jusqu\'à un littoral étincelant, semé de plages au sable doré et d’îlots paradisiaques.');
 
 -- --------------------------------------------------------
 

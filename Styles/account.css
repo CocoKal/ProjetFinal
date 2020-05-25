@@ -99,3 +99,7 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+.row_table_managment {
+  padding-left: 150px;
+  padding-top: 10px;
+}
