@@ -61,7 +61,7 @@
 								if ($c % 2 == 0) {
 									echo '<div class="img-square-wrapper">
 													<a href="index.php?view=hotel_info&hotel_id='.$id.'">
-													<img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1" style="width: 100%;">
+													<img class="" src="Content/images/illustration_hotel/'.$path_illustration.'_1.jpg" style="width: 100%;">
 													</a>
 									</div>';
 								}
