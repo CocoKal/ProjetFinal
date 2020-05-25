@@ -1,22 +1,22 @@
-<?php  
- session_start();  
- if(isset($_SESSION["user"]))  
- {  
+<?php
+ session_start();
+ if(isset($_SESSION["user"]))
+ {
       header("location: home.php");
- }  
- 
+ }
+
  ?>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8">
   <title>Sophie Tells</title>
-  
-  
-     
+
+
+
       <link rel="stylesheet" href="css/style.css">
 
-  
+
 </head>
 
 <body>
@@ -46,35 +46,35 @@
 
         </form>
 
-       
+
 
       </div> <!-- end login -->
 
     </div>
     <div class="bottom">  <h3><a href="../index.php">SOPHIE TELLS HOMEPAGE</a></h3></div>
-  
-  
+
+
 </body>
 </html>
 
 <?php
-   include('C:\xampp\htdocs\ProjetFinal\admin\db.php');
-  
-   
+   include('db.php');
+
+
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
+      // username and password sent from form
+
       $myusername = mysqli_real_escape_string($con,$_POST['user']);
-      $mypassword = mysqli_real_escape_string($con,$_POST['pass']); 
-      
+      $mypassword = mysqli_real_escape_string($con,$_POST['pass']);
+
       $sql = "SELECT id FROM user WHERE (firstname = '$myusername') and (password = '$mypassword') ";
 
       $result = mysqli_query($con,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
      // $active = $row['active'];
-      
+
       $count = mysqli_num_rows($result);
-      
+
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
      // if($count == 1) {
@@ -85,7 +85,7 @@
 
        $_SESSION['user'] = $_COOKIE["username"];
          
-         header("location: home.php");
+
       //else {
          //echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
     //  }
