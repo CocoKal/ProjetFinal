@@ -843,6 +843,31 @@ INSERT INTO `user` (`id`, `lastname`, `firstname`, `email`, `password`, `created
 (26, 'admin', 'admin', 'admin@admin.com', '$2y$10$QqsXEn1dEpk8okLCSvUa8e8HCqhr2sgzaMCTX1ch4cwlEZjtpYPJS', '2020-05-13 16:26:23');
 COMMIT;
 
+
+-- Structure de la table `payment`
+--
+
+CREATE TABLE `payment` (
+                           `id_payment` int(10) NOT NULL AUTO_INCREMENT,
+                           `name_card` varchar(20) NOT NULL,
+                           `number_card` int(20) NOT NULL,
+                           `date_card` varchar(20) NOT NULL,
+                           `amount_total` int(11) NOT NULL,
+                           `amount_rooms` int(11) NOT NULL,
+                           `amount_services` int(11) NOT NULL,
+
+                           `code` int(5) NOT NULL,
+                           PRIMARY KEY (`id_payment`)
+) ENGINE=InnoDB  AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+
+--
+INSERT INTO `payment` (`id_payment`, `name_card`, `number_card`, `date_card`, `amount_total`, `amount_rooms`, `amount_services`, `code`) VALUES
+(1, 'salem', 1254874, '20/05/2024', 115000, 100000, 15000, 251);
+
+COMMIT;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

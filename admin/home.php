@@ -219,7 +219,6 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <div class='row'>
                                                             <?php
                                                             include('db.php');
                                                             if(isset($_POST['search']))
