@@ -76,14 +76,18 @@
       $count = mysqli_num_rows($result);
 
       // If result matched $myusername and $mypassword, table row must be 1 row
+		
+     // if($count == 1) {
 
-      if($count == 1) {
 
-         $_SESSION['user'] = $myusername;
+       include('Util/login.php');
 
-         header("location: home.php");
-      }else {
-         echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
-      }
+
+       $_SESSION['user'] = $_COOKIE["username"];
+         
+
+      //else {
+         //echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
+    //  }
    }
 ?>

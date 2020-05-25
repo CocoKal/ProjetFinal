@@ -1,15 +1,15 @@
 <?php  
 session_start();  
-if(!isset($_SESSION["user"]))
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
+}*/
 ob_start();
 ?> 
 
 <?php
 include('db.php');
-$rsql ="select room_id from room";
+$rsql ="select room_no from room";
 $rre=mysqli_query($con,$rsql);
 
 ?>
@@ -108,13 +108,13 @@ $rre=mysqli_query($con,$rsql);
                         <div class="panel-body">
 						<form name="form" method="post">
                             <div class="form-group">
-                                            <label>Select the Room ID *</label>
-                                            <select name="id"  class="form-control" required>
+                                            <label>Select the Room NO *</label>
+                                            <select name="no"  class="form-control" required>
 												<option value selected ></option>
 												<?php
 												while($rrow=mysqli_fetch_array($rre))
 												{
-												$value = $rrow['room_id'];
+												$value = $rrow['room_no'];
 												 echo '<option value="'.$value.'">'.$value.'</option>';
 												
 												}
@@ -122,6 +122,22 @@ $rre=mysqli_query($con,$rsql);
                                                 
                                             </select>
                               </div>
+                            <div class="form-group">
+                            <label>Hotels</label>
+                            <select name="hotel"  class="form-control" required>
+                                <option value selected ></option>
+                                <option value="1">Marrakech</option>
+                                <option value="2">Paris</option>
+                                <option value="3">Dubai</option>
+                                <option value="4">New York</option>
+                                <option value="5">Rome</option>
+                                <option value="6">Londres</option>
+                                <option value="7">Bangkok</option>
+                                <option value="8">Bali</option>
+                                <option value="9">Amsterdam</option>
+                                <option value="10">Rio de Janeiro</option>
+                            </select>
+                        </div>
 							  
 								
 							 <input type="submit" name="del" value="Delete Room" class="btn btn-primary"> 
@@ -132,9 +148,10 @@ $rre=mysqli_query($con,$rsql);
 							 if(isset($_POST['del']))
 							 {
 								$did = $_POST['id'];
+								$dhot=$_POST['hotel'];
 								
 								
-								$sql ="DELETE FROM `room` WHERE room_id = '$did'" ;
+								$sql ="DELETE FROM `room` WHERE room_no = '$did' and hotel_id=$dhot" ;
 								if(mysqli_query($con,$sql))
 								{
 								 echo '<script type="text/javascript">alert("Delete the Room") </script>' ;

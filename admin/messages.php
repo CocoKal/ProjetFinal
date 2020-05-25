@@ -1,22 +1,22 @@
-<?php  
-session_start();  
-if(!isset($_SESSION["user"]))
+<?php
+session_start();
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
-?> 
+}*/
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
      <!-- Morris Chart Styles-->
-   
+
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
@@ -26,7 +26,7 @@ if(!isset($_SESSION["user"]))
 </head>
 <body>
     <div id="wrapper">
-        
+
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -35,7 +35,7 @@ if(!isset($_SESSION["user"]))
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.php"><?php echo $_SESSION["user"]; ?> </a>
+                <a class="navbar-brand" href="home.php"><?php echo $_COOKIE["username"]; ?> </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -63,16 +63,27 @@ if(!isset($_SESSION["user"]))
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                        <a   href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
+                        <a  class="active-menu" href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
-					<li>
+
+                    <li>
+                        <a   href="usersetting.php"><i class="fa fa-desktop"></i> Administrator Settings</a>
+                    </li>
+                    <li>
+                        <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
+                    </li>
+                    <li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
                     </li>
+
                     <li>
-                        <a href="Payment.php"><i class="fa fa-qrcode"></i> Payment</a>
+                        <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
+                    </li>
+                    <li>
+                        <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
                     <li>
                         <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
@@ -80,10 +91,9 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
-                    
 
 
-                    
+
             </div>
 
         </nav>
@@ -96,28 +106,19 @@ if(!isset($_SESSION["user"]))
                            News letters<small> panel</small>
                         </h1>
                     </div>
-                </div> 
+                </div>
                  <!-- /. ROW  -->
 				 <?php
 				include('db.php');
-				$mail = "SELECT * FROM `contact`";
+				$mail = "SELECT * FROM `user`";
 				$rew = mysqli_query($con,$mail);
-				
+
 			   ?>
 				 <div class="row">
                 <div class="col-md-12">
                     <div class="jumbotron">
                         <h3>Send The News Letters to Followers</h3>
-						<?php
-						while($rows = mysqli_fetch_array($rew))
-						{
-								$app=$rows['approval'];
-								if($app=="Allowed")
-								{
-									
-								}
-						}
-						?>
+
                         <p></p>
                         <p>
 						<div class="panel-body">
@@ -152,10 +153,10 @@ if(!isset($_SESSION["user"]))
 										 </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											
+
                                            <input type="submit" name="log" value="Send" class="btn btn-primary">
 										  </form>
-										   
+
                                         </div>
                                     </div>
                                 </div>
@@ -163,29 +164,31 @@ if(!isset($_SESSION["user"]))
                         </div>
 							<?php
 							if(isset($_POST['log']))
-							{	
-								$log ="INSERT INTO `newsletterlog`(`title`, `subject`, `news`) VALUES ('$_POST[title]','$_POST[subject]','$_POST[news]')";
-								if(mysqli_query($con,$log))
+							{
+								$log ="SELECT email from user ";
+								$i=0;
+								while(mysqli_query($con,$log))
 								{
-									echo '<script>alert("New Room Added") </script>' ;
-											
+                                    mail($log[$i], $_POST['subject'], $_POST['comment']);
+									$i++;
+
 								}
-								
+                                echo '<script>alert("News letter sent !") </script>' ;
 							}
-							
-								
+
+
 							?>
-                          
+
                         </p>
-						
+
                     </div>
                 </div>
             </div>
                <?php
-				
-				$sql = "SELECT * FROM `contact`";
+
+				$sql = "SELECT * FROM `user`";
 				$re = mysqli_query($con,$sql);
-				
+
 			   ?>
             <div class="row">
                 <div class="col-md-12">
@@ -196,70 +199,64 @@ if(!isset($_SESSION["user"]))
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-											<th>Phone Number</th>
+                                            <th>Last Name</th>
+											<th>First Name</th>
                                             <th>Email</th>
-                                            <th>Date</th>
-											<th>Status</th>
-											<th>Approval</th>
-											<th>Remove</th>
-                                            
+                                            <th>Creation Date</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+
 									<?php
 										while($row = mysqli_fetch_array($re))
 										{
-										
+
 											$id = $row['id'];
-											
+
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
-													<td>".$row['fullname']."</td>
-													<td>".$row['phoneno']."</td>
+													<td>".$row['lastname']."</td>
+													<td>".$row['firstname']."</td>
 													<td>".$row['email']."</td>
-													<td>".$row['cdate']."</td>
-													<td>".$row['approval']."</td>
-													<td><a href=newsletter.php?eid=".$id ." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
-													<td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>
+													<td>".$row['created_at']."</td>
+
 												</tr>";
 											}
 											else
 											{
 												echo"<tr class='gradeU'>
-													<td>".$row['fullname']."</td>
-													<td>".$row['phoneno']."</td>
+													<td>".$row['lastname']."</td>
+													<td>".$row['firstname']."</td>
 													<td>".$row['email']."</td>
-													<td>".$row['cdate']."</td>
-													<td>".$row['approval']."</td>
-													<td><a href=newsletter.php?eid=".$id." <button class='btn btn-primary'> <i class='fa fa-edit' ></i> Permission</button></td>
-													<td><a href=newsletterdel.php?eid=".$id ." <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete </button></td>		
+													<td>".$row['created_at']."</td>
+
+
 												</tr>";
-											
+
 											}
-										
+
 										}
-										
+
 									?>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!--End Advanced Tables -->
                 </div>
             </div>
                 <!-- /. ROW  -->
-            
+
                 </div>
-               
+
             </div>
-        
-               
+
+
     </div>
              <!-- /. PAGE INNER  -->
             </div>
@@ -282,7 +279,7 @@ if(!isset($_SESSION["user"]))
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-    
-   
+
+
 </body>
 </html>
