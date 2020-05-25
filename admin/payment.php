@@ -270,7 +270,7 @@ if(isset($_POST['search']))
                         </div>
                     </div>";
 
-                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.name_card IN (SELECT * from user as u ,booking as b where u.id=b.user_id )))";
+                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id))";
                     $rep = mysqli_query($con,$sql2);
 
                                                                 while($rowp=mysqli_fetch_array($rep) )
