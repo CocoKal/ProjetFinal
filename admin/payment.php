@@ -258,7 +258,7 @@ if(isset($_POST['search']))
 											<th>SERVICES AMOUNT</th>
 
                                             <th>TOTAL AMOUNT</th>
-
+                                            <th>FACTURE</th>
 
                                         </tr>
                                     </thead>
@@ -283,7 +283,8 @@ if(isset($_POST['search']))
 												<th>" . $rowp['code'] . "</th>
 												<th>" . $rowp['amount_rooms'] . "</th>
 												<th>" . $rowp['amount_services'] . "</th> 
-												<th>" . $rowp['amount_total'] . "</th> ";   }
+												<th>" . $rowp['amount_total'] . "</th>
+												<th><a href=print.php?pid=".$rowp['id_payment'] ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Print</button></th> ";   }
                                                                                                 echo"</thead>
                                                                                                 <tbody>";}
 
