@@ -1,22 +1,22 @@
-<?php  
-session_start();  
-if(!isset($_SESSION["user"]))
+<?php
+session_start();
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
-?> 
+}*/
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUNRISE HOTEL</title>
+    <title>SOPHIE TELLS</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
      <!-- Morris Chart Styles-->
-   
+
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
@@ -26,7 +26,7 @@ if(!isset($_SESSION["user"]))
 </head>
 <body>
     <div id="wrapper">
-        
+
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -35,7 +35,7 @@ if(!isset($_SESSION["user"]))
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.php"><?php echo $_SESSION["user"]; ?> </a>
+                <a class="navbar-brand" href="home.php"><?php echo $_COOKIE["username"]; ?> </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -68,8 +68,18 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a  href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
+                    <li>
+                        <a  href="usersetting.php"><i class="fa fa-desktop"></i> Administrator Settings</a>
+                    </li>
+                    <li>
+                        <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
+                    </li>
 					<li>
                         <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
+                    </li>
+
+                    <li>
+                        <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                     </li>
                     <li>
                         <a class="active-menu" href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
@@ -80,9 +90,9 @@ if(!isset($_SESSION["user"]))
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
-                    
 
-                    
+
+
             </div>
 
         </nav>
@@ -95,10 +105,10 @@ if(!isset($_SESSION["user"]))
                            Payment Details<small> </small>
                         </h1>
                     </div>
-                </div> 
+                </div>
                  <!-- /. ROW  -->
-				 
-				 
+
+
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
@@ -115,26 +125,26 @@ if(!isset($_SESSION["user"]))
 											<th>Check out</th>
 											<th>No of Room</th>
 											<th>Meal Type</th>
-											
+
                                             <th>Room Rent</th>
 											<th>Bed Rent</th>
 											<th>Meals </th>
 											<th>Gr.Total</th>
 											<th>Print</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+
 									<?php
 										include ('db.php');
 										$sql="select * from payment";
 										$re = mysqli_query($con,$sql);
 										while($row = mysqli_fetch_array($re))
 										{
-										
+
 											$id = $row['id'];
-											
+
 											if($id % 2 ==1 )
 											{
 												echo"<tr class='gradeC'>
@@ -145,7 +155,7 @@ if(!isset($_SESSION["user"]))
 													<td>".$row['cout']."</td>
 													<td>".$row['nroom']."</td>
 													<td>".$row['meal']."</td>
-													
+
 													<td>".$row['ttot']."</td>
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
@@ -163,36 +173,36 @@ if(!isset($_SESSION["user"]))
 													<td>".$row['cout']."</td>
 													<td>".$row['nroom']."</td>
 													<td>".$row['meal']."</td>
-													
+
 													<td>".$row['ttot']."</td>
 													<td>".$row['mepr']."</td>
 													<td>".$row['btot']."</td>
 													<td>".$row['fintot']."</td>
 													<td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Print</button></td>
 													</tr>";
-											
+
 											}
-										
+
 										}
-										
+
 									?>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!--End Advanced Tables -->
                 </div>
             </div>
                 <!-- /. ROW  -->
-            
+
                 </div>
-               
+
             </div>
-        
-               
+
+
     </div>
              <!-- /. PAGE INNER  -->
             </div>
@@ -215,7 +225,7 @@ if(!isset($_SESSION["user"]))
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-    
-   
+
+
 </body>
 </html>

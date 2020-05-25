@@ -1,9 +1,9 @@
 <?php  
 session_start();  
-if(!isset($_SESSION["user"]))
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
+}*/
 ?> 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,7 +34,6 @@ if(!isset($_SESSION["user"]))
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-			
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -48,7 +47,6 @@ if(!isset($_SESSION["user"]))
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
-					
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -117,6 +115,22 @@ if(!isset($_SESSION["user"]))
                                     </label>
 
                                 </div>
+                            <div class="form-group">
+                                <label>Hotels</label>
+                                <select name="hotel"  class="form-control" required>
+                                    <option value selected ></option>
+                                    <option value="1">Marrakech</option>
+                                    <option value="2">Paris</option>
+                                    <option value="3">Dubai</option>
+                                    <option value="4">New York</option>
+                                    <option value="5">Rome</option>
+                                    <option value="6">Londres</option>
+                                    <option value="7">Bangkok</option>
+                                    <option value="8">Bali</option>
+                                    <option value="9">Amsterdam</option>
+                                    <option value="10">Rio de Janeiro</option>
+                                </select>
+                            </div>
 							 <input type="submit" name="add" value="Add New" class="btn btn-primary"> 
 							</form>
 							<?php
@@ -125,15 +139,11 @@ if(!isset($_SESSION["user"]))
 							 {
 										$room = $_POST['troom'];
 										$nb = $_POST['number'];
-
+										$hotel=$_POST['hotel'];
 										
-										$check="SELECT * FROM room WHERE room_no = '$nb' ";
+										$check="SELECT count(*) FROM room WHERE room_no = '$nb' and hotel_id=$hotel ";
 										$rs = mysqli_query($con,$check);
-										$data = mysqli_fetch_array($rs, MYSQLI_NUM);
-										$sql="SELECT room_type_id FROM room_type WHERE room_type=$room ";
-										$rep=mysqli_query($con,$sql);
-										$data2=mysqli_fetch_array($rep);
-										$rd=$data2['room_type_id'];
+										$data = mysqli_fetch_array($rs);
 										if($data[0] > 1) {
 											echo "<script type='text/javascript'> alert('Room Already in Exists')</script>";
 											
@@ -143,10 +153,11 @@ if(!isset($_SESSION["user"]))
 										{
 							 
 										
-										$sql ="INSERT INTO `room`( `room_type_id`, `room_no`) VALUES ('$rd','$nb')" ;
+										$sql ="INSERT INTO room( room_type_id, room_no,hotel_id) VALUES ('$room','$nb','$hotel')" ;
 										if(mysqli_query($con,$sql))
 										{
 										 echo '<script>alert("New Room Added") </script>' ;
+
 										}else {
 											echo '<script>alert("Sorry ! Check The System") </script>' ;
 										}
@@ -244,7 +255,7 @@ if(!isset($_SESSION["user"]))
                     
             
 				
-					</div>
+
 			 <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->

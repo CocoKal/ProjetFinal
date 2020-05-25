@@ -12,3 +12,10 @@
 .div_infos > p {
   margin-bottom: 0px;
 }
+.btn_supprimer {
+  width: 105px;
+  margin-bottom: 10px;
+}
+.btn_modifier {
+  width: 105px;
+}

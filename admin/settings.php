@@ -1,9 +1,9 @@
 <?php  
 session_start();  
-if(!isset($_SESSION["user"]))
+/*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
-}
+}*/
 ?> 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -81,7 +81,7 @@ if(!isset($_SESSION["user"]))
 			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                           Available <small> Rooms</small>
+                           Available Rooms <small></small>
                         </h1>
                     </div>
                 </div> 

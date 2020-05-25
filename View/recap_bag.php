@@ -132,6 +132,9 @@
 						</td>
             <td>'.$price.' €</td>
             <td><button type="submit" class="btn btn-outline-danger">Supprimer</button></td>
+            <br>
+							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
+						</td>
 						</tr>
 						</form>
             ';
