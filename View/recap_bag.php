@@ -27,7 +27,7 @@
 	if (isset($_POST["room_id"])) {
 		$ref_article = $_POST["room_id"];
 		/* création d'un tableau temporaire de stockage des articles */
-    $panier_tmp = array("id_article"=>array(),"id"=>array(),"check_in"=>array(),"check_out"=>array());
+    $panier_tmp = array("id_article"=>array(),"id"=>array(),"check_in"=>array(),"check_out"=>array(), "services"=>array());
     /* Comptage des articles du panier */
     $nb_articles = count($_SESSION['panier']['id']);
     /* Transfert du panier dans le panier temporaire */
@@ -39,6 +39,7 @@
             array_push($panier_tmp['id'],$_SESSION['panier']['id'][$i]);
             array_push($panier_tmp['check_in'],$_SESSION['panier']['check_in'][$i]);
             array_push($panier_tmp['check_out'],$_SESSION['panier']['check_out'][$i]);
+						array_push($panier_tmp['services'],$_SESSION['panier']['services'][$i]);
         }
     }
     /* Le transfert est terminé, on ré-initialise le panier */
@@ -131,7 +132,7 @@
 						echo '</ul>
 						</td>
             <td>'.$price.' €</td>
-            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button></td>
+            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button>
             <br>
 							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
 						</td>
