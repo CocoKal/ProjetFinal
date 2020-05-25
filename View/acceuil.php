@@ -20,8 +20,7 @@
 
 <div class="super_container">
 
-<?php require("modules/header.php");
-  var_dump($_SESSION["panier"]);?>
+<?php require("modules/header.php");?>
 
 	<!-- Home -->
 
