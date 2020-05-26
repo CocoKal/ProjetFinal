@@ -263,7 +263,7 @@ if(isset($_POST['search']))
 
                                         </tr>";
 
-
+                    //SHOW ALL PAYMENTS FOR A SPECIFIC HOTEL
                   $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id))";
                     $rep = mysqli_query($con,$sql2);
 
@@ -283,14 +283,14 @@ if(isset($_POST['search']))
                                                                                                 <tbody>";}
 
                                                                 echo"
- </thead>
+                                    </thead>
                                     </table>
 
 
-                            </div>
+                                     </div>
 
-                        </div>
-                    </div>
+                                    </div>
+                                    </div>
 
 
                 </div>
