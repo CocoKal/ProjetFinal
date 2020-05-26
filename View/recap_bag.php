@@ -75,7 +75,7 @@
         <h2>Sommaire</h2>
       </div>
       <div class="col-3">
-        <button class="btn pull-right button_checkout" type="button" name="button">Payer</button>
+        <a href="index.php?view=payment"><button class="btn pull-right button_checkout" type="button" name="button">Payer</button></a>
       </div>
     </div>
     <div class="row">
