@@ -142,134 +142,53 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="payment-info">
 
                             <h3 class="pay-title">Credit Card Info</h3>
-                            <form>
+                            <form method="post" action="index.php?view=check_payment">
+                              <?php echo '
+                                <input type="hidden" name="amount_services" value='.$price_service.'>
+                                <input type="hidden" name="amount_room" value='.$price_chambre.'>
+                               ';?>
+
                                 <div class="tab-for">
                                     <h5 class="text-white">NAME ON CARD</h5>
-                                    <input type="text"  id="name" value="">
+                                    <input type="text" name="name_card"  id="name" value="" required="required">
                                     <h5 class="text-white">CARD NUMBER</h5>
-                                    <input class="pay-logo" id="number" type="text" value="0000-0000-0000-0000" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '0000-0000-0000-0000';}" required="">
+                                    <input class="pay-logo" name="number_card" id="number" type="text" placeholder="0000-0000-0000-0000" required="required">
                                 </div>
                                 <div class="transaction">
                                     <div class="tab-form-left user-form">
                                         <h5 class="text-white">EXPIRATION</h5>
-                                        <input type="text" id="date" value=" ">
+                                        <div class="row">
+
+                                        <select name="month" class="form-control" id="mounth" required="required" style="width: 18%; margin-left: 15px;">
+                                          <?php
+                                            for ($i=1; $i <=12 ; $i++) {
+                                              echo '<option>'.$i.'</option>';
+                                            }
+                                          ?>
+                                        </select>
+                                        <select name="year" class="form-control" id="year" required="required" style="width: 18%">
+                                          <?php
+                                            for ($i=20; $i <=30 ; $i++) {
+                                              echo '<option>'.$i.'</option>';
+                                            }
+                                          ?>
+                                        </select>
+                                        </div>
                                     </div>
                                     <div class="tab-form-right user-form-rt">
                                         <h5 class="text-white">CVV NUMBER</h5>
-                                        <input type="text" id="code" value="xxxx" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xxxx';}" required="">
+                                        <input name="cvv" type="text" id="code" placeholder="xxxx" required="required" >
                                     </div>
                                     <div class="clear"></div>
                                 </div>
                                 <input type="submit" value="SUBMIT">
-                            </form>
+
                             <div class="single-bottom">
-                                <ul>
-                                    <li>
-                                        <input type="checkbox"  id="brand" value="">
-                                        <label for="brand" class="text-white"><span></span>By checking this box, I agree to the Terms & Conditions & Privacy Policy.</label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-                        <div class="payment-info">
-                            <h3>Net Banking</h3>
-                            <div class="radio-btns">
-                                <div class="swit">
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>Andhra Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Allahabad Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Bank of Baroda</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Canara Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IDBI Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Icici Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Overseas Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Punjab National Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>South Indian Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>State Bank Of India</label> </div></div>
-                                </div>
-                                <div class="swit">
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>City Union Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>HDFC Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IndusInd Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Syndicate Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Deutsche Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Corporation Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>UCO Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Federal Bank</label> </div></div>
-                                    <div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>ING Vysya Bank</label> </div></div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <a href="#">Continue</a>
-                        </div>
-                    </div>
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-                        <div class="payment-info">
-                            <h3>PayPal</h3>
-                            <h4>Already Have A PayPal Account?</h4>
-                            <div class="login-tab">
-                                <div class="user-login">
-                                    <h2>Login</h2>
+                                        <input required="required" type="checkbox"  id="brand">
+                                        <label for="brand" class="text-white">By checking this box, I agree to the Terms & Conditions & Privacy Policy.</label>
 
-                                    <form>
-                                        <input type="text" value="name@email.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'name@email.com';}" required="">
-                                        <input type="password" value="PASSWORD" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}" required="">
-                                        <div class="user-grids">
-                                            <div class="user-left">
-                                                <div class="single-bottom">
-                                                    <ul>
-                                                        <li>
-                                                            <input type="checkbox"  id="brand1" value="">
-                                                            <label for="brand1"><span></span>Remember me?</label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="user-right">
-                                                <input type="submit" value="LOGIN">
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-                        <div class="payment-info">
-
-                            <h3 class="pay-title">Dedit Card Info</h3>
-                            <form>
-                                <div class="tab-for">
-                                    <h5>NAME ON CARD</h5>
-                                    <input type="text" value="">
-                                    <h5>CARD NUMBER</h5>
-                                    <input class="pay-logo" type="text" value="0000-0000-0000-0000" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '0000-0000-0000-0000';}" required="">
-                                </div>
-                                <div class="transaction">
-                                    <div class="tab-form-left user-form">
-                                        <h5>EXPIRATION</h5>
-                                        <ul>
-                                            <li>
-                                                <input type="number" class="text_box" type="text" value="6" min="1" />
-                                            </li>
-                                            <li>
-                                                <input type="number" class="text_box" type="text" value="1988" min="1" />
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="tab-form-right user-form-rt">
-                                        <h5>CVV NUMBER</h5>
-                                        <input type="text" value="xxxx" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xxxx';}" required="">
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <input type="submit" value="SUBMIT">
                             </form>
-
                         </div>
                     </div>
                 </div>
