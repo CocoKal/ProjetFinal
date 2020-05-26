@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+                                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `id_user` int(11) NOT NULL,
+                                       PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -50,17 +50,17 @@ INSERT INTO `admin` (`id`, `id_user`) VALUES
 
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
-  `booking_id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL,
-  `room_id` int(10) NOT NULL,
-  `booking_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `check_in` timestamp NOT NULL,
-  `check_out` timestamp NOT NULL,
-  `payment_status` tinyint(1) NOT NULL,
-  `id_payment` int(11) DEFAULT NULL,
-  PRIMARY KEY (`booking_id`),
-  KEY `customer_id` (`user_id`),
-  KEY `room_id` (`room_id`)
+                                         `booking_id` int(10) NOT NULL AUTO_INCREMENT,
+                                         `user_id` int(10) NOT NULL,
+                                         `room_id` int(10) NOT NULL,
+                                         `booking_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                         `check_in` timestamp NOT NULL,
+                                         `check_out` timestamp NOT NULL,
+                                         `payment_status` tinyint(1) NOT NULL,
+                                         `id_payment` int(11) DEFAULT NULL,
+                                         PRIMARY KEY (`booking_id`),
+                                         KEY `customer_id` (`user_id`),
+                                         KEY `room_id` (`room_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=latin1;
 
 --
@@ -401,13 +401,13 @@ INSERT INTO `booking` (`booking_id`, `user_id`, `room_id`, `booking_date`, `chec
 
 DROP TABLE IF EXISTS `complaint`;
 CREATE TABLE IF NOT EXISTS `complaint` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `grade` int(11) NOT NULL,
-  `title_complaint` varchar(100) NOT NULL,
-  `complaint` varchar(200) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+                                           `id` int(11) NOT NULL AUTO_INCREMENT,
+                                           `id_user` int(11) NOT NULL,
+                                           `grade` int(11) NOT NULL,
+                                           `title_complaint` varchar(100) NOT NULL,
+                                           `complaint` varchar(200) NOT NULL,
+                                           `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
@@ -427,11 +427,11 @@ INSERT INTO `complaint` (`id`, `id_user`, `grade`, `title_complaint`, `complaint
 
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
-  `hotel_id` int(10) NOT NULL AUTO_INCREMENT,
-  `hotel_localisation_country` varchar(20) NOT NULL,
-  `hotel_localisation_city` varchar(20) NOT NULL,
-  `manager_id` int(11) NOT NULL,
-  PRIMARY KEY (`hotel_id`)
+                                       `hotel_id` int(10) NOT NULL AUTO_INCREMENT,
+                                       `hotel_localisation_country` varchar(20) NOT NULL,
+                                       `hotel_localisation_city` varchar(20) NOT NULL,
+                                       `manager_id` int(11) NOT NULL,
+                                       PRIMARY KEY (`hotel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
@@ -458,11 +458,11 @@ INSERT INTO `hotel` (`hotel_id`, `hotel_localisation_country`, `hotel_localisati
 
 DROP TABLE IF EXISTS `hotel_description`;
 CREATE TABLE IF NOT EXISTS `hotel_description` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_hotel` int(11) NOT NULL,
-  `quote` varchar(250) NOT NULL,
-  `city_description` varchar(1600) NOT NULL,
-  PRIMARY KEY (`id`)
+                                                   `id` int(11) NOT NULL AUTO_INCREMENT,
+                                                   `id_hotel` int(11) NOT NULL,
+                                                   `quote` varchar(250) NOT NULL,
+                                                   `city_description` varchar(1600) NOT NULL,
+                                                   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
@@ -489,10 +489,10 @@ INSERT INTO `hotel_description` (`id`, `id_hotel`, `quote`, `city_description`) 
 
 DROP TABLE IF EXISTS `hotel_service`;
 CREATE TABLE IF NOT EXISTS `hotel_service` (
-  `hotel_service_id` int(11) NOT NULL AUTO_INCREMENT,
-  `hotel_id` int(11) NOT NULL,
-  `service_id` int(11) NOT NULL,
-  PRIMARY KEY (`hotel_service_id`)
+                                               `hotel_service_id` int(11) NOT NULL AUTO_INCREMENT,
+                                               `hotel_id` int(11) NOT NULL,
+                                               `service_id` int(11) NOT NULL,
+                                               PRIMARY KEY (`hotel_service_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 
 --
@@ -597,17 +597,17 @@ INSERT INTO `hotel_service` (`hotel_service_id`, `hotel_id`, `service_id`) VALUE
 
 DROP TABLE IF EXISTS `payment`;
 CREATE TABLE IF NOT EXISTS `payment` (
-  `id_payment` int(10) NOT NULL AUTO_INCREMENT,
-  `id_user` int(10) NOT NULL,
-  `name_card` varchar(20) NOT NULL,
-  `number_card` int(20) NOT NULL,
-  `date_card` varchar(20) NOT NULL,
-  `amount_total` int(11) NOT NULL,
-  `amount_rooms` int(11) NOT NULL,
-  `amount_services` int(11) NOT NULL,
-  `code` int(5) NOT NULL,
-  `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_payment`)
+                                         `id_payment` int(10) NOT NULL AUTO_INCREMENT,
+                                         `id_user` int(10) NOT NULL,
+                                         `name_card` varchar(20) NOT NULL,
+                                         `number_card` int(20) NOT NULL,
+                                         `date_card` varchar(20) NOT NULL,
+                                         `amount_total` int(11) NOT NULL,
+                                         `amount_rooms` int(11) NOT NULL,
+                                         `amount_services` int(11) NOT NULL,
+                                         `code` int(5) NOT NULL,
+                                         `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                         PRIMARY KEY (`id_payment`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -625,12 +625,12 @@ INSERT INTO `payment` (`id_payment`, `id_user`, `name_card`, `number_card`, `dat
 
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
-  `room_id` int(10) NOT NULL AUTO_INCREMENT,
-  `room_type_id` int(10) NOT NULL,
-  `room_no` varchar(10) NOT NULL,
-  `hotel_id` int(11) NOT NULL,
-  PRIMARY KEY (`room_id`),
-  KEY `room_type_id` (`room_type_id`)
+                                      `room_id` int(10) NOT NULL AUTO_INCREMENT,
+                                      `room_type_id` int(10) NOT NULL,
+                                      `room_no` varchar(10) NOT NULL,
+                                      `hotel_id` int(11) NOT NULL,
+                                      PRIMARY KEY (`room_id`),
+                                      KEY `room_type_id` (`room_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=435 DEFAULT CHARSET=latin1;
 
 --
@@ -737,13 +737,13 @@ INSERT INTO `room` (`room_id`, `room_type_id`, `room_no`, `hotel_id`) VALUES
 
 DROP TABLE IF EXISTS `room_type`;
 CREATE TABLE IF NOT EXISTS `room_type` (
-  `room_type_id` int(10) NOT NULL,
-  `room_type` varchar(100) NOT NULL,
-  `got_tel` tinyint(1) NOT NULL,
-  `got_tv` tinyint(1) NOT NULL,
-  `price` int(10) NOT NULL,
-  `nbr_bed` int(10) NOT NULL,
-  PRIMARY KEY (`room_type_id`)
+                                           `room_type_id` int(10) NOT NULL,
+                                           `room_type` varchar(100) NOT NULL,
+                                           `got_tel` tinyint(1) NOT NULL,
+                                           `got_tv` tinyint(1) NOT NULL,
+                                           `price` int(10) NOT NULL,
+                                           `nbr_bed` int(10) NOT NULL,
+                                           PRIMARY KEY (`room_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -764,10 +764,10 @@ INSERT INTO `room_type` (`room_type_id`, `room_type`, `got_tel`, `got_tv`, `pric
 
 DROP TABLE IF EXISTS `service`;
 CREATE TABLE IF NOT EXISTS `service` (
-  `id_service` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `price` int(11) NOT NULL,
-  PRIMARY KEY (`id_service`)
+                                         `id_service` int(11) NOT NULL AUTO_INCREMENT,
+                                         `name` varchar(100) NOT NULL,
+                                         `price` int(11) NOT NULL,
+                                         PRIMARY KEY (`id_service`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
@@ -798,12 +798,12 @@ INSERT INTO `service` (`id_service`, `name`, `price`) VALUES
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE IF NOT EXISTS `staff` (
-  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `staff_type_id` int(11) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`emp_id`),
-  KEY `staff_type_id` (`staff_type_id`)
+                                       `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `id_user` int(11) NOT NULL,
+                                       `staff_type_id` int(11) NOT NULL,
+                                       `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                       PRIMARY KEY (`emp_id`),
+                                       KEY `staff_type_id` (`staff_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -821,9 +821,9 @@ INSERT INTO `staff` (`emp_id`, `id_user`, `staff_type_id`, `updated_at`) VALUES
 
 DROP TABLE IF EXISTS `staff_type`;
 CREATE TABLE IF NOT EXISTS `staff_type` (
-  `staff_type_id` int(10) NOT NULL,
-  `staff_type` varchar(100) NOT NULL,
-  PRIMARY KEY (`staff_type_id`)
+                                            `staff_type_id` int(10) NOT NULL,
+                                            `staff_type` varchar(100) NOT NULL,
+                                            PRIMARY KEY (`staff_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -845,13 +845,13 @@ INSERT INTO `staff_type` (`staff_type_id`, `staff_type`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lastname` varchar(100) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+                                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `lastname` varchar(100) NOT NULL,
+                                      `firstname` varchar(100) NOT NULL,
+                                      `email` varchar(100) NOT NULL,
+                                      `password` varchar(100) NOT NULL,
+                                      `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --

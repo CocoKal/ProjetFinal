@@ -170,7 +170,7 @@ tr:hover .cut { opacity: 1; }
 
 
 
-	$sql ="select * from payment as p ,user as u , booking as b  where (id_user = '$pid') and (p.id_user=u.id) and (b.id=p.id_user)";
+	$sql ="select * from payment as p ,user as u , booking as b  where (p.id_payment = '$pid')  and (p.id_user=u.id) and (b.id_payment=p.id_payment)";
 	$re = mysqli_query($con,$sql);
 	while($row=mysqli_fetch_array($re))
 	{
