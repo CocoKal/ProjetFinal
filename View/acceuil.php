@@ -139,7 +139,7 @@
 				<!-- About Content -->
 				<div class="col-lg-6">
 					<div class="about_content">
-						<div class="about_title"><h2>Sophie Tells / 10 years of excellence</h2></div>
+						<div class="about_title"><h2>Sophie Tells - 10 ans d'excellence</h2></div>
 						<div class="about_text">
 							<p>Prendre soin de soi n'a jamais été un tel plaisir. Profitez du luxe somptueux de votre chambre ou de votre suite et régalez-vous avec le petit-déjeuner Sofitel De-Light, aussi équilibré qu'appétissant. Grâce au départ...</p>
 						</div>
