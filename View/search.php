@@ -163,7 +163,7 @@
               if (!empty($id_of_room_free)) {
                 $services_by_hotel = $model->get_all_hotel_services_by_hotel_id($hotel_id);
                 $compteur = 0;
-                echo '<div class="form-check" style="height: 100px;">
+                echo '<div class="form-check" style="height: 100px; margin-right: 20px;">
                         <div class="pull-left">';
 
                 foreach ($services_by_hotel as $service_of_hotel) {
@@ -203,7 +203,6 @@
 
           </div>
         </div>
-      <h3>Services :</h3>
 
 
 

@@ -50,11 +50,20 @@
 						<div class="col-md-4" style="padding-top: 90px;">
 						<div class="contact_title"><h2>Get in touch</h2></div>
 						<div class="contact_list">
-							<ul>
-								<li>Main Str, no 253, New York, NY</li>
-								<li>+546 990221 123</li>
-								<li>music@contact.com</li>
-							</ul>
+							<div class="row social_medias">
+								<div class="col">
+									<a href="https://www.facebook.com/SofitelFrance/"><img src="Content\images\social_medias\facebook.png"></a>
+								</div>
+								<div class="col">
+									<a href="https://www.instagram.com/sofitel"><img src="Content\images\social_medias\instagram.png"></a>
+								</div>
+								<div class="col">
+									<a href="https://twitter.com/sofitelnews"><img src="Content\images\social_medias\twitter.png"></a>
+								</div>
+								<div class="col">
+									<a href="https://www.youtube.com/channel/UCGOV5vGjasbF8WvPfeep_Zg"><img src="Content\images\social_medias\youtube.png"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-8">
@@ -62,15 +71,15 @@
 							<form action="#" class="contact_form" id="contact_form">
 								<div class="row">
 									<div class="col-md-6 input_container">
-										<input type="text" class="contact_input" placeholder="Your name" required="required">
+										<input type="text" class="contact_input" placeholder="Votre nom..." required="required">
 									</div>
 									<div class="col-md-6 input_container">
-										<input type="email" class="contact_input" placeholder="Your email address" required="required">
+										<input type="email" class="contact_input" placeholder="Votre addresse mail..." required="required">
 									</div>
 								</div>
-								<div class="input_container"><input type="text" class="contact_input" placeholder="Subject"></div>
-								<div class="input_container"><textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea></div>
-								<button class="contact_button">Send</button>
+								<div class="input_container"><input type="text" class="contact_input" placeholder="Sujet..."></div>
+								<div class="input_container"><textarea class="contact_input contact_textarea" placeholder="Message..." required="required"></textarea></div>
+								<button class="contact_button">Envoyer</button>
 							</form>
 						</div>
 					</div>

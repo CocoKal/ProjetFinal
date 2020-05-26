@@ -89,9 +89,10 @@
 
 				<div class="col-xl-6 order-xl-2 order-1">
 					<div class="split_section_right_content">
-						<div class="split_section_title"><h1>Luxury Resort</h1></div>
+						<div class="split_section_title"><h2>Régénérez-vous intérieurement et extérieurement</h2></div>
 						<div class="split_section_text">
-							<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci.</p>
+							<p>Détente en peignoir ou sport en baskets, les hôtels Sophie Tells offrent un large éventail d'expériences de bien-être personnalisées pour vous relaxer ou vous dynamiser. Au Sofitel Fitness, entraînez-vous dans des salles de gym innovantes avec des équipements de pointe. Participez à des programmes d'exercices signature tels que le Sofitel Yoga, dont les postures sont inspirées par des monuments emblématiques de Paris. Pour vous détendre, le Sofitel Spa est votre oasis de tranquillité et de régénération, où les rituels de spa et de beauté allient des soins réparateurs traditionnels et le meilleur de la cosmétologie française.
+</p>
 						</div>
 
 						<!-- Milestones -->
@@ -101,7 +102,7 @@
 							<div class="milestone d-flex flex-row align-items-start justify-content-start">
 								<div class="milestone_content">
 									<div class="milestone_counter" data-end-value="45">0</div>
-									<div class="milestone_title">Rooms available</div>
+									<div class="milestone_title">Chambres disponibles</div>
 								</div>
 							</div>
 
@@ -109,15 +110,15 @@
 							<div class="milestone d-flex flex-row align-items-start justify-content-start">
 								<div class="milestone_content">
 									<div class="milestone_counter" data-end-value="21" data-sign-after="K">0</div>
-									<div class="milestone_title">Tourists this year</div>
+									<div class="milestone_title">Visiteurs cette année</div>
 								</div>
 							</div>
 
 							<!-- Milestone -->
 							<div class="milestone d-flex flex-row align-items-start justify-content-start">
 								<div class="milestone_content">
-									<div class="milestone_counter" data-end-value="2">0</div>
-									<div class="milestone_title">Swimming pools</div>
+									<div class="milestone_counter" data-end-value="9">0</div>
+									<div class="milestone_title">Hôtels</div>
 								</div>
 							</div>
 
@@ -136,42 +137,12 @@
 			<div class="row">
 				<div class="col-xl-6">
 					<div class="split_section_left_content">
-						<div class="split_section_title"><h1>Wedding venue</h1></div>
+						<div class="split_section_title"><h1>Magnifique Meetings & Events</h1></div>
 						<div class="split_section_text">
-							<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci ipsum, a bibendum lacus suscipit sit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse nec faucibus velit. Quisque eleifend orci.</p>
+							<p>Cocktail party ou séminaire, l'organisation d'un événement peut être stressante. Laissez-nous vous assister dans cette tâche, et le jour venu, profitez de l'instant présent comme tous vos invités. Avec Magnifique Meetings and Events, vos événements privés ou professionnels prennent une tout autre dimension et se teintent d'éclatantes couleurs locales dans des cadres chics et modulables, dotés d'équipements technologiques de pointe. Avec une touche de savoir-faire et de chic à la française, bien sûr. Nous aidons vos équipes à libérer leur potentiel lors de brainstorming créatifs, de prises de décisions et d'activités de team building. Avec l'aide d'organisateurs experts, nous travaillons en étroite collaboration avec vous afin de créer d'incroyables expériences immersives et empreintes d'art de vivre. Nos forfaits sur mesure peuvent inclure des activités innovantes, des installations spéciales et des pauses revitalisantes. Une gastronomie saine et appétissante permet aux participants de rester au mieux de leur forme et de donner le meilleur d'eux-mêmes, lors de rencontres dans nos salles de réunions personnalisables ou dans nos espaces de networking.
+</p>
 						</div>
 
-						<!-- Loaders -->
-						<div class="loaders_container d-flex flex-row align-items-start justify-content-start flex-wrap">
-
-							<!-- Loader -->
-							<div class="loader_container text-center">
-								<div class="loader text-center" data-perc="0.9">
-									<div class="loader_content">
-										<div class="loader_title">Good Services</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Loader -->
-							<div class="loader_container text-center">
-								<div class="loader text-center" data-perc="0.8">
-									<div class="loader_content">
-										<div class="loader_title">Tourists</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Loader -->
-							<div class="loader_container text-center">
-								<div class="loader text-center" data-perc="1.0">
-									<div class="loader_content">
-										<div class="loader_title">Satisfaction</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
 					</div>
 				</div>
 

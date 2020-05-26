@@ -1021,3 +1021,6 @@ input[type=number]::-webkit-outer-spin-button
 	font-weight: 500;
 	color: #6d6d6d;
 }
+.social_medias {
+	width: 80%;
+}
