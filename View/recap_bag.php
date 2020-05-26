@@ -103,7 +103,7 @@
 						$datetime2 = new DateTime($_SESSION['panier']['check_out'][$i]);
 						$interval = $datetime1->diff($datetime2);
 						$int_interval = $interval->format('%a');
-						$price = $room_type[0]["price"] * $int_interval;
+						$price_chambre = $room_type[0]["price"] * $int_interval;
 
 						echo '
 						<form method="post" action="index.php?view=recap_bag">
@@ -122,16 +122,16 @@
             </td>
 						<td>
 							<ul>';
-
+							$price_service= 0;
 							foreach ($_SESSION['panier']['services'][$i] as $service_id) {
 
 								$service = $model->get_service_by_id($service_id);
-								$price += $service[0]['price'];
+								$price_service += $service[0]['price'];
 								echo '<li>'.$service[0]['name'].'</li>';
 							}
 						echo '</ul>
 						</td>
-            <td>'.$price.' €</td>
+            <td><u>Chambre:</u><br>'.$price_chambre.' €<br><u>Services:</u><br>'.$price_service.' €</td>
             <td><button type="submit" class="btn btn-outline-danger">Supprimer</button>
             <br>
 							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
