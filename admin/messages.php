@@ -166,7 +166,7 @@ session_start();
 							<?php
 							if(isset($_POST['log']))
 							{
-								$log ="SELECT email from user ";
+								$log ="SELECT email from user "; //SELECT CLIENTS MAILS
 								$i=0;
 								while(mysqli_query($con,$log))
 								{
@@ -210,7 +210,7 @@ session_start();
                                     <tbody>
 
 									<?php
-										while($row = mysqli_fetch_array($re))
+										while($row = mysqli_fetch_array($re)) //PRINT CLIENTS INFORMATIONS
 										{
 
 											$id = $row['id'];

@@ -176,7 +176,7 @@ session_start();
                         </h1>
                     </div>
                 </div>";
-
+                //SHOW BENEFIT FOR A TYPE OF CONFORT IN A SPECIFIC HOTEL
                 $sql2="select * from booking as b , payment as p  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id and room_type_id=$confort) ) and( p.id_user=b.user_id) ";
 
 
