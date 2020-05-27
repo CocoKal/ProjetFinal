@@ -29,9 +29,7 @@
     and isset($_POST["check_in"])
     and !empty($_POST["check_in"])
     and isset($_POST["check_out"])
-    and !empty($_POST["check_out"])
-    and isset($_POST["number"])
-    and !empty($_POST["number"]))) {
+    and !empty($_POST["check_out"]))) {
 
       echo"<script>alert('Une erreur est survenue.')</script>";
       header('Refresh: 1; url=index.php');
@@ -40,7 +38,6 @@
       $localisation = ucfirst($_POST["localisation"]);
       $check_in = date('j F Y' ,strtotime($_POST["check_in"]));
       $check_out = date('j F Y' ,strtotime($_POST["check_out"]));
-      $number = $_POST["number"];
 
       $hotel = $model->get_hotel_by_localisation($_POST["localisation"]);
 
@@ -83,8 +80,6 @@
             <p class="pull-right"><?php echo $check_in ?></p>
             <p class="pull-left" style="margin-bottom: 10px;">Date de départ:</p>
             <p class="pull-right"><?php echo $check_out ?></p>
-            <p class="pull-left" style="margin-bottom: 10px;">Nombre de personnes:</p>
-            <p class="pull-right"><?php echo $number  ?></p>
           </div>
 
         </div>
@@ -99,7 +94,6 @@
                   <div><input name="localisation" type="text" class="booking_input booking_input_a booking_in" placeholder="City..." required="required"></div>
                   <div><input name="check_in" type="text" class="datepicker booking_input booking_input_a booking_in" placeholder="Check in" required="required"></div>
                   <div><input name="check_out" type="text" class="datepicker booking_input booking_input_a booking_out" placeholder="Check out" required="required"></div>
-                  <div><input name="number" type="number" class="booking_input booking_input_b" placeholder="Number..." required="required"></div>
                 </div>
                 <div><button type="submit" class="booking_button trans_200" style="width: 100%;">Refaire une recherche</button></div>
               </div>

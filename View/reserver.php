@@ -80,7 +80,7 @@ array_push($_SESSION['panier']['check_in'],$select['check_in']);
 array_push($_SESSION['panier']['check_out'],$select['check_out']);
 array_push($_SESSION['panier']['services'],$select['services_index']);
 
-header('Refresh: 1; url=index.php?view=recap_bag');
+header('Refresh: 1; url=index.php');
 }
 }
 ?>

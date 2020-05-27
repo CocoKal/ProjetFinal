@@ -40,7 +40,6 @@
 											<div><input name="localisation" type="text" class="booking_input booking_input_a booking_in" placeholder="City..." required="required"></div>
 											<div><input name="check_in" type="text" class="datepicker booking_input booking_input_a booking_in" placeholder="Check in" required="required"></div>
 											<div><input name="check_out" type="text" class="datepicker booking_input booking_input_a booking_out" placeholder="Check out" required="required"></div>
-											<div><input name="number" type="number" class="booking_input booking_input_b" placeholder="Number..." required="required"></div>
 										</div>
 										<div><button type="submit" class="booking_button trans_200">Réserver maintenant</button></div>
 									</div>
