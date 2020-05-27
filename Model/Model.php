@@ -23,26 +23,20 @@
 														room_id,
 														check_in,
 														check_out,
-														payment_status,
 														id_payment)
 
 
 				VALUES (
 							 :user_id,
  							 :room_id,
- 							 :booking_date,
  							 :check_in,
  							 :check_out,
- 							 :payment_status,
-							 id_payment)");
+							 :id_payment)");
 
-			//$requete->bindValue(":booking_id", $booking_id);
 			$requete->bindValue(":user_id", $user_id);
 			$requete->bindValue(":room_id", $room_id);
-			$requete->bindValue(":booking_date", $booking_date);
 			$requete->bindValue(":check_in", $check_in);
 			$requete->bindValue(":check_out", $check_out);
-			$requete->bindValue(":payment_status", 0);
 			$requete->bindValue(":id_payment", $id_payment);
 
 			return $requete->execute();
@@ -526,11 +520,10 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function get_last_payment_of_user($id_user) {
-			$requete = $this->bd->prepare("SELECT MAX (payment_date) AS max_date FROM payment WHERE id_user = ".$id_user);
+		public function get_payment_of_user($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM payment WHERE id_user = ".$id_user);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
-			;
 		}
 
 }

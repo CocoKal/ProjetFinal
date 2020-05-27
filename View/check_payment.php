@@ -29,6 +29,8 @@
 
 <?php
 
+  //Vérifiquation de la présence de toutes les variables
+
   if (isset($_POST["amount_services"])
   and isset($_POST["amount_room"])
   and isset($_POST["name_card"])
@@ -42,9 +44,24 @@
     $model->add_payment($_COOKIE["id"], $_POST["name_card"], $_POST["number_card"], $date_card, $_POST["amount_room"], $_POST["amount_services"], $_POST["cvv"]);
 
     //Partie Booking//
-    $last_payment = $model->get_last_payment_of_user($_COOKIE["id"]);
-    $id_payment = $last_payment[0]["id_payment"];
 
+      //Déterminer l'id_payment
+    $list_payment = $model->get_payment_of_user($_COOKIE["id"]);
+
+    $id_payment = 0;
+    $timestamp_payment = new DateTime("1970-01-01");
+
+    foreach ($list_payment as $payment) {
+      $time = new DateTime($payment["payment_date"]);
+      $interval = $timestamp_payment->diff($time);
+      $interval = $interval->format('%a');
+      if ($interval >= 0 ) {
+        $id_payment = $payment["id_payment"];
+      }
+    }
+
+    //Ajouter les bookings pour chaque article dans le panier.
+    $nb_articles = count($_SESSION['panier']['id']);
     for($i = 0; $i < $nb_articles; $i++) {
 
       $check_in = date('Y-m-d G:i:s' ,strtotime($_SESSION['panier']['check_in'][$i]));
@@ -54,11 +71,15 @@
       $model->add_booking($_COOKIE["id"],$room_id,$check_in,$check_out,$id_payment);
     }
 
+    //Remise à zéro du panier
     unset($_SESSION["panier"]);
+    //Redirection vers l'acceuil
     header('Refresh: 1; url=index.php');
 
   }
   else {
+    //Retourner sur la page d'acceuil en cas de non présence d'un variable.
+
     echo "<script>alert('Une erreur est survenue.')</script>";
     header('Refresh: 1; url=index.php');
   }

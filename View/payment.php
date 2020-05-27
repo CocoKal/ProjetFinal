@@ -143,10 +143,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             <h3 class="pay-title">Credit Card Info</h3>
                             <form method="post" action="index.php?view=check_payment">
-                              <?php echo '
+                              <?php
+                              if (isset($price_service) and isset($price_chambre)) {
+                              echo '
                                 <input type="hidden" name="amount_services" value='.$price_service.'>
                                 <input type="hidden" name="amount_room" value='.$price_chambre.'>
-                               ';?>
+                               ';}?>
 
                                 <div class="tab-for">
                                     <h5 class="text-white">NAME ON CARD</h5>
