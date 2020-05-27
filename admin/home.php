@@ -103,7 +103,7 @@ session_start();
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        Current Bookings<small></small>
+                        All Bookings<small></small>
                         </h1>
                     </div>
                 </div>
