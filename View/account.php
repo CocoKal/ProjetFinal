@@ -18,28 +18,42 @@
 <body>
 
   <?php
+    //Vérifiquation si l'utilisateur est connecté
     if (!isset($_COOKIE["id"])) {
 
+      //Si non alors
+      //Afficher une alert
       echo"<script>alert('Une erreur est survenue.')</script>";
+      //Rediriger vers l'acceuil
       header('Refresh: 1; url=index.php');
     }
+    //Si la variable POST booking_id_delete est présente
     if (isset($_POST["booking_id_delete"])) {
+      //Supprimer le booking correspondant à cet id
       $model->delete_booking_by_id($_POST["booking_id_delete"]);
     }
+      //Ajout du header
       echo '<div class="super_container">';
       require("modules/header.php");
 
+      //Test si l'utilisateur est un manager
+      //Récupération des membres du staff en fonction de l'id de l'utilisateur
       $staff = $model->get_staff_by_id_user($_COOKIE["id"]);
-      $is_manager;
+      //Initialisation de la variable qui stock si l'utilisateur est un manager
+      $is_manager = false;
+
+      //Si le résultat de la requete n'est pas vide
       if (!empty($staff)) {
+        //Test si le membre du staff est un manager
         if ($staff[0]["staff_type_id"] == 1) {
+          //Alors stocker que l'utilisateur est un manager
           $is_manager = true;
         }
       }
-      else $is_manager = false;
 
   ?>
 
+    <!-- Home -->
 
     <div class="home" style="height: 220px;">
 		<div class="background_image" style="background-image:url(Content/images/special.jpg)"></div>
@@ -55,6 +69,8 @@
 			</div>
 		</div>
 	</div>
+
+  <!--Container du profile et de ses informations-->
 
   <div class="container emp-profile bg-dark">
                 <div class="row">
@@ -74,7 +90,9 @@
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vos Réservations</a>
                                 </li>
                                 <?php
+                                //Si l'utilisateur est un manager
                                   if ($is_manager) {
+                                    //Rajouter l'option de voir ses hotels
                                       echo '<li class="nav-item">
                                           <a class="nav-link" id="profile-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Vos Hôtels</a>
                                           </li>';
@@ -85,17 +103,23 @@
                     </div>
                     <div class="col-md-2">
                       <?php
+                      //Test si l'utilisateur est un administrateur
                       if ($model->check_if_admin($_COOKIE["id"])) {
+                        //S'il est admin alors rajotuer un lien vers le Dashboard
                         echo '<a href="admin/home.php"><input type="submit" class="profile-edit-btn" name="dash" value="Dashboard"/></a>';
                       }
                       ?>
+                      <!--Bouton vers le panier -->
                       <a href="index.php?view=recap_bag"><input type="submit" class="profile-edit-btn" name="btn_bag" value="Votre Panier"/></a>
-                        <a href="index.php?log=no"><input type="submit" class="log-out-btn" name="deco" value="Se déconnecter"/></a>
+                      <!--Bouton pour se deconnecter -->
+                      <a href="index.php?log=no"><input type="submit" class="log-out-btn" name="deco" value="Se déconnecter"/></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="offset-4 col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
+
+                          <!--Tableau des informations de compte -->
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                         </div>
@@ -118,8 +142,9 @@
                                               </tr>
                                             </tbody>
                                           </table>
-
                             </div>
+
+                            <!--Tableau des réservations de l'utilisateur -->
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                               <div class="row">
                               <table class="table table-striped table-bordered table-hover">
@@ -134,12 +159,28 @@
                                 </thead>
                                 <tbody>
                                   <?php
+                                    //Récupération des booking correspondant à l'utilisateur
                                     $booking = $model->get_all_booking_by_id_user($user[0]["id"]);
 
+                                    //Pour chaque booking
                                     foreach ($booking as $book) {
+                                      //Récupérer les informations de la chambre
                                       $room = $model->get_room_by_id($book["room_id"]);
+                                      //Récupération des informations de l'hotel
                                       $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
 
+                                      /*Calcul de l'interval entre la date actuelle
+                                      et la date d'arrivée du bookign courant */
+                                      //Récupérer de la date actuelle sous forme de DateTime
+                                      $current_time = new DateTime("now");
+                                      //Récupération de la date d'arrivée sous forme de DateTime
+                                      $time = new DateTime($book["check_in"]);
+                                      //Calcul de la différence entre les deux dates
+                                      $interval = date_diff($current_time, $time);
+                                      //Formatage de l'interval
+                                      $interval = $interval->format('%R%a');
+
+                                      //Affichage du booking et de ses information sous forme de ligne d'un tableau
                                       echo '<form method="post" action="index.php?view=account">
                                       <input type="hidden" name="booking_id_delete" value="'.$book["booking_id"].'">
                                             <tr>
@@ -147,9 +188,18 @@
                                               <td>'.$room[0]["room_no"].'</td>
                                               <td>'.$book["check_in"].'</td>
                                               <td>'.$book["check_out"].'</td>
-                                              <td style="padding: 0px;width: 50px; height:50px;">
-                                                <button type="submit" class="btn btn-danger" style="width: 80px; height:50px;">
-                                                  <img src="Content\images\icone\cancel.png" style="height: 20px;">
+                                              <td style="padding: 0px;width: 50px; height:50px;">';
+                                              //Si l'inteval est superieur à 2 (48h)
+                                              if ($interval >= 2) {
+                                                //Afficher un boutton fonctionnel, coloré de rouge
+                                                echo '<button type="submit" class="btn btn-danger" style="width: 80px; height:50px;">';
+                                              }
+                                              else {
+                                                //Ajout d'un boutton non fonctionnel, coloré de gris
+                                                echo '<button type="button" class="btn btn-dark" style="width: 80px; height:50px;">';
+                                              }
+                                              //Affichage du boutton d'annulation
+                                              echo '    <img src="Content\images\icone\cancel.png" style="height: 20px;">
                                                 </button>
                                               </td>
                                             </tr>
@@ -163,17 +213,26 @@
 
 
                         </div>
-                        <?php if ($is_manager) {
+                        <?php
+                        //Si l'utilisateur est un manager
+                        if ($is_manager) {
+                          //Affichage du tableau de gestion des hotels
                           echo '<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="home-tab">
                                   <div class="row">
                                     <table>
                                       <tbody>';
+                          //Récupération des hotels sous la responsabilité du manager actuel
                           $hotel_list = $model->get_hotel_by_manager_id($staff[0]["emp_id"]);
+
+                          //Pour chaque hotel de la liste
                           foreach ($hotel_list as $h) {
+
+                            //Affichage sous forme de ligne le nom de l'hotel
                             echo '    <tr>
                                         <th scope="row">Sophie Tells de '.$h["hotel_localisation_city"].'</th>
                                       </tr>';
                           }
+                          //Fermeture du tableau
                           echo '  </tbody>
                                 </table>
                               </div>
@@ -183,6 +242,8 @@
                 </div>
         </div>
       </div>
+
+          <!--Ajout du footer -->
 
           <?php require("modules/footer.php"); ?>
 

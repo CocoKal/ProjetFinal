@@ -20,6 +20,8 @@
 
 <div class="super_container">
 
+<!--Ajout du header -->
+
 <?php require("modules/header.php");
 ?>
 
@@ -161,7 +163,7 @@
 
 	<?php require("modules/testimonials.php"); ?>
 
-	<!-- Footer -->
+	<!--Ajout du footer -->
 
 		<?php require("modules/footer.php") ?>
 

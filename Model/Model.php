@@ -477,7 +477,6 @@
 															name_card,
 															number_card,
 															date_card,
-															amount_total,
 															amount_rooms,
 															amount_services,
 															code)
@@ -485,7 +484,6 @@
 															:name_card,
 															:number_card,
 															:date_card,
-															:amount_total,
 															:amount_rooms,
 															:amount_services,
 															:code)");
@@ -494,7 +492,6 @@
 				$requete->bindValue(":name_card", $name_card);
 				$requete->bindValue(":number_card", $number_card);
 				$requete->bindValue(":date_card", $date_card);
-				$requete->bindValue(":amount_total", $amount_rooms+$amount_services);
 				$requete->bindValue(":amount_rooms", $amount_rooms);
 				$requete->bindValue(":amount_services", $amount_services);
 				$requete->bindValue(":code", $code);

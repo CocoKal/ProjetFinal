@@ -55,7 +55,7 @@
     foreach ($list_payment as $payment) {
       $time = new DateTime($payment["payment_date"]);
       $interval = $timestamp_payment->diff($time);
-      $interval = $interval->format('%a');
+      $interval = $interval->format('%R%a');
       if ($interval >= 0 ) {
         $id_payment = $payment["id_payment"];
       }
