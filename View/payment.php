@@ -98,11 +98,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <td>
                       <ul>';
                       $price_service= 0;
-                      foreach ($_SESSION['panier']['services'][$i] as $service_id) {
+                      if (!empty($_SESSION['panier']['services'][$i])) {
+                        foreach ($_SESSION['panier']['services'][$i] as $service_id) {
 
-                        $service = $model->get_service_by_id($service_id);
-                        $price_service += $service[0]['price'];
-                        echo '<li>'.$service[0]['name'].'</li>';
+                          $service = $model->get_service_by_id($service_id);
+                          $price_service += $service[0]['price'];
+                          echo '<li>'.$service[0]['name'].'</li>';
+                        }
                       }
                     echo '</ul>
                     </td>

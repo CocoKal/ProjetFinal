@@ -29,6 +29,13 @@
 
 <?php
 
+if (!isset($_COOKIE["id"])) {
+
+  echo"<script>alert('Vous n'êtes pas connecté')</script>";
+  header('Refresh: 1; url=index.php?view=login');
+}
+else {
+
 if ((!isset($_POST["check_in"])
 and empty($_POST["check_in"])
 and !isset($_POST["check_out"])
@@ -54,7 +61,7 @@ $select = array();
 $select['id'] = $_POST["room_id"];
 $select['check_in'] = $_POST["check_in"];
 $select['check_out'] = $_POST["check_out"];
-if (!empty($service_array)) $select['services_index'] = $service_array;
+$select['services_index'] = $service_array;
 
 /* On vérifie l'existence du panier, sinon, on le crée */
 if(!isset($_SESSION['panier']))
@@ -74,5 +81,6 @@ array_push($_SESSION['panier']['check_out'],$select['check_out']);
 array_push($_SESSION['panier']['services'],$select['services_index']);
 
 header('Refresh: 1; url=index.php?view=recap_bag');
+}
 }
 ?>
