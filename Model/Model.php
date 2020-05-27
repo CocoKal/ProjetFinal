@@ -128,29 +128,22 @@
 
 		//USER
 
-		public function add_user($lastname,$firstname,$email,$password,$created_at){  //ADD USER
+		public function add_user($lastname,$firstname,$email,$password){  //ADD USER
 			$requete = $this->bd->prepare(
-				"INSERT INTO user (
-														lastname,
+				"INSERT INTO user (	lastname,
 														firstname,
 														email,
-														password,
-
-														created_at)
-				VALUES 							(
-														:lastname,
+														password)
+				VALUES 							(:lastname,
 														:firstname,
 														:email,
-														:password,
-
-														:created_at)");
+														:password)");
 
 
 			$requete->bindValue(":lastname", $lastname);
 			$requete->bindValue(":firstname", $firstname);
 			$requete->bindValue(":email", $email);
 			$requete->bindValue(":password", $password);
-			$requete->bindValue(":created_at", $created_at);
 
 			return $requete->execute();
 		}
