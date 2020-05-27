@@ -181,7 +181,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                     <div class="tab-form-right user-form-rt">
                                         <h5 class="text-white">CVV NUMBER</h5>
-                                        <input name="cvv" type="text" id="code" placeholder="xxxx" required="required" >
+                                        <input name="cvv" type="text" id="code" placeholder="xxx" required="required" >
                                     </div>
                                     <div class="clear"></div>
                                 </div>

@@ -23,6 +23,9 @@
       echo"<script>alert('Une erreur est survenue.')</script>";
       header('Refresh: 1; url=index.php');
     }
+    if (isset($_POST["booking_id_delete"])) {
+      $model->delete_booking_by_id($_POST["booking_id_delete"]);
+    }
       echo '<div class="super_container">';
       require("modules/header.php");
 
@@ -87,7 +90,6 @@
                       }
                       ?>
                       <a href="index.php?view=recap_bag"><input type="submit" class="profile-edit-btn" name="btn_bag" value="Votre Panier"/></a>
-                        <a href="index.php?view=account_gestion"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
                         <a href="index.php?log=no"><input type="submit" class="log-out-btn" name="deco" value="Se déconnecter"/></a>
                     </div>
                 </div>
@@ -127,8 +129,7 @@
                                     <th scope="col">N°</th>
                                     <th scope="col">Date arrivée</th>
                                     <th scope="col">Date départ</th>
-                                    <th scope="col">Paiement</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Annuler</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -138,23 +139,21 @@
                                     foreach ($booking as $book) {
                                       $room = $model->get_room_by_id($book["room_id"]);
                                       $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
-                                      $payment_status = ($book["payment_status"]) ? "Payé"
-                                      : '<button type="button" class="btn btn-primary" style="width: 90px; height:50px;">
-                                          <img src="Content\images\icone\credit-card.png" style="height: 20px;">
-                                         </button>';
 
-                                      echo '<tr>
+                                      echo '<form method="post" action="index.php?view=account">
+                                      <input type="hidden" name="booking_id_delete" value="'.$book["booking_id"].'">
+                                            <tr>
                                               <td>'.$hotel[0]["hotel_localisation_city"].'</td>
                                               <td>'.$room[0]["room_no"].'</td>
                                               <td>'.$book["check_in"].'</td>
                                               <td>'.$book["check_out"].'</td>
-                                              <td style="padding: 0px;width: 90px; height:50px;">'.$payment_status.'</td>
                                               <td style="padding: 0px;width: 50px; height:50px;">
-                                                <button type="button" class="btn btn-danger" style="width: 50px; height:50px;">
+                                                <button type="button" class="btn btn-danger" style="width: 80px; height:50px;">
                                                   <img src="Content\images\icone\cancel.png" style="height: 20px;">
                                                 </button>
                                               </td>
-                                            </tr>';
+                                            </tr>
+                                          </form>';
                                     }
                                   ?>
                                 </tbody>
@@ -173,7 +172,6 @@
                           foreach ($hotel_list as $h) {
                             echo '    <tr>
                                         <th scope="row">Sophie Tells de '.$h["hotel_localisation_city"].'</th>
-                                        <td class="row_table_managment"><button type="button" class="btn btn-primary">Gérer</button</td>
                                       </tr>';
                           }
                           echo '  </tbody>
