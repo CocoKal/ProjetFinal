@@ -81,9 +81,7 @@ session_start();
                     <li>
                         <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                     </li>
-                    <li>
-                        <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                    </li>
+
                     <li>
                         <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                     </li>
@@ -92,6 +90,9 @@ session_start();
                     </li>
                     <li>
                         <a  class="active-menu" href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                    </li>
+                    <li>
+                        <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                     </li>
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -237,7 +238,7 @@ session_start();
                         </h1>
                     </div>
                 </div>";
-
+                    //SHOW BENEFITS IN 3 MONTHS FOR A SPECIFIC HOTEL : ROOMS + SERVICES = TOTAL
                     $sql2="select * from booking as b , payment as p  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and( p.id_user=b.user_id) ";
 
 

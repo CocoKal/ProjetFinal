@@ -74,9 +74,7 @@ session_start();
                     <li>
                         <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                     </li>
-					<li>
-                        <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                    </li>
+					
 
                     <li>
                         <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
@@ -86,6 +84,9 @@ session_start();
                     </li>
                     <li>
                         <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                    </li>
+                    <li>
+                        <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                     </li>
                     <li>
                         <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -206,7 +207,7 @@ while($row=mysqli_fetch_array($re) )
                                                     </div>
 
 
-                                                    <input type="submit" name="search" value="search" class="btn btn-primary">
+                                                    <input type="submit" name="search" value="search" class="btn btn-primary" onclick="">
                                                 </form>
 
                                             </div>
@@ -260,16 +261,9 @@ if(isset($_POST['search']))
                                             <th>TOTAL AMOUNT</th>
                                             <th>FACTURE</th>
 
-                                        </tr>
-                                    </thead>
-                                    </table>
+                                        </tr>";
 
-
-                            </div>
-
-                        </div>
-                    </div>";
-
+                    //SHOW ALL PAYMENTS FOR A SPECIFIC HOTEL
                   $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id))";
                     $rep = mysqli_query($con,$sql2);
 
@@ -289,6 +283,14 @@ if(isset($_POST['search']))
                                                                                                 <tbody>";}
 
                                                                 echo"
+                                    </thead>
+                                    </table>
+
+
+                                     </div>
+
+                                    </div>
+                                    </div>
 
 
                 </div>

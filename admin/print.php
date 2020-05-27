@@ -166,11 +166,11 @@ tr:hover .cut { opacity: 1; }
 	ob_start();
 	include ('db.php');
 
-	$pid = $_GET['pid'];
+	$pid = $_GET['pid']; //SELECT PAYMENT ID FROM THE PAIMENT FORM TO PRINT ALL ITS DETAILS IN THE FACTURE
 
 
 
-	$sql ="select * from payment as p ,user as u , booking as b  where (id_user = '$pid') and (p.id_user=u.id) and (b.id=p.id_user)";
+	$sql ="select * from payment as p ,user as u , booking as b  where (p.id_payment = '$pid')  and (p.id_user=u.id) and (b.id_payment=p.id_payment)";
 	$re = mysqli_query($con,$sql);
 	while($row=mysqli_fetch_array($re))
 	{
@@ -192,61 +192,7 @@ tr:hover .cut { opacity: 1; }
 
 	}
 
-								/*	$type_of_room = 0;
-									if($troom=="Superior Room")
-									{
-										$type_of_room = 320;
 
-									}
-									else if($troom=="Deluxe Room")
-									{
-										$type_of_room = 220;
-									}
-									else if($troom=="Guest House")
-									{
-										$type_of_room = 180;
-									}
-									else if($troom=="Single Room")
-									{
-										$type_of_room = 150;
-									}
-
-									if($bed=="Single")
-									{
-										$type_of_bed = $type_of_room * 1/100;
-									}
-									else if($bed=="Double")
-									{
-										$type_of_bed = $type_of_room * 2/100;
-									}
-									else if($bed=="Triple")
-									{
-										$type_of_bed = $type_of_room * 3/100;
-									}
-									else if($bed=="Quad")
-									{
-										$type_of_bed = $type_of_room * 4/100;
-									}
-									else if($bed=="None")
-									{
-										$type_of_bed = $type_of_room * 0/100;
-									}
-
-									if($meal=="Room only")
-									{
-										$type_of_meal=$type_of_bed * 0;
-									}
-									else if($meal=="Breakfast")
-									{
-										$type_of_meal=$type_of_bed * 2;
-									}else if($meal=="Half Board")
-									{
-										$type_of_meal=$type_of_bed * 3;
-
-									}else if($meal=="Full Board")
-									{
-										$type_of_meal=$type_of_bed * 4;
-									}*/
 
 	?>
 		<header>
@@ -255,7 +201,7 @@ tr:hover .cut { opacity: 1; }
 				<p>Sophie Tells</p>
 				<p>(+94) 65 222 44 55</p>
 			</address>
-		<!--	<span><img alt="" src="assets/img/sun.png"></span>-->
+
 		</header>
 		<article>
 			<h1>Recipient</h1>
@@ -313,7 +259,7 @@ tr:hover .cut { opacity: 1; }
 <?php
 $free="Free";
 $nul = null;
-$rpsql = "UPDATE `booking` SET `payment_status`=1 where `booking_id`='$booking_id'";
+$rpsql = "UPDATE `booking` SET `payment_status`=1 where `booking_id`='$booking_id'"; // SET PAYMENT STATUT YES FOR THIS BOOKING
 mysqli_query($con,$rpsql);
 
 

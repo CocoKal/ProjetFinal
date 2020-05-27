@@ -1,6 +1,6 @@
 <?php
 session_start();
-$current = date('m/d/Y');
+$current = date('m/d/Y'); //RECUPERER LA DATE D'AUJOURD'HUI POUR AFFICHER LA LISTE DES CLIENTS
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
@@ -76,9 +76,7 @@ $current = date('m/d/Y');
                 <li>
                     <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                 </li>
-                <li>
-                    <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                </li>
+
 
                 <li>
                     <a class="active-menu" href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
@@ -88,6 +86,9 @@ $current = date('m/d/Y');
                 </li>
                 <li>
                     <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                </li>
+                <li>
+                    <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
                 <li>
                     <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -108,7 +109,7 @@ $current = date('m/d/Y');
                         </h1>
                     </div>
                 </div>
-                <?php
+                <?php    //AFFICHER LA LISTE DES HôTELS DE LA CHaîne
 					include ('db.php');
 						$sql = "select * from hotel";
 						$re = mysqli_query($con,$sql);
@@ -187,7 +188,7 @@ $current = date('m/d/Y');
                                                             Choose Hotel To see the List of Clients Today
                                                         </div>
                                                         <div class="panel-body">
-                                                            <form name="form" method="post">
+                                                            <form name="form" method="post"> <!-- Form to choose hotel to show his clients list-->
                                                                 <div class="form-group">
                                                                     <label>Hotel</label>
                                                                     <select name="hotel_id"  class="form-control" required>
@@ -228,34 +229,23 @@ $current = date('m/d/Y');
                                                             {
                                                                 $hotel_id = $_POST['hotel_id'];
                                                                   echo"<div class='row'>
-                          <div class='col-md-12'>
-                          <h1 class='page-header'>
-                            Status Current<small>Clients </small>
-                        </h1>
-                    </div>
-                </div>";
-
+                                                            <div class='col-md-12'>
+                                                            <h1 class='page-header'>
+                                                             Status Current<small>Clients </small>
+                                                             </h1>
+                                                             </div>
+                                                             </div>";
+                                                                    //SELECT ALL CLIENTS WHERE THEIR CHECK IN DATE = CURRENT DATE AND CHECK OUT DATE < CURRENT DATE
                                                                   $sql2="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current) and (b.check_out<$current)";
+                                                                  $red = mysqli_query($con,$sql2);
+                                                                  $s =0;
+						                                        while($row=mysqli_fetch_array($red) ) //COUNT THE NUMBER OF CLIENTS
+						                                        {$s++;
+						                                        };
 
-
-
-						$red = mysqli_query($con,$sql2);
-
-
-						$s =0;
-						while($row=mysqli_fetch_array($red) )
-						{$s++;
-						};
-
-
-
-
-
-
-
-                                      echo"
-                                                    <div class='col-md-12'>
-                                                        <div class='panel panel-default'>
+						                                        echo"
+                                                            <div class='col-md-12'>
+                                                            <div class='panel panel-default'>
                                                             <div class='panel-heading'>
 
                                                             </div>
@@ -290,7 +280,7 @@ $current = date('m/d/Y');
 
 
                                                                                                 </tr>";
-
+                                                                //SELECT LIST OF CLIENTS IN A SPECIFIC HOTEL TODAY
                                                                 $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(date(b.check_in)=$current) and (b.check_out<$current)";
                                                                 $sql3="select *
                                                                        from booking as b, user as u
@@ -302,36 +292,21 @@ $current = date('m/d/Y');
                                                                            and (b.user_id = u.id)
                                                                            and(b.check_in=$current)
                                                                            and (b.check_out<$current)";
-
-
-
-
                                                                 $rec= mysqli_query($con,$sql3);
-
                                                                 while($rowc=mysqli_fetch_array($rec) )
                                                                 {
                                                                     echo "<tr>
-							                     	<th>" . $rowc['user_id'] . "</th>
-												<th>" . $rowc['lastname'] . "</th>
-												<th>" . $rowc['firstname'] . "</th>
-												 ";   }
-                                                                                                echo"</thead>
-                                                                                                <tbody>";}
+							                     	                      <th>" . $rowc['user_id'] . "</th>
+												                          <th>" . $rowc['lastname'] . "</th>
+												                          <th>" . $rowc['firstname'] . "</th>
+												                     ";   }
+												                     echo"</thead>
+                                                                          <tbody>";}
                                                             ?>
-
-
-
-
-
-
-
+                </div>
             </div>
-
-            </div>
-
-                <!-- /. ROW  -->
-
-            </div>
+            <!-- /. ROW  -->
+        </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->

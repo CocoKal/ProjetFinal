@@ -75,9 +75,7 @@ session_start();
                 <li>
                     <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                 </li>
-                <li>
-                    <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                </li>
+
                 <li>
                     <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                 </li>
@@ -86,6 +84,9 @@ session_start();
                 </li>
                 <li>
                     <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                </li>
+                <li>
+                    <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
                 <li>
                     <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -152,7 +153,7 @@ session_start();
                                                                 </thead>
                                                                 <tbody>
 
-                                                                <?php
+                                                                <?php //SELECT ALL HOTELS
                                                                 $hsql = "select * from hotel";
                                                                 $hre = mysqli_query($con,$hsql);
                                                                 while($hrow=mysqli_fetch_array($hre) )
@@ -225,24 +226,19 @@ session_start();
                                                             {
                                                                 $hotel_id = $_POST['hotel_id'];
                                                                   echo"<div class='row'>
-                          <div class='col-md-12'>
-                          <h1 class='page-header'>
-                            Status <small>Room Booking </small>
-                        </h1>
-                    </div>
-                </div>";
+                                                                       <div class='col-md-12'>
+                                                                       <h1 class='page-header'>
+                                                                       Status <small>Room Booking </small>
+                                                                       </h1>
+                                                                       </div>
+                                                                       </div>";
 
                                                                   $sql1="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
-
-
-
-						$re = mysqli_query($con,$sql1);
-
-
-						$c =0;
-						while($row=mysqli_fetch_array($re) )
-						{$c++;
-						};
+                                                                  $re = mysqli_query($con,$sql1);
+                                                                  $c =0;
+                                                                  while($row=mysqli_fetch_array($re) )
+						                                            {$c++;
+						                                            };
 
 
 
@@ -250,16 +246,14 @@ session_start();
 
 
 
-                                      echo"
-                                                    <div class='col-md-12'>
-                                                        <div class='panel panel-default'>
-                                                            <div class='panel-heading'>
-
-                                                            </div>
-                                                            <div class='panel-body'>
-                                                                <div class='panel-group' id='accordion'>
-
-                                                                    <div class='panel panel-primary'>
+                                                                  echo"
+                                                                        <div class='col-md-12'>
+                                                                        <div class='panel panel-default'>
+                                                                        <div class='panel-heading'>
+                                                                        </div>
+                                                                        <div class='panel-body'>
+                                                                        <div class='panel-group' id='accordion'>
+                                                                        <div class='panel panel-primary'>
                                                                         <div class='panel-heading'>
                                                                             <h4 class='panel-title'>
                                                                                 <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
@@ -292,12 +286,9 @@ session_start();
 
 
                                                                                                 </tr>";
+                                                                                        //SELECT ALL BOOKINGS FOR A SPECIFIC HOTEL
                                                                 $sql2="select * from booking where( room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
-
-
-
                                                                 $rep = mysqli_query($con,$sql2);
-
                                                                 while($rowh=mysqli_fetch_array($rep) )
                                                                 {
                                                                     echo "<tr>
@@ -308,9 +299,8 @@ session_start();
 												<th>" . $rowh['check_in'] . "</th>
 												<th>" . $rowh['check_out'] . "</th>
 												<th>" . $rowh['payment_status'] . "</th> ";   }
-                                                                                                echo"</thead>
-                                                                                                <tbody>";}
-                                                            ?>
+												echo"</thead>
+                                                     <tbody>";} ?>
 
 
 
