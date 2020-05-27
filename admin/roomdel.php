@@ -147,7 +147,7 @@ $rre=mysqli_query($con,$rsql);
 							 
 							 if(isset($_POST['del']))
 							 {
-								$did = $_POST['id'];
+								$did = $_POST['no'];
 								$dhot=$_POST['hotel'];
 								
 								// DELETED THE SELECTED ROOM
