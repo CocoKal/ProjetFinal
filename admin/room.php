@@ -100,10 +100,10 @@ session_start();
                                             <label>Type Of Room *</label>
                                             <select name="troom"  class="form-control" required>
 												<option value selected ></option>
-                                                <option value="Standard">STANDARD ROOM</option>
-                                                <option value="Tourism Room">Tourism ROOM</option>
-												<option value="Confort Room">CONFORT ROOM</option>
-												<option value="LUXE Room">LUXE ROOM</option>
+                                                <option value="1">STANDARD ROOM</option>
+                                                <option value="2">Tourism ROOM</option>
+												<option value="3">CONFORT ROOM</option>
+												<option value="4">LUXE ROOM</option>
                                             </select>
                               </div>
 							  
