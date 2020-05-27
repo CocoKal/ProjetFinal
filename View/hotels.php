@@ -44,18 +44,29 @@
 
 
 <div class="container">
-      <?php
 
+      <?php
+			//Récupération de la liste de tous les hotels de la chaine
       $list_hotel = $model->get_all_hotels();
+			//Compteur pour affichage
 			$c = 0;
 
+			//Pour chaque hotel de la liste d'hotel
       foreach ($list_hotel as $hotel) {
+				//Incrémenter le compteur
 				$c++;
+				//Récupération de la description de l'hotel courant
 				$hotel_description = $model->get_hotel_description_by_id($hotel["hotel_id"]);
+				//Récupération du nom de la ville de l'hotel
         $city = $hotel["hotel_localisation_city"];
+				//Foramtage du nom de la ville
         $path_illustration = str_replace(" ", "_", $city);
+				//Récupération de l'id de l'hotel
         $id = $hotel["hotel_id"];
 
+					/*Affichage d'un hotel
+					Si le compteur c est paire, alors afficher l'illustration à gauche
+					Si non à droite */
           echo '<div class="row">
 								<div class="col-6 text-center hotel_list">';
 								if ($c % 2 == 0) {
@@ -75,7 +86,7 @@
 														<img class="pull-right quote_right" src="Content/images/icone/quote_2.png">
 														</a>';
 								}
-					echo	'</div>
+									echo	'</div>
 								<div class="col-6 text-center hotel_list">';
 								if ($c % 2 == 0) {
 									echo '		<a href="index.php?view=hotel_info&hotel_id='.$id.'">
