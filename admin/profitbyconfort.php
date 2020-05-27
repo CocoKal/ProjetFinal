@@ -1,30 +1,35 @@
 <?php
-$current = date('Y/m/d'); //RECUPERER LA DATE D'AUJOURD'HUI POUR AFFICHER LA LISTE DES CLIENTS
 session_start();
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
 }*/
 ?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator	</title>
+    <title>SOPHIE TELLS </title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/morris.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js//raphael-min.js"></script>
+    <script src="assets/js/morris.min.js"></script>
+
+
     <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
-
 <body>
 <div id="wrapper">
 
@@ -64,7 +69,7 @@ session_start();
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a  href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                    <a   href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                 </li>
                 <li>
                     <a  href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
@@ -78,16 +83,16 @@ session_start();
                 </li>
 
                 <li>
-                    <a  class="active-menu" href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
+                    <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                 </li>
                 <li>
                     <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
                 </li>
                 <li>
-                    <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                    <a   href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
                 </li>
                 <li>
-                    <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
+                    <a  class="active-menu" href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
                 <li>
                     <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -104,87 +109,17 @@ session_start();
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        Clients in Hotels <?php echo"$current"?><small></small>
+                        Payments&&Amounts Details <small>from 2020/02/01 to 2020/05/01</small>
                     </h1>
                 </div>
             </div>
-            <?php
-            include ('db.php');
-            $sql = "select * from hotel";
-            $re = mysqli_query($con,$sql);
-            $h =0;
-            while($row=mysqli_fetch_array($re) )
-            {$h++;}?> <!-- Nombre des hôtels -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-
-                        </div>
-                        <div class="panel-body">
-                            <div class="panel-group" id="accordion">
-
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                <button class="btn btn-default" type="button">
-                                                    Hotels  <span class="badge"><?php echo $h ; ?></span>
-                                                </button>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
-                                        <div class="panel-body">
-                                            <div class="panel panel-default">
-
-                                                <div class="panel-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <thead>
-                                                            <tr>
-
-                                                                <th>HOTEL ID</th>
-                                                                <th>HOTEL COUNTRY</th>
-                                                                <th>HOTEL CITY</th>
-                                                                <th>MANAGER ID</th>
-
-
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                            <?php //SELECT ALL HOTELS
-                                                            $hsql = "select * from hotel";
-                                                            $hre = mysqli_query($con,$hsql);
-                                                            while($hrow=mysqli_fetch_array($hre) )
-                                                            {
-
-                                                                echo"<tr>
-												<th>".$hrow['hotel_id']."</th>
-												<th>".$hrow['hotel_localisation_country']."</th>
-												<th>".$hrow['hotel_localisation_city']."</th>
-												<th>".$hrow['manager_id']."</th>
 
 
 
-
-												</tr>";
-                                                            }
-
-
-                                                            ?>
-
-                                                            </tbody>
-                                                        </table>
-
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="col-md-5 col-sm-5">
                                                 <div class="panel panel-primary">
                                                     <div class="panel-heading">
-                                                        Choose Hotel to see his Clients list
+                                                        Choose Hotel to see his payments and amounts
                                                     </div>
                                                     <div class="panel-body">
                                                         <form name="form" method="post">
@@ -204,44 +139,58 @@ session_start();
                                                                     <option value="5">Rio de Janeiro</option>
                                                                 </select>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label>Confort Type</label>
+                                                                <select name="confort"  class="form-control" required>
+                                                                    <option value selected ></option>
+                                                                    <option value="1">Standard</option>
+                                                                    <option value="2">Tourisme </option>
+                                                                    <option value="3">Confort</option>
+                                                                    <option value="4">Luxe</option>
 
+                                                                </select>
+                                                            </div>
 
                                                             <input type="submit" name="search" value="search" class="btn btn-primary">
+
                                                         </form>
 
                                                     </div>
 
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
             <?php
             include('db.php');
             if(isset($_POST['search']))
             {
                 $hotel_id = $_POST['hotel_id'];
+                $confort=$_POST['confort'];
                 echo"<div class='row'>
-                                                                       <div class='col-md-12'>
-                                                                       <h1 class='page-header'>
-                                                                       Status Current Clients <small> </small>
-                                                                       </h1>
-                                                                       </div>
-                                                                       </div>";
+                          <div class='col-md-12'>
+                          <h1 class='page-header'>
+                           Confort <small>Details and Amounts </small>
+                        </h1>
+                    </div>
+                </div>";
+                //SHOW BENEFIT FOR A TYPE OF CONFORT IN A SPECIFIC HOTEL
+                $sql2="select * from booking as b , payment as p  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id and room_type_id=$confort) ) and( p.id_user=b.user_id) ";
 
-                //SELECT ALL CLIENTS WHERE THEIR CHECK IN DATE = CURRENT DATE AND CHECK OUT DATE < CURRENT DATE
 
 
-                $sql2="select * from booking as b, user as u  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id)  and (b.check_in<=CURRENT_TIMESTAMP ) and (b.check_out>current_timestamp ) group by b.user_id";
-                $red = mysqli_query($con,$sql2);
-                $s =0;
-                while($row=mysqli_fetch_array($red) )
-                {$s++;
+                $re = mysqli_query($con,$sql2);
+
+
+                $c =0;
+                $c_amount=0;
+
+                while($row=mysqli_fetch_array($re) )
+                {$c++;
+                    $c_amount=$c_amount+$row['amount_rooms'];
+
                 };
 
 
@@ -251,19 +200,21 @@ session_start();
 
 
                 echo"
-                                                                        <div class='col-md-12'>
-                                                                        <div class='panel panel-default'>
-                                                                        <div class='panel-heading'>
-                                                                        </div>
-                                                                        <div class='panel-body'>
-                                                                        <div class='panel-group' id='accordion'>
-                                                                        <div class='panel panel-primary'>
+                                                    <div class='col-md-12'>
+                                                        <div class='panel panel-default'>
+                                                            <div class='panel-heading'>
+
+                                                            </div>
+                                                            <div class='panel-body'>
+                                                                <div class='panel-group' id='accordion'>
+
+                                                                    <div class='panel panel-primary'>
                                                                         <div class='panel-heading'>
                                                                             <h4 class='panel-title'>
                                                                                 <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
                                                                                     <button class='btn btn-default' type='button'>
-                                                                                        Clients  <span class='badge'>" ;
-                                                                                    echo $s ; echo"</span>
+                                                                                        Payment&Amount Details <span class='badge'>" ;
+                echo $c ; echo"</span>
                                                                                     </button>
                                                                                 </a>
                                                                             </h4>
@@ -278,32 +229,20 @@ session_start();
                                                                                                 <thead>
                                                                                                 <tr>
 
-                                                                                                      <th>Client ID</th>
-                                                                                                    <th>Client Lastname</th>
-                                                                                                    <th>Client Firstname</th>
-
-                                                                                                   
-
-
-
+                                                                                                    <th>Rooms Amounts</th>
+                                                                                                    
+                                                                                                    
                                                                                                 </tr>";
-                //SELECT LIST OF CLIENTS IN A SPECIFIC HOTEL TODAY
-                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in<=CURRENT_TIMESTAMP ) and (b.check_out>CURRENT_TIMESTAMP ) group by b.user_id";
 
-                $rec= mysqli_query($con,$sql3);
-                while($rowh=mysqli_fetch_array($rec) )
-                {
-                    echo "<tr>
-							                     	
-												<th>" . $rowh['user_id'] . "</th>
-												<th>" . $rowh['lastname'] . "</th>
-												<th>" . $rowh['firstname'] . "</th>
+
+
+                echo "<tr>
+							                     	<th>" .$c_amount . "</th>
 												
-												 
-                                             ";   }
+											 ";
                 echo"</thead>
-												</thead>
-                                                     <tbody>";} ?>
+                                                                                                <tbody>";}
+            ?>
 
 
 
@@ -323,18 +262,29 @@ session_start();
 <!-- /. PAGE WRAPPER  -->
 
 
-<script src="assets/js/jquery-1.10.2.js'></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
 <!-- Metis Menu Js -->
 <script src="assets/js/jquery.metisMenu.js"></script>
-<!-- Morris Chart Js -->
-<script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-<script src="assets/js/morris/morris.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>
 
 
 </body>
-
 </html>
+<script>
+
+</script>

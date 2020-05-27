@@ -40,7 +40,7 @@
   and isset($_POST["cvv"])) {
 
     //Partie Payment//
-    $date_card = $_POST["month"].$_POST["year"];
+    $date_card = $_POST["month"]."/".$_POST["year"];
     $model->add_payment($_COOKIE["id"], $_POST["name_card"], $_POST["number_card"], $date_card, $_POST["amount_room"], $_POST["amount_services"], $_POST["cvv"]);
 
     //Partie Booking//
@@ -55,14 +55,14 @@
       $time = new DateTime($payment["payment_date"]);
       $interval = $timestamp_payment->diff($time);
       $interval = $interval->format('%a');
-      if ($interval >= 0 ) {
+      if ($interval <= 0 ) {
         $id_payment = $payment["id_payment"];
       }
     }
 
     //Ajouter les bookings pour chaque article dans le panier.
     $nb_articles = count($_SESSION['panier']['id']);
-    for($i = 0; $i < $nb_articles; $i++) {
+   for($i = 0; $i < $nb_articles; $i++) {
 
       $check_in = date('Y-m-d G:i:s' ,strtotime($_SESSION['panier']['check_in'][$i]));
       $check_out = date('Y-m-d G:i:s' ,strtotime($_SESSION['panier']['check_out'][$i]));

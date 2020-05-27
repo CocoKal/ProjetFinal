@@ -137,7 +137,7 @@ ob_start();
 													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal'>
 															 Update 
 													</button></td>
-													<!--<td><a href=usersettingdel.php?eid=$  <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>-->
+													
 												</tr>";
 											}
 											else
@@ -152,7 +152,7 @@ ob_start();
 													<td><button class='btn btn-primary btn' data-toggle='modal' data-target='#myModal' id='$id'>
                               Update 
                             </button></td>
-													<!--<td><a href=usersettingdel.php?eid=$id  <button class='btn btn-danger'> <i class='fa fa-edit' ></i> Delete</button></td>-->
+													
 												</tr>";
 											
 											}
