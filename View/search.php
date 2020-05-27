@@ -111,6 +111,12 @@
       $room_type = $model->get_all_room_type();
       $last_type = 0;
 
+      $current_time = new DateTime("now");
+      $time = new DateTime($_POST["check_in"]);
+      $interval = date_diff($current_time, $time);
+      $interval = $interval->format('%R%a');
+      $in_time = ($interval >= 2);
+
       echo '  <div class="row text-center">
                 <div class="col-12" style="padding-bottom: 25px;">
                 <h2>Sophie Tells de '.$hotel_info[0]["hotel_localisation_city"].'</h2>
@@ -159,7 +165,7 @@
                   <h5>'.$price.' € / nuit</h5>
                   <p class="card-text">'.sizeof($id_of_room_free).' chambre(s) libre(s).</p>';
 
-              if (!empty($id_of_room_free)) {
+              if (!empty($id_of_room_free) and $in_time) {
                 $services_by_hotel = $model->get_all_hotel_services_by_hotel_id($hotel_id);
                 $compteur = 0;
                 echo '<div class="form-check" style="height: 100px; margin-right: 20px;">

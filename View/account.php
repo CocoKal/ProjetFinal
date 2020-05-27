@@ -140,6 +140,11 @@
                                       $room = $model->get_room_by_id($book["room_id"]);
                                       $hotel = $model->get_hotel_by_id($room[0]["hotel_id"]);
 
+                                      $current_time = new DateTime("now");
+                                      $time = new DateTime($book["check_in"]);
+                                      $interval = date_diff($current_time, $time);
+                                      $interval = $interval->format('%R%a');
+
                                       echo '<form method="post" action="index.php?view=account">
                                       <input type="hidden" name="booking_id_delete" value="'.$book["booking_id"].'">
                                             <tr>
@@ -147,9 +152,15 @@
                                               <td>'.$room[0]["room_no"].'</td>
                                               <td>'.$book["check_in"].'</td>
                                               <td>'.$book["check_out"].'</td>
-                                              <td style="padding: 0px;width: 50px; height:50px;">
-                                                <button type="submit" class="btn btn-danger" style="width: 80px; height:50px;">
-                                                  <img src="Content\images\icone\cancel.png" style="height: 20px;">
+                                              <td style="padding: 0px;width: 50px; height:50px;">';
+                                              if ($interval >= 2) {
+                                                echo '<button type="submit" class="btn btn-danger" style="width: 80px; height:50px;">';
+                                              }
+                                              else {
+                                                echo '<button type="button" class="btn btn-dark" style="width: 80px; height:50px;">';
+                                              }
+
+                                              echo '    <img src="Content\images\icone\cancel.png" style="height: 20px;">
                                                 </button>
                                               </td>
                                             </tr>
