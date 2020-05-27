@@ -49,7 +49,7 @@ session_start();
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -264,7 +264,7 @@ if(isset($_POST['search']))
                                         </tr>";
 
                     //SHOW ALL PAYMENTS FOR A SPECIFIC HOTEL
-                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id))";
+                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id)) group by p.id_payment";
                     $rep = mysqli_query($con,$sql2);
 
                                                                 while($rowp=mysqli_fetch_array($rep) )

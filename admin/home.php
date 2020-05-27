@@ -89,7 +89,7 @@ session_start();
                     <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
                 <li>
-                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i>Quit</a>
                 </li>
             </ul>
 
@@ -103,7 +103,7 @@ session_start();
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                        Current Bookings<small></small>
+                        All Bookings<small></small>
                         </h1>
                     </div>
                 </div>
