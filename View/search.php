@@ -185,12 +185,12 @@
               if ($compteur > 8) {
                 echo '</div>
                   </div>
-                <input type="submit" class="btn btn-primary pull-left" value="Réserver">';
+                <input type="submit" class="btn btn-primary pull-left" value="Ajouter au panier">';
               }
               else {
                 echo '</div>
                   </div>
-                <input type="submit" class="btn btn-primary pull-right" value="Réserver">';
+                <input type="submit" class="btn btn-primary pull-right" value="Ajouter au panier">';
                 }
               }
             echo '</div>
