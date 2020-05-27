@@ -85,6 +85,7 @@
 					</div>
 				</div>
 
+<!-- Footer -->
 
 <?php require("modules/footer.php") ?>
 
