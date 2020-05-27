@@ -163,39 +163,36 @@ tr:hover .cut { opacity: 1; }
 	ob_start();	
 	include ('db.php');
 
-	$pid = $_GET['sid'];
+	$bid = $_GET['bid'];
 	
 	
 	
-	$sql ="select * from roombook where id = '$pid' ";
+	$sql ="select * from booking as b , user as u , room as r , room_type as rt where (r.room_type_id=rt.room_type_id) and (booking_id = $bid) and (u.id=b.user_id) and (b.room_id=r.room_id)";
 	$re = mysqli_query($con,$sql);
 	while($row=mysqli_fetch_array($re))
-	{
-		$id = $row['id'];
-		$title =  $row['Title'];
-		$Fname = $row['FName'];
-		$lname = $row['LName'];
-		$email = $row['Email'];
-		$National = $row['National'];
-		$country = $row['Country'];
-		$phone = $row['Phone'];
-		$room_type = $row['TRoom'];
-		$Bed_type = $row['Bed'];
-		//$Noof_room = $row['Nroom'];
-		$meal_type = $row['Meal'];
-		$cin_date = $row['cin'];
-		$cout_date = $row['cout'];
-		$nodays = $row['nodays'];
+	{   $user_id=$row['user_id'];
+		$id = $row['booking_id'];
+
+		$Fname = $row['firstname'];
+		$lname = $row['lastname'];
+		$email = $row['email'];
+
+		$room_type = $row['room_type'];
+        $room_type_price=$row['price'];
+
+		$cin_date = $row['check_in'];
+		$cout_date = $row['check_out'];
+
 	
 	}
 	
 									
 	?>
 		<header>
-			<h1>Information of Guest</h1>
+			<h1>Information of Reservation</h1>
 			<address >
-				<p>SUN RISE HOTEL,</p>
-				<p>New Kalmunani Road,<br>Battialoa,<br>Sri Lanka.</p>
+				<p>SOPHIE TELLS</p>
+
 				<p>(+94) 65 222 44 55</p>
 			</address>
 			<span><img alt="" src="assets/img/sun.png"></span>
@@ -205,13 +202,17 @@ tr:hover .cut { opacity: 1; }
 			<address >
 				
 				<p><br></p>
-				<p>Coustomer Name  : -  <?php echo $title.$Fname." ".$lname;?><br></p>
+				<p>Client Name  : -  <?php echo $Fname." ".$lname;?><br></p>
 			</address>
 			<table class="meta">
 				<tr>
-					<th><span >Customer ID</span></th>
+					<th><span >Booking ID</span></th>
 					<td><span ><?php echo $id; ?></span></td>
 				</tr>
+                <tr>
+                    <th><span >Client ID</span></th>
+                    <td><span ><?php echo $user_id; ?></span></td>
+                </tr>
 				<tr>
 					<th><span >Check in Date</span></th>
 					<td><span ><?php echo $cin_date; ?> </span></td>
@@ -223,15 +224,12 @@ tr:hover .cut { opacity: 1; }
 				
 			</table>
 			<table >
-					<tr> 
-						<td>Customer phone : -  <?php echo $phone; ?> </td>
+					<tr> <th><span >Customer Informations</span></th>
+
 						
 						<td>Customer email : -  <?php echo $email; ?> </td>
 					</tr>
-					<tr> 
-						<td>Customer Country : -  <?php echo $country; ?> </td>
-						<td>Customer National : -  <?php echo $National; ?> </td>
-					</tr>
+
 				</table>
 				<br>
 				<br>
@@ -239,27 +237,20 @@ tr:hover .cut { opacity: 1; }
 				<thead>
 					<tr>
 						<th><span >Item</span></th>
-						<th><span >No of Days</span></th>
+                        <td><span ><?php echo $room_type; ?></span></td>
 						
 					</tr>
 				</thead>
 				<tbody>
 				
 					<tr>
-						<td><span ><?php echo $room_type; ?></span></td>
-						<td><span ><?php echo $nodays; ?> </span></td>
+                        <th><span >Price</span></th>
+                        <td><span ><?php echo $room_type_price; ?></span></td>
+
 						
 					</tr>
-					<tr>
-						<td><span ><?php echo $Bed_type; ?>  Bed </span></td>
-						<td><span ><?php echo $nodays; ?></span></td>
-						
-					</tr>
-					<tr>
-						<td><span ><?php echo $meal_type; ?>  </span></td>
-						<td><span ><?php echo $nodays; ?></span></td>
-						
-					</tr>
+
+
 				</tbody>
 			</table>
 			
@@ -268,7 +259,7 @@ tr:hover .cut { opacity: 1; }
 		<aside>
 			<h1><span >Contact us</span></h1>
 			<div >
-				<p align="center">Email :- info@sunrise.com || Web :- www.sunrise.com || Phone :- +94 65 222 44 55 </p>
+				<p align="center">Email :- info@sophietells.com || Web :- www.sophietells.com || Phone :- +94 65 222 44 55 </p>
 			</div>
 		</aside>
 	</body>
