@@ -287,7 +287,7 @@ session_start();
 
                                                                                                 </tr>";
                                                                                         //SELECT ALL BOOKINGS FOR A SPECIFIC HOTEL
-                                                                $sql2="select * from booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
+                                                                $sql2=" select * from booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) )";
                                                                 $rep = mysqli_query($con,$sql2);
                                                                 while($rowh=mysqli_fetch_array($rep) )
                                                                 {
