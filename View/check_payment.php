@@ -21,6 +21,7 @@
   <div class="container_loader">
     <h4>Votre paiement est enregistré.</h4>
     <img src="Content\images\loader1.gif" class="loader_gif">
+
   </div>
 
 
@@ -55,10 +56,11 @@
       $time = new DateTime($payment["payment_date"]);
       $interval = $timestamp_payment->diff($time);
       $interval = $interval->format('%a');
-      if ($interval <= 0 ) {
+      if ($interval >= 0 ) {
         $id_payment = $payment["id_payment"];
       }
     }
+
 
     //Ajouter les bookings pour chaque article dans le panier.
     $nb_articles = count($_SESSION['panier']['id']);
@@ -69,6 +71,7 @@
       $room_id = $_SESSION['panier']['id'][$i];
 
       $model->add_booking($_COOKIE["id"],$room_id,$check_in,$check_out,$id_payment);
+      
     }
 
     //Remise à zéro du panier
