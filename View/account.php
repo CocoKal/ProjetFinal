@@ -148,7 +148,7 @@
                                               <td>'.$book["check_in"].'</td>
                                               <td>'.$book["check_out"].'</td>
                                               <td style="padding: 0px;width: 50px; height:50px;">
-                                                <button type="button" class="btn btn-danger" style="width: 80px; height:50px;">
+                                                <button type="submit" class="btn btn-danger" style="width: 80px; height:50px;">
                                                   <img src="Content\images\icone\cancel.png" style="height: 20px;">
                                                 </button>
                                               </td>

@@ -74,15 +74,12 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function delete_booking($booking_id,$user_id){           //DELETE BOOKING BY ID_BOOKING AND ID_USER
-			$requete=$this->bd->prepare("DELETE *
-			FROM booking
-			WHERE booking_id=$booking_id AND(user_id=$user_id)");
+		public function delete_booking_by_id($booking_id){
+			$requete=$this->bd->prepare("DELETE
+																	 FROM booking
+																	 WHERE booking_id = ".$booking_id);
 
-			$requete->bindValue(":booking_id", $booking_id);
-			$requete->bindValue(":user_id", $user_id);
 			$requete->execute();
-
 	   }
 
 		 public function set_id_payment($id_payment, $id_booking) {

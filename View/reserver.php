@@ -80,7 +80,13 @@ array_push($_SESSION['panier']['check_in'],$select['check_in']);
 array_push($_SESSION['panier']['check_out'],$select['check_out']);
 array_push($_SESSION['panier']['services'],$select['services_index']);
 
-header('Refresh: 1; url=index.php');
+if (isset($_COOKIE["id"])) {
+  header('Refresh: 1; url=index.php?view=recap_bag');
+}
+else {
+  header('Refresh: 1; url=index.php');
+}
+
 }
 }
 ?>
