@@ -185,7 +185,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-                                <input type="submit" value="SUBMIT">
+                                <input type="submit" value="SUBMIT" >
 
                             <div class="single-bottom">
                                         <input required="required" type="checkbox"  id="brand">

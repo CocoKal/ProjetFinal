@@ -55,7 +55,7 @@ session_start();
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Quit</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -95,7 +95,7 @@ session_start();
                         <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                     </li>
                     <li>
-                        <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                     </li>
                 </ul>
 

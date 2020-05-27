@@ -95,7 +95,7 @@ session_start();
                     <a  class="active-menu" href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
                 <li>
-                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                 </li>
             </ul>
 
