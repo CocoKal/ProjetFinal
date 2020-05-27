@@ -298,8 +298,10 @@ session_start();
 												<th>" . $rowh['booking_date'] . "</th>
 												<th>" . $rowh['check_in'] . "</th>
 												<th>" . $rowh['check_out'] . "</th>
-												<th>" . $rowh['payment_status'] . "</th> ";   }
-												echo"</thead>
+												<th>" . $rowh['payment_status'] . "</th> 
+                                               <th><a href=show.php?bid=".$rowh['booking_id'] ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Print</button></th> ";   }
+                                                                                                echo"</thead>
+												</thead>
                                                      <tbody>";} ?>
 
 

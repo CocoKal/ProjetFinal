@@ -201,7 +201,7 @@ tr:hover .cut { opacity: 1; }
 				<p>Sophie Tells</p>
 				<p>(+94) 65 222 44 55</p>
 			</address>
-
+            <span><img alt="" src="assets/img/sun.png"></span>
 		</header>
 		<article>
 			<h1>Recipient</h1>
