@@ -157,7 +157,7 @@
                   <h4 class="card-title">
                     <a href="index.php?view=room&room_type='.$type["room_type_id"].'">'.$type["room_type"].'</a>
                   </h4>
-                  <h5>'.$price.' €</h5>
+                  <h5>'.$price.' € / nuit</h5>
                   <p class="card-text">'.sizeof($id_of_room_free).' chambre(s) libre(s).</p>';
 
               if (!empty($id_of_room_free)) {
@@ -183,10 +183,16 @@
                                                 <div class="pull-right">';
                 }
               }
-
+              if ($compteur > 8) {
+                echo '</div>
+                  </div>
+                <input type="submit" class="btn btn-primary pull-left" value="Réserver">';
+              }
+              else {
                 echo '</div>
                   </div>
                 <input type="submit" class="btn btn-primary pull-right" value="Réserver">';
+                }
               }
             echo '</div>
               </div>

@@ -48,7 +48,7 @@
                   </div>
                     <div class="col-md-8">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                              <form action="" method="post">
+                              <form method="post">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Lastname</label>
