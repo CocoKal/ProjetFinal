@@ -28,15 +28,11 @@ if (!isset($_SESSION["username"])) {
       }
 
       if(!$bool){
-				$username = $_POST["lastname"]." ".$_POST["firstname"];
-				$userlevel = !empty($model->get_admin_id_by_user($id));
-				$_SESSION["username"] = $username;
-				$_SESSION["userlevel"] = $userlevel;
-      $ajout = $model->add_user($_POST['lastname'],$_POST['firstname'],$_POST['email'],password_hash($_POST['password'], PASSWORD_DEFAULT));
-      header("location:index.php");
+      	$ajout = $model->add_user($_POST['lastname'],$_POST['firstname'],$_POST['email'],password_hash($_POST['password'], PASSWORD_DEFAULT));
+      	header("location:index.php");
     	}
 			else{
-     	echo  "<script>alert('Des champs sont incomplet.');</script>";
+     		echo  "<script>alert('Des champs sont incomplet.');</script>";
     	}
 
   	}
