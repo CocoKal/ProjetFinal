@@ -140,10 +140,17 @@
 							}
 						echo '</ul>
 						</td>
-            <td><u>Chambre:</u><br>'.$price_chambre.' €<br><u>Services:</u><br>'.$price_service.' €</td>
-            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button>
-            
-						</td>
+            <td>
+              <u>Chambre:</u>
+              <br>
+              '.$price_chambre.' €
+              <br><u>Services:</u>
+              <br>
+              '.$price_service.' €
+            </td>
+            <td>
+              <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+            </td>
 						</tr>
 						</form>
             ';

@@ -21,6 +21,7 @@
   <div class="container_loader">
     <h4>Votre paiement est enregistré.</h4>
     <img src="Content\images\loader1.gif" class="loader_gif">
+
   </div>
 
 
@@ -40,7 +41,7 @@
   and isset($_POST["cvv"])) {
 
     //Partie Payment//
-    $date_card = $_POST["month"].$_POST["year"];
+    $date_card = $_POST["month"]."/".$_POST["year"];
     $model->add_payment($_COOKIE["id"], $_POST["name_card"], $_POST["number_card"], $date_card, $_POST["amount_room"], $_POST["amount_services"], $_POST["cvv"]);
 
     //Partie Booking//
@@ -60,15 +61,17 @@
       }
     }
 
+
     //Ajouter les bookings pour chaque article dans le panier.
     $nb_articles = count($_SESSION['panier']['id']);
-    for($i = 0; $i < $nb_articles; $i++) {
+   for($i = 0; $i < $nb_articles; $i++) {
 
       $check_in = date('Y-m-d G:i:s' ,strtotime($_SESSION['panier']['check_in'][$i]));
       $check_out = date('Y-m-d G:i:s' ,strtotime($_SESSION['panier']['check_out'][$i]));
       $room_id = $_SESSION['panier']['id'][$i];
 
       $model->add_booking($_COOKIE["id"],$room_id,$check_in,$check_out,$id_payment);
+      
     }
 
     //Remise à zéro du panier

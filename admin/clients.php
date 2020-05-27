@@ -1,6 +1,6 @@
 <?php
+$current = date('Y/m/d'); //RECUPERER LA DATE D'AUJOURD'HUI POUR AFFICHER LA LISTE DES CLIENTS
 session_start();
-$current = date('m/d/Y');
 /*if(!isset($_SESSION["user"]))
 {
  header("location:index.php");
@@ -50,7 +50,7 @@ $current = date('m/d/Y');
                     <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -64,7 +64,7 @@ $current = date('m/d/Y');
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a   href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                    <a  href="home.php"><i class="fa fa-dashboard"></i> Status</a>
                 </li>
                 <li>
                     <a  href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
@@ -76,12 +76,9 @@ $current = date('m/d/Y');
                 <li>
                     <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                 </li>
-                <li>
-                    <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                </li>
 
                 <li>
-                    <a class="active-menu" href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
+                    <a  class="active-menu" href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
                 </li>
                 <li>
                     <a  href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
@@ -90,77 +87,80 @@ $current = date('m/d/Y');
                     <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
                 </li>
                 <li>
-                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
                 </li>
-
+                <li>
+                    <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i>Quit</a>
+                </li>
+            </ul>
 
 
         </div>
 
     </nav>
-        <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
                         Clients in Hotels <?php echo"$current"?><small></small>
-                        </h1>
-                    </div>
+                    </h1>
                 </div>
-                <?php
-					include ('db.php');
-						$sql = "select * from hotel";
-						$re = mysqli_query($con,$sql);
-						$h =0;
-						while($row=mysqli_fetch_array($re) )
-						{$h++;}?> <!-- Nombre des hôtels -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
+            </div>
+            <?php
+            include ('db.php');
+            $sql = "select * from hotel";
+            $re = mysqli_query($con,$sql);
+            $h =0;
+            while($row=mysqli_fetch_array($re) )
+            {$h++;}?> <!-- Nombre des hôtels -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
 
-                            </div>
-                            <div class="panel-body">
-                                <div class="panel-group" id="accordion">
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
 
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                    <button class="btn btn-default" type="button">
-                                                      Hotels  <span class="badge"><?php echo $h ; ?></span>
-                                                    </button>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
-                                            <div class="panel-body">
-                                                <div class="panel panel-default">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                <button class="btn btn-default" type="button">
+                                                    Hotels  <span class="badge"><?php echo $h ; ?></span>
+                                                </button>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                        <div class="panel-body">
+                                            <div class="panel panel-default">
 
-                                                    <div class="panel-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table">
-                                                                <thead>
-                                                                <tr>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
 
-                                                                    <th>HOTEL ID</th>
-                                                                    <th>HOTEL COUNTRY</th>
-                                                                    <th>HOTEL CITY</th>
-                                                                    <th>MANAGER ID</th>
+                                                                <th>HOTEL ID</th>
+                                                                <th>HOTEL COUNTRY</th>
+                                                                <th>HOTEL CITY</th>
+                                                                <th>MANAGER ID</th>
 
 
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
 
-                                                                <?php
-                                                                $hsql = "select * from hotel";
-                                                                $hre = mysqli_query($con,$hsql);
-                                                                while($hrow=mysqli_fetch_array($hre) )
-                                                                {
+                                                            <?php //SELECT ALL HOTELS
+                                                            $hsql = "select * from hotel";
+                                                            $hre = mysqli_query($con,$hsql);
+                                                            while($hrow=mysqli_fetch_array($hre) )
+                                                            {
 
-                                                                    echo"<tr>
+                                                                echo"<tr>
 												<th>".$hrow['hotel_id']."</th>
 												<th>".$hrow['hotel_localisation_country']."</th>
 												<th>".$hrow['hotel_localisation_city']."</th>
@@ -170,48 +170,47 @@ $current = date('m/d/Y');
 
 
 												</tr>";
-                                                                }
+                                                            }
 
 
-                                                                ?>
+                                                            ?>
 
-                                                                </tbody>
-                                                            </table>
+                                                            </tbody>
+                                                        </table>
 
-                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 col-sm-5">
-                                                    <div class="panel panel-primary">
-                                                        <div class="panel-heading">
-                                                            Choose Hotel To see the List of Clients Today
-                                                        </div>
-                                                        <div class="panel-body">
-                                                            <form name="form" method="post">
-                                                                <div class="form-group">
-                                                                    <label>Hotel</label>
-                                                                    <select name="hotel_id"  class="form-control" required>
-                                                                        <option value selected ></option>
-                                                                        <option value="1">Marrakech</option>
-                                                                        <option value="2">Paris </option>
-                                                                        <option value="3">Dubai</option>
-                                                                        <option value="4">New York</option>
-                                                                        <option value="5">Rome</option>
-                                                                        <option value="6">Londres</option>
-                                                                        <option value="7">Bangkok</option>
-                                                                        <option value="8">Bali</option>
-                                                                        <option value="5">Amsterdam</option>
-                                                                        <option value="5">Rio de Janeiro</option>
-                                                                    </select>
-                                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading">
+                                                        Choose Hotel to see his Clients list
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <form name="form" method="post">
+                                                            <div class="form-group">
+                                                                <label>Hotel</label>
+                                                                <select name="hotel_id"  class="form-control" required>
+                                                                    <option value selected ></option>
+                                                                    <option value="1">Marrakech</option>
+                                                                    <option value="2">Paris </option>
+                                                                    <option value="3">Dubai</option>
+                                                                    <option value="4">New York</option>
+                                                                    <option value="5">Rome</option>
+                                                                    <option value="6">Londres</option>
+                                                                    <option value="7">Bangkok</option>
+                                                                    <option value="8">Bali</option>
+                                                                    <option value="5">Amsterdam</option>
+                                                                    <option value="5">Rio de Janeiro</option>
+                                                                </select>
+                                                            </div>
 
 
-                                                                <input type="submit" name="search" value="search" class="btn btn-primary">
-                                                            </form>
-
-                                                        </div>
+                                                            <input type="submit" name="search" value="search" class="btn btn-primary">
+                                                        </form>
 
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -221,31 +220,29 @@ $current = date('m/d/Y');
                         </div>
                     </div>
                 </div>
-                <div class='row'>
-                                                            <?php
-                                                            include('db.php');
-                                                            if(isset($_POST['search']))
-                                                            {
-                                                                $hotel_id = $_POST['hotel_id'];
-                                                                  echo"<div class='row'>
-                          <div class='col-md-12'>
-                          <h1 class='page-header'>
-                            Status Current<small>Clients </small>
-                        </h1>
-                    </div>
-                </div>";
+            </div>
+            <?php
+            include('db.php');
+            if(isset($_POST['search']))
+            {
+                $hotel_id = $_POST['hotel_id'];
+                echo"<div class='row'>
+                                                                       <div class='col-md-12'>
+                                                                       <h1 class='page-header'>
+                                                                       Status Current Clients <small> </small>
+                                                                       </h1>
+                                                                       </div>
+                                                                       </div>";
 
-                                                                  $sql2="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in=$current) and (b.check_out<$current)";
-
-
-
-						$red = mysqli_query($con,$sql2);
+                //SELECT ALL CLIENTS WHERE THEIR CHECK IN DATE = CURRENT DATE AND CHECK OUT DATE < CURRENT DATE
 
 
-						$s =0;
-						while($row=mysqli_fetch_array($red) )
-						{$s++;
-						};
+                $sql2="select * from booking as b, user as u  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id)  and (b.check_in<=CURRENT_TIMESTAMP ) and (b.check_out>current_timestamp ) group by b.user_id";
+                $red = mysqli_query($con,$sql2);
+                $s =0;
+                while($row=mysqli_fetch_array($red) )
+                {$s++;
+                };
 
 
 
@@ -253,22 +250,20 @@ $current = date('m/d/Y');
 
 
 
-                                      echo"
-                                                    <div class='col-md-12'>
-                                                        <div class='panel panel-default'>
-                                                            <div class='panel-heading'>
-
-                                                            </div>
-                                                            <div class='panel-body'>
-                                                                <div class='panel-group' id='accordion'>
-
-                                                                    <div class='panel panel-primary'>
+                echo"
+                                                                        <div class='col-md-12'>
+                                                                        <div class='panel panel-default'>
+                                                                        <div class='panel-heading'>
+                                                                        </div>
+                                                                        <div class='panel-body'>
+                                                                        <div class='panel-group' id='accordion'>
+                                                                        <div class='panel panel-primary'>
                                                                         <div class='panel-heading'>
                                                                             <h4 class='panel-title'>
                                                                                 <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>
                                                                                     <button class='btn btn-default' type='button'>
                                                                                         Clients  <span class='badge'>" ;
-                                                                                        echo $s ;"</span>
+                                                                                    echo $s ; echo"</span>
                                                                                     </button>
                                                                                 </a>
                                                                             </h4>
@@ -283,41 +278,32 @@ $current = date('m/d/Y');
                                                                                                 <thead>
                                                                                                 <tr>
 
-                                                                                                    <th>Client ID</th>
+                                                                                                      <th>Client ID</th>
                                                                                                     <th>Client Lastname</th>
                                                                                                     <th>Client Firstname</th>
+
+                                                                                                   
 
 
 
                                                                                                 </tr>";
+                //SELECT LIST OF CLIENTS IN A SPECIFIC HOTEL TODAY
+                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(b.check_in<=CURRENT_TIMESTAMP ) and (b.check_out>CURRENT_TIMESTAMP ) group by b.user_id";
 
-                                                                $sql3="select * from booking as b, user as u where( room_id IN ( select room_id from room where hotel_id=$hotel_id) ) and (b.user_id = u.id) and(date(b.check_in)=$current) and (b.check_out<$current)";
-                                                                $sql3="select *
-                                                                       from booking as b, user as u
-                                                                       where(
-                                                                         room_id IN (
-                                                                           select room_id
-                                                                           from room
-                                                                           where hotel_id=$hotel_id) )
-                                                                           and (b.user_id = u.id)
-                                                                           and(b.check_in=$current)
-                                                                           and (b.check_out<$current)";
-
-
-
-
-                                                                $rec= mysqli_query($con,$sql3);
-
-                                                                while($rowc=mysqli_fetch_array($rec) )
-                                                                {
-                                                                    echo "<tr>
-							                     	<th>" . $rowc['user_id'] . "</th>
-												<th>" . $rowc['lastname'] . "</th>
-												<th>" . $rowc['firstname'] . "</th>
-												 ";   }
-                                                                                                echo"</thead>
-                                                                                                <tbody>";}
-                                                            ?>
+                $rec= mysqli_query($con,$sql3);
+                while($rowh=mysqli_fetch_array($rec) )
+                {
+                    echo "<tr>
+							                     	
+												<th>" . $rowh['user_id'] . "</th>
+												<th>" . $rowh['lastname'] . "</th>
+												<th>" . $rowh['firstname'] . "</th>
+												
+												 
+                                             ";   }
+                echo"</thead>
+												</thead>
+                                                     <tbody>";} ?>
 
 
 
@@ -325,28 +311,28 @@ $current = date('m/d/Y');
 
 
 
-            </div>
-
-            </div>
-
-                <!-- /. ROW  -->
-
-            </div>
-            <!-- /. PAGE INNER  -->
         </div>
-        <!-- /. PAGE WRAPPER  -->
+
+    </div>
+
+    <!-- /. ROW  -->
+
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
 
 
-    <script src="assets/js/jquery-1.10.2.js'></script>
+<script src="assets/js/jquery-1.10.2.js'></script>
     <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
-    <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+<script src="assets/js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
 
 
 </body>

@@ -6,15 +6,15 @@
     <file url="file://$PROJECT_DIR$/View/search.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/clients.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/home.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/admin/index.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/messages.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/payment.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/print.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/profit.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/admin/profitbyconfort.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/room.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/admin/roombook.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/roomdel.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/settings.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/admin/show.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/usersetting.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/admin/usersettingdel.php" dialect="GenericSQL" />
   </component>

@@ -89,6 +89,7 @@ session_start();
                                  
             <?php
 						include ('db.php');
+						//SHOW AVAILABLE ROOMS
 						$sql = "select * from room";
 						$re = mysqli_query($con,$sql)
 				?>
