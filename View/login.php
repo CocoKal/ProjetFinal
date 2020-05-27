@@ -34,7 +34,7 @@
             <button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
         </div>
     </form>
-	<div class="text-center">Vous n'avez pas de compte ? <a href="http://localhost/ProjetFinal/index.php?view=register">S'inscrire</a></div>
+	<div class="text-center">Vous n'avez pas de compte ? <a href="index.php?view=register">S'inscrire</a></div>
 </div>
 <?php
  include('Util/login.php');

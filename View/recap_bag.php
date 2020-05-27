@@ -24,6 +24,13 @@
 
 	<?php require("modules/header.php");
 
+	if (!isset($_COOKIE["id"])) {
+
+		echo"<script>alert('Vous n'êtes pas connecté.')</script>";
+		header('Refresh: 1; url=index.php');
+	}
+	else {
+
 	if (isset($_POST["room_id"])) {
 		$ref_article = $_POST["room_id"];
 		/* création d'un tableau temporaire de stockage des articles */
@@ -75,7 +82,7 @@
         <h2>Sommaire</h2>
       </div>
       <div class="col-3">
-        <button class="btn pull-right button_checkout" type="button" name="button">Payer</button>
+        <a href="index.php?view=payment"><button class="btn pull-right button_checkout" type="button" name="button">Payer</button></a>
       </div>
     </div>
     <div class="row">
@@ -123,18 +130,19 @@
 						<td>
 							<ul>';
 							$price_service= 0;
-							foreach ($_SESSION['panier']['services'][$i] as $service_id) {
+							if (!empty($_SESSION['panier']['services'][$i])) {
+								foreach ($_SESSION['panier']['services'][$i] as $service_id) {
 
-								$service = $model->get_service_by_id($service_id);
-								$price_service += $service[0]['price'];
-								echo '<li>'.$service[0]['name'].'</li>';
+									$service = $model->get_service_by_id($service_id);
+									$price_service += $service[0]['price'];
+									echo '<li>'.$service[0]['name'].'</li>';
+								}
 							}
 						echo '</ul>
 						</td>
             <td><u>Chambre:</u><br>'.$price_chambre.' €<br><u>Services:</u><br>'.$price_service.' €</td>
             <td><button type="submit" class="btn btn-outline-danger">Supprimer</button>
-            <br>
-							<button type="submit" class="btn btn-outline-primary btn_modifier">Modifier</button>
+            
 						</td>
 						</tr>
 						</form>
@@ -142,7 +150,7 @@
 			    }
 
         }
-
+			}
 
        ?>
 

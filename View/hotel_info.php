@@ -18,19 +18,31 @@
 <body>
 
 <?php
+	//Vérifiquation de la variable hotel_id en GET
 	if (!isset($_GET["hotel_id"])) {
 
+		//Si elle n'est pas présente
+		//Afficher une alert
     echo"<script>alert('Une erreur est survenue.')</script>";
+		//Rediriger vers la vue hotels
   	header('Refresh: 1; url=index.php?view=hotels');
   }
+		//Ajout du header
 		echo '<div class="super_container">';
  		require("modules/header.php");
+
+		//Récupération de l'hotel visé par l'id_hotel
 		$hotel = $model->get_hotel_by_id($_GET["hotel_id"]);
+		//Récupération des information de l'hotel visé par l'id_hotel
 		$hotel_description = $model->get_hotel_description_by_id($_GET["hotel_id"]);
+		//Formatage de la chaine de caractère du nom de la Ville
 		$city = str_replace(" ", "_", $hotel[0]["hotel_localisation_city"]);
+		//Préparation du chemin de l'illustration de l'hotel grace à la variable $city
 		$background_style = "background-image:url(Content/images/illustration_hotel/".$city."_1.jpg)";
 
 ?>
+
+	<!-- Home -->
 
 	<div class="home">
 		<div class="background_image" style=<?php echo $background_style; ?>></div>
@@ -49,6 +61,8 @@
 		</div>
 	</div>
 
+	<!-- Description de la ville -->
+
 	<div class="container">
 		<div class="row text-center">
 			<div class="col-12 description_title">
@@ -63,12 +77,18 @@
 	</div>
 
 
-	<?php require("modules/room_type.php");
-				require("modules/services.php"); ?>
+	<?php
+	//Ajout des différents types de chambre présentes dans cet hotel
+	require("modules/room_type.php");
+	//Ajout des icones des différents services disponibles dans cet hotel
+	require("modules/services.php");
+	?>
 
   <!-- Footer -->
 
-	<?php require("modules/footer.php") ?>
+	<?php
+	require("modules/footer.php")
+	?>
 
 </div>
 

@@ -1,3 +1,6 @@
+.div_infos > p {
+  margin-bottom: 0px;
+}
 .btn{margin-bottom:1%;}
 .round{background-color:white;color:green;width:240px;height:20px;line-height:20px;margin:0 auto;
     border: 0px;

@@ -17,30 +17,27 @@
 
 		//BOOKING OK !!
 
-		public function add_booking($user_id,$room_id,$check_in,$check_out){		//ADD BOOKING OPERATION
+		public function add_booking($user_id,$room_id,$check_in,$check_out, $id_payment){		//ADD BOOKING OPERATION
 			$requete = $this->bd->prepare(
 				"INSERT INTO booking (user_id,
 														room_id,
 														check_in,
 														check_out,
-														payment_status)
+														id_payment)
 
 
 				VALUES (
 							 :user_id,
  							 :room_id,
- 							 :booking_date,
  							 :check_in,
  							 :check_out,
- 							 :payment_status)");
+							 :id_payment)");
 
-			//$requete->bindValue(":booking_id", $booking_id);
 			$requete->bindValue(":user_id", $user_id);
 			$requete->bindValue(":room_id", $room_id);
-			$requete->bindValue(":booking_date", $booking_date);
 			$requete->bindValue(":check_in", $check_in);
 			$requete->bindValue(":check_out", $check_out);
-			$requete->bindValue(":payment_status", 0);
+			$requete->bindValue(":id_payment", $id_payment);
 
 			return $requete->execute();
 		}
@@ -77,16 +74,21 @@
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		public function delete_booking($booking_id,$user_id){           //DELETE BOOKING BY ID_BOOKING AND ID_USER
-			$requete=$this->bd->prepare("DELETE *
-			FROM booking
-			WHERE booking_id=$booking_id AND(user_id=$user_id)");
+		public function delete_booking_by_id($booking_id){
+			$requete=$this->bd->prepare("DELETE
+																	 FROM booking
+																	 WHERE booking_id = ".$booking_id);
 
-			$requete->bindValue(":booking_id", $booking_id);
-			$requete->bindValue(":user_id", $user_id);
 			$requete->execute();
-
 	   }
+
+		 public function set_id_payment($id_payment, $id_booking) {
+			 $requete = $this->bd->prepare("UPDATE booking
+				 															SET id_payment = '".$id_payment."'
+																			WHERE booking_id = ".$id_booking);
+			 $requete->execute();
+			 return $requete->fetchAll(PDO::FETCH_ASSOC);
+		 }
 
 		//COMPLAINT OK !!
 
@@ -123,29 +125,22 @@
 
 		//USER
 
-		public function add_user($lastname,$firstname,$email,$password,$created_at){  //ADD USER
+		public function add_user($lastname,$firstname,$email,$password){  //ADD USER
 			$requete = $this->bd->prepare(
-				"INSERT INTO user (
-														lastname,
+				"INSERT INTO user (	lastname,
 														firstname,
 														email,
-														password,
-
-														created_at)
-				VALUES 							(
-														:lastname,
+														password)
+				VALUES 							(:lastname,
 														:firstname,
 														:email,
-														:password,
-
-														:created_at)");
+														:password)");
 
 
 			$requete->bindValue(":lastname", $lastname);
 			$requete->bindValue(":firstname", $firstname);
 			$requete->bindValue(":email", $email);
 			$requete->bindValue(":password", $password);
-			$requete->bindValue(":created_at", $created_at);
 
 			return $requete->execute();
 		}
@@ -429,7 +424,7 @@
 
 		public function add_hotel_service($hotel_id, $service_id) {
 			$requete = $this->bd->prepare(
-				"INSERT INTO services (hotel_id, service_id)
+				"INSERT INTO service (hotel_id, service_id)
 				VALUES 							(:hotel_id,
 														:service_id)");
 
@@ -470,6 +465,53 @@
 
 		public function get_hotel_description_by_id($hotel_id) {
 			$requete = $this->bd->prepare("SELECT * FROM hotel_description WHERE id_hotel = ".$hotel_id);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		//PAYMENT
+
+		public function add_payment($id_user, $name_card, $number_card, $date_card, $amount_rooms, $amount_services, $code) {
+			$requete = $this->bd->prepare(
+				"INSERT INTO payment (id_user,
+															name_card,
+															number_card,
+															date_card,
+															amount_rooms,
+															amount_services,
+															code)
+				VALUES 							 (:id_user,
+															:name_card,
+															:number_card,
+															:date_card,
+															:amount_rooms,
+															:amount_services,
+															:code)");
+
+				$requete->bindValue(":id_user", $id_user);
+				$requete->bindValue(":name_card", $name_card);
+				$requete->bindValue(":number_card", $number_card);
+				$requete->bindValue(":date_card", $date_card);
+				$requete->bindValue(":amount_rooms", $amount_rooms);
+				$requete->bindValue(":amount_services", $amount_services);
+				$requete->bindValue(":code", $code);
+				return $requete->execute();
+		}
+
+		public function get_all_payment() {
+			$requete = $this->bd->prepare("SELECT * FROM payment");
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_payment_by_id($id_payment) {
+			$requete = $this->bd->prepare("SELECT * FROM payment WHERE id_payment = ".$id_payment);
+			$requete->execute();
+			return $requete->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function get_payment_of_user($id_user) {
+			$requete = $this->bd->prepare("SELECT * FROM payment WHERE id_user = ".$id_user);
 			$requete->execute();
 			return $requete->fetchAll(PDO::FETCH_ASSOC);
 		}
