@@ -111,6 +111,11 @@
       $room_type = $model->get_all_room_type();
       $last_type = 0;
 
+      echo '  <div class="row text-center">
+                <div class="col-12" style="padding-bottom: 25px;">
+                <h2>Sophie Tells de '.$hotel_info[0]["hotel_localisation_city"].'</h2>
+                </div>
+              </div>';
 
       foreach ($room_type as $type) {
         $id_of_room_free = [];
@@ -144,7 +149,7 @@
           <div class="card bg-dark search_card">
             <div class="row">
               <div class="col-sm-6">
-                <img class="d-block w-100 search_img" style ="height: 100%;" src="'.$path_illustration.'">
+                <img class="d-block w-100 search_img" style ="height: 240px;" src="'.$path_illustration.'">
               </div>
               <div class="col-sm-6">
                 <div class="card-block">
