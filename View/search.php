@@ -149,7 +149,7 @@
           <div class="card bg-dark search_card">
             <div class="row">
               <div class="col-sm-6">
-                <img class="d-block w-100 search_img" style ="height: 100%;" src="'.$path_illustration.'">
+                <img class="d-block w-100 search_img" style ="height: 240px;" src="'.$path_illustration.'">
               </div>
               <div class="col-sm-6">
                 <div class="card-block">
