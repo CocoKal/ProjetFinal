@@ -49,7 +49,7 @@ session_start();
                         <li><a href="settings.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -74,9 +74,7 @@ session_start();
                     <li>
                         <a  href="settings.php"><i class="fa fa-desktop"></i> Rooms  Settings</a>
                     </li>
-					<li>
-                        <a href="roombook.php"><i class="fa fa-bar-chart-o"></i>Room Booking</a>
-                    </li>
+					
 
                     <li>
                         <a  href="clients.php"><i class="fa fa-desktop"></i> Clients Today</a>
@@ -88,7 +86,10 @@ session_start();
                         <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
                     </li>
                     <li>
-                        <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a   href="profitbyconfort.php"><i class="fa fa-qrcode"></i> Profit By Confort</a>
+                    </li>
+                    <li>
+                        <a href="logout.php" ><i class="fa fa-sign-out fa-fw"></i> Quit</a>
                     </li>
 
 
@@ -206,7 +207,7 @@ while($row=mysqli_fetch_array($re) )
                                                     </div>
 
 
-                                                    <input type="submit" name="search" value="search" class="btn btn-primary">
+                                                    <input type="submit" name="search" value="search" class="btn btn-primary" onclick="">
                                                 </form>
 
                                             </div>
@@ -260,17 +261,10 @@ if(isset($_POST['search']))
                                             <th>TOTAL AMOUNT</th>
                                             <th>FACTURE</th>
 
-                                        </tr>
-                                    </thead>
-                                    </table>
+                                        </tr>";
 
-
-                            </div>
-
-                        </div>
-                    </div>";
-
-                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id))";
+                    //SHOW ALL PAYMENTS FOR A SPECIFIC HOTEL
+                  $sql2="select * from payment as p , booking as b  where( b.room_id IN ( select room_id from room where hotel_id=$hotel_id) and (p.id_user = b.user_id)) group by p.id_payment";
                     $rep = mysqli_query($con,$sql2);
 
                                                                 while($rowp=mysqli_fetch_array($rep) )
@@ -289,6 +283,14 @@ if(isset($_POST['search']))
                                                                                                 <tbody>";}
 
                                                                 echo"
+                                    </thead>
+                                    </table>
+
+
+                                     </div>
+
+                                    </div>
+                                    </div>
 
 
                 </div>

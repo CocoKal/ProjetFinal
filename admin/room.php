@@ -100,10 +100,10 @@ session_start();
                                             <label>Type Of Room *</label>
                                             <select name="troom"  class="form-control" required>
 												<option value selected ></option>
-                                                <option value="Standard">STANDARD ROOM</option>
-                                                <option value="Tourism Room">Tourism ROOM</option>
-												<option value="Confort Room">CONFORT ROOM</option>
-												<option value="LUXE Room">LUXE ROOM</option>
+                                                <option value="1">STANDARD ROOM</option>
+                                                <option value="2">Tourism ROOM</option>
+												<option value="3">CONFORT ROOM</option>
+												<option value="4">LUXE ROOM</option>
                                             </select>
                               </div>
 							  
@@ -140,7 +140,7 @@ session_start();
 										$room = $_POST['troom'];
 										$nb = $_POST['number'];
 										$hotel=$_POST['hotel'];
-										
+										// CHECK IF THE ROOM EXISTS OR NOT
 										$check="SELECT count(*) FROM room WHERE room_no = '$nb' and hotel_id=$hotel ";
 										$rs = mysqli_query($con,$check);
 										$data = mysqli_fetch_array($rs);
@@ -151,7 +151,7 @@ session_start();
 
 										else
 										{
-							 
+							            // ADD THE ROOM
 										
 										$sql ="INSERT INTO room( room_type_id, room_no,hotel_id) VALUES ('$room','$nb','$hotel')" ;
 										if(mysqli_query($con,$sql))
@@ -181,6 +181,7 @@ session_start();
 								<!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <?php
+                        //SHOW SOME ROOMS INFORMATIONS
 						$sql = "select * from room limit 0,15";
 						$re = mysqli_query($con,$sql)
 						?>
