@@ -28,14 +28,7 @@
 </html>
 
 <?php
-
-if (!isset($_COOKIE["id"])) {
-
-  echo"<script>alert('Vous n'êtes pas connecté')</script>";
-  header('Refresh: 1; url=index.php?view=login');
-}
-else {
-
+//Vérifiquation de la présence des variables en POST
 if ((!isset($_POST["check_in"])
 and empty($_POST["check_in"])
 and !isset($_POST["check_out"])
@@ -43,20 +36,30 @@ and empty($_POST["check_out"])
 and !isset($_POST["room_id"])
 and empty($_POST["room_id"]))) {
 
+  //Si non
+  //Afficher une alert
   echo "<script>alert('Une erreur est survenue.')</script>";
+  //Redirection vers l'acceuil
   header('Refresh: 1; url=index.php');
 }
+//Sinon
 else {
 
+//Initialisation du tableau des services
 $service_array = array();
+//Récupération des services
 $services = $model->get_all_services();
+//boucle sur tous les services
 foreach ($services as $service) {
   $id_check = str_replace(" ", "_", $service['name']);
+  //Si la variable POST est présente
   if (isset($_POST[$id_check])) {
+    //Ajouter l'id service à la liste des services
     array_push($service_array, $service['id_service']);
   }
 }
 
+//stockage dans un tableau les information d'un item du panier
 $select = array();
 $select['id'] = $_POST["room_id"];
 $select['check_in'] = $_POST["check_in"];
@@ -80,6 +83,7 @@ array_push($_SESSION['panier']['check_in'],$select['check_in']);
 array_push($_SESSION['panier']['check_out'],$select['check_out']);
 array_push($_SESSION['panier']['services'],$select['services_index']);
 
+
 if (isset($_COOKIE["id"])) {
   header('Refresh: 1; url=index.php?view=recap_bag');
 }
@@ -87,6 +91,5 @@ else {
   header('Refresh: 1; url=index.php');
 }
 
-}
 }
 ?>

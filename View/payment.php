@@ -9,12 +9,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="">
 <head>
     <title>Sophie Tells</title>
-    <!-- for-mobile-apps -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-        function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- //for-mobile-apps -->
     <link href="Styles/style.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" type="text/css" href="styles/bootstrap-4.1.2/bootstrap.min.css">
     <link href='//fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
@@ -62,24 +56,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </thead>
             <tbody>
               <?php
+              //Vérifiquation de la présence du panier
                 if (!empty($_SESSION["panier"])) {
 
+                  //Calcul du nombre d'articles
                   $nb_articles = count($_SESSION['panier']['id']);
+                  //Initialisation du prix total
                   $total_price = 0;
 
+                  //Boucle pour visiter tout le paneir
                   for($i = 0; $i < $nb_articles; $i++) {
 
+                    //Récupération des informations de la chambre
                     $room = $model->get_room_by_id($_SESSION['panier']['id'][$i]);
+                    //Récupération du type de la chambre
                     $room_type = $model->get_room_type_by_id($room[0]["room_type_id"]);
+                    //Récupération et formatage des dates d'arrivée et de départ
                     $check_in = date('j F Y' ,strtotime($_SESSION['panier']['check_in'][$i]));
                     $check_out = date('j F Y' ,strtotime($_SESSION['panier']['check_out'][$i]));
 
+                    //Calcul de l'interval entre la date d'arrivée et de départ
                     $datetime1 = new DateTime($_SESSION['panier']['check_in'][$i]);
                     $datetime2 = new DateTime($_SESSION['panier']['check_out'][$i]);
                     $interval = $datetime1->diff($datetime2);
+                    //Formatage de l'interval
                     $int_interval = $interval->format('%a');
+                    //Calcul du prix de la chambre
                     $price_chambre = $room_type[0]["price"] * $int_interval;
 
+                    //Affochage du panier
                     echo '
                     <tr>
                       <td>
@@ -98,11 +103,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <td>
                       <ul>';
                       $price_service= 0;
+                      //Si l'utilisateur a séléctionné au moins un service
                       if (!empty($_SESSION['panier']['services'][$i])) {
+                        //Pour chaque service séléctionné par l'utilisateur
                         foreach ($_SESSION['panier']['services'][$i] as $service_id) {
 
+                          //Récupération du service par son id
                           $service = $model->get_service_by_id($service_id);
+                          //Icrémentation du prix total des services
                           $price_service += $service[0]['price'];
+                          //Affichage du service dans la liste
                           echo '<li>'.$service[0]['name'].'</li>';
                         }
                       }
@@ -128,6 +138,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         </div>
 
+        <!-- Formulaire de paiement -->
 
         <div class="sap_tabs col-6">
             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
@@ -143,14 +154,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
                         <div class="payment-info">
 
+                          <!-- Formulaire pour carte de crédit -->
+
                             <h3 class="pay-title">Credit Card Info</h3>
                             <form method="post" action="index.php?view=check_payment">
                               <?php
-                              if (isset($price_service) and isset($price_chambre)) {
-                              echo '
-                                <input type="hidden" name="amount_services" value='.$price_service.'>
-                                <input type="hidden" name="amount_room" value='.$price_chambre.'>
-                               ';}?>
+                              //Si le prix du service est présent
+                               if (isset($price_service))
+                               //Ajouter en POST le prix des services
+                                    echo '<input type="hidden" name="amount_services" value='.$price_service.'>';
+                               //Si le prix des chambres est présent
+                               if (isset($price_chambre))
+                               //Ajouter en POST le prix des chambres
+                                    echo '<input type="hidden" name="amount_room" value='.$price_chambre.'>';
+                               ?>
+
+                               <!-- Informations banquaires -->
 
                                 <div class="tab-for">
                                     <h5 class="text-white">NAME ON CARD</h5>
