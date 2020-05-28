@@ -97,21 +97,32 @@
   </thead>
   <tbody>
       <?php
+			//Si le panier est présent
         if (!empty($_SESSION["panier"])) {
 
+					//Détermination du nombre d'item dans le panier
 					$nb_articles = count($_SESSION['panier']['id']);
+
+					//Boucle sur tous les articles du panier
 			    for($i = 0; $i < $nb_articles; $i++) {
+						//Récupération des inforamtions
+						//Récupération de la chambre
 						$room = $model->get_room_by_id($_SESSION['panier']['id'][$i]);
+						//Récupération du type de la chambre
 						$room_type = $model->get_room_type_by_id($room[0]["room_type_id"]);
+						//Formatage des dates d'arrivée et de départ
 						$check_in = date('j F Y' ,strtotime($_SESSION['panier']['check_in'][$i]));
 						$check_out = date('j F Y' ,strtotime($_SESSION['panier']['check_out'][$i]));
 
+						//Calcul de l'interval entre l'arrivée et le départ
 						$datetime1 = new DateTime($_SESSION['panier']['check_in'][$i]);
 						$datetime2 = new DateTime($_SESSION['panier']['check_out'][$i]);
 						$interval = $datetime1->diff($datetime2);
 						$int_interval = $interval->format('%a');
+						//Calcul du prix de la chambre
 						$price_chambre = $room_type[0]["price"] * $int_interval;
 
+						//Affichage d'un item du panier
 						echo '
 						<form method="post" action="index.php?view=recap_bag">
 						<input type="hidden" name="room_id" value="'.$_SESSION['panier']['id'][$i].'">
@@ -130,21 +141,25 @@
 						<td>
 							<ul>';
 							$price_service= 0;
+							//Calcul du prix des services
+							//S'il y a au moins un service
 							if (!empty($_SESSION['panier']['services'][$i])) {
+								//Boucle sur tous les services de l'item du panier
 								foreach ($_SESSION['panier']['services'][$i] as $service_id) {
 
+									//Récupération des informations du service par son id
 									$service = $model->get_service_by_id($service_id);
+									//Incrémentation du sous total du prix des services
 									$price_service += $service[0]['price'];
+									//Affichage du nom du service
 									echo '<li>'.$service[0]['name'].'</li>';
 								}
 							}
+								//Affichage des prix des sercives et des nuités en chambre
 						echo '</ul>
 						</td>
             <td><u>Chambre:</u><br>'.$price_chambre.' €<br><u>Services:</u><br>'.$price_service.' €</td>
-            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button>
-            <br>
-							
-						</td>
+            <td><button type="submit" class="btn btn-outline-danger">Supprimer</button></td>
 						</tr>
 						</form>
             ';
@@ -167,7 +182,7 @@
 
 
 
-
+<!-- Footer -->
 
 <?php require("modules/footer.php") ?>
 

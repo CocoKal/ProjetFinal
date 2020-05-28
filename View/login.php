@@ -13,14 +13,17 @@
 <link rel="stylesheet" type="text/css" href="styles/login.css">
 
 </head>
+<!-- Intégration du font -->
 <body style="background-image:url(Content/images/special.jpg)">
 
+<!--Header minimaliste -->
   <header class="header">
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
       <div class="logo"><a href="index.php">Sophie Tells</a></div>
     </div>
   </header>
 
+<!--Formulaire de connexion -->
 <div class="signup-form">
     <form method="post">
 		<h2>Se connecter</h2>
@@ -37,6 +40,7 @@
 	<div class="text-center">Vous n'avez pas de compte ? <a href="index.php?view=register">S'inscrire</a></div>
 </div>
 <?php
+//Ajout du script de connexion
  include('Util/login.php');
  ?>
 </body>
